@@ -50,7 +50,7 @@ export default function ClubLocator({ sport }) {
       {/* Panneau latéral des clubs */}
       <div className="w-full xl:w-1/3 flex flex-col gap-4">
         <h3 className="text-3xl font-heading text-fusion-neon uppercase flex items-center gap-2 mb-4">
-          <Navigation className="text-fusion-white" /> Clubs à proximité
+          <Navigation className="text-fusion-blue-accent" /> Clubs à proximité
         </h3>
         
         {!position && !error && (
@@ -119,7 +119,7 @@ export default function ClubLocator({ sport }) {
       {/* Carte Interactive */}
       <div className="w-full xl:w-2/3 h-[500px] xl:h-[600px] rounded-3xl overflow-hidden border border-gray-400 relative backdrop-blur-sm bg-slate-200 flex items-center justify-center shadow-xl shadow-blue-500/10">
         {!position && !error ? (
-          <div className="text-fusion-white/50 font-heading text-xl uppercase animate-pulse">
+          <div className="text-fusion-blue-accent/60 font-heading text-xl uppercase animate-pulse">
             Initialisation de la carte radar...
           </div>
         ) : position ? (
@@ -146,7 +146,7 @@ export default function ClubLocator({ sport }) {
             ))}
           </MapContainer>
         ) : (
-          <div className="text-fusion-white/50 font-heading text-xl uppercase">
+          <div className="text-fusion-blue-accent/60 font-heading text-xl uppercase">
             Carte indisponible
           </div>
         )}

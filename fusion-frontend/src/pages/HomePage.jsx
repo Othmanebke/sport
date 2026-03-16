@@ -158,7 +158,7 @@ const SportsCarousel = () => {
               <h3 className="text-5xl md:text-6xl font-heading text-fusion-blue-accent font-black uppercase">
                 {allSports[currentIndex].name}
               </h3>
-              <p className="text-fusion-white text-lg md:text-2xl font-heading">
+              <p className="text-fusion-blue-accent text-lg md:text-2xl font-heading">
                 {allSports[currentIndex].tagline}
               </p>
             </motion.div>
@@ -284,7 +284,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <h3 className="text-6xl md:text-7xl font-heading text-white group-hover:text-fusion-blue-accent transition-colors font-black mb-2">
+                <h3 className="text-6xl md:text-7xl font-heading text-fusion-blue-accent group-hover:text-blue-700 transition-colors font-black mb-2">
                   {currentSport.name}
                 </h3>
                 <p className="text-fusion-blue-accent font-heading text-xl uppercase tracking-widest">
@@ -305,7 +305,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + sIdx * 0.1 }}
-                    className="flex items-center gap-3 text-white/95 font-body text-sm md:text-base"
+                    className="flex items-center gap-3 text-fusion-blue-accent/95 font-body text-sm md:text-base"
                   >
                     <div className="w-3 h-3 bg-fusion-blue-accent rounded-full flex-shrink-0" />
                     <span>{service}</span>
@@ -316,7 +316,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
               {/* CTA Button */}
               <motion.div
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-2 text-fusion-blue-accent font-heading text-lg uppercase font-bold group-hover:text-white transition-colors w-fit"
+                className="flex items-center gap-2 text-fusion-blue-accent font-heading text-lg uppercase font-bold group-hover:text-blue-700 transition-colors w-fit"
               >
                 EXPLORER <ChevronRight className="w-6 h-6" />
               </motion.div>
@@ -508,7 +508,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-heading text-fusion-white mb-8"
+            className="text-4xl md:text-6xl font-heading text-fusion-blue-accent mb-8"
           >
             Tes limites n'existent <span className="text-fusion-blue-accent">que dans ta tête</span>
           </motion.h2>
