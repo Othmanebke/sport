@@ -60,14 +60,58 @@ export default function SportTabs({ sport }) {
             )}
             
             {activeTab === 'news' && (
-              <div className="bg-fusion-darkGray p-8 rounded-sm">
-                <h3 className="text-3xl font-heading text-fusion-white mb-4 uppercase">
-                  Dernières actualités
-                </h3>
-                  <p className="font-body text-fusion-white/60 text-lg max-w-2xl">
-                    Les articles et résultats les plus récents s'afficheront ici.
-                  </p>
-              </div>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="w-full"
+              >
+                <div className="space-y-6">
+                  {[
+                    {
+                      title: "Record mondial battu ce weekend",
+                      date: "15 mars 2026",
+                      image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=600",
+                      content: "Un nouvel athlète détrône le champion sortant avec une performance époustouflante."
+                    },
+                    {
+                      title: "Nouvelle académie ouvre ses portes",
+                      date: "12 mars 2026",
+                      image: "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=600",
+                      content: "L'académie FUSION établit son quartier général dans la région avec des installations haut de gamme."
+                    },
+                    {
+                      title: "Tournoi international : les qualifiés",
+                      date: "10 mars 2026",
+                      image: "https://images.unsplash.com/photo-1552072092-7f9b8d63fd52?q=80&w=600",
+                      content: "Les équipes finalistes sont connues et prêtes à donner tout pour leurs pays."
+                    }
+                  ].map((news, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: idx * 0.1 }}
+                      className="cursor-pointer group border border-fusion-white/10 hover:border-fusion-neon transition-all overflow-hidden rounded-sm hover:shadow-lg hover:shadow-fusion-neon/20"
+                    >
+                      <div className="flex flex-col md:flex-row h-auto md:h-48">
+                        <div className="w-full md:w-48 h-48 md:h-full overflow-hidden bg-fusion-darkGray flex-shrink-0">
+                          <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        </div>
+                        <div className="p-6 flex-1 flex flex-col justify-between bg-fusion-darkGray/30">
+                          <div>
+                            <p className="text-fusion-neon font-body text-sm uppercase tracking-wider mb-2">{news.date}</p>
+                            <h4 className="text-2xl font-heading text-fusion-white group-hover:text-fusion-neon transition-colors mb-2">{news.title}</h4>
+                            <p className="text-fusion-white/60 font-body">{news.content}</p>
+                          </div>
+                          <button className="mt-4 text-fusion-neon font-heading uppercase text-sm hover:text-fusion-white transition-colors flex items-center gap-2">
+                            Lire plus →
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             )}
             
             {activeTab === 'equipments' && (
