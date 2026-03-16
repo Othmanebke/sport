@@ -1,32 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Filter, ShoppingBag, Star, Zap, Truck } from 'lucide-react';
+import { Filter, ShoppingBag, Star, Zap, Truck, ExternalLink } from 'lucide-react';
+
+const realProducts = {
+  football: [
+    { id: 1, name: 'Crampons Nike Phantom GX', price: 189.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=600', stores: [{ name: 'Nike', url: 'https://www.nike.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 2, name: 'Ballon Adidas Champions League', price: 120.00, level: 'Tous', image: 'https://images.unsplash.com/photo-1614632537190-23e4146777db?q=80&w=600', stores: [{ name: 'Adidas', url: 'https://www.adidas.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 3, name: 'Protège-tibias Puma Future', price: 35.00, level: 'Tous', image: 'https://images.unsplash.com/photo-1549449429-1a0e101bd0cd?q=80&w=600', stores: [{ name: 'Puma', url: 'https://www.puma.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Maillot Nike Dri-FIT', price: 55.00, level: 'Débutant', image: 'https://images.unsplash.com/photo-1521509303-366085a210f9?q=80&w=600', stores: [{ name: 'Nike', url: 'https://www.nike.com' }, { name: 'JD Sports', url: 'https://www.jdsports.fr' }] },
+  ],
+  tennis: [
+    { id: 1, name: 'Raquette Wilson Blade 100', price: 249.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1615555431687-21a41dbcd809?q=80&w=600', stores: [{ name: 'Wilson', url: 'https://www.wilsonsporting.com' }, { name: 'Tennis Warehouse', url: 'https://www.tenniswarehouse.com' }] },
+    { id: 2, name: 'Balles Penn Championship x4', price: 14.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1589578132988-cb94ff6debf6?q=80&w=600', stores: [{ name: 'Amazon', url: 'https://www.amazon.fr' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 3, name: 'Raquette Head Graphene 360', price: 189.00, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1622384157582-75d1dcb74279?q=80&w=600', stores: [{ name: 'Head', url: 'https://www.head.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Sac de Tennis Babolat Team', price: 69.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=600', stores: [{ name: 'Babolat', url: 'https://www.babolat.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+  ],
+  combat: [
+    { id: 1, name: 'Gants Venum Elite', price: 149.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1552072092-7f9b8d63fd52?q=80&w=600', stores: [{ name: 'Venum', url: 'https://www.venum.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 2, name: 'Bandes de protection Everlast', price: 24.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1585832770485-e68a5dbfd528?q=80&w=600', stores: [{ name: 'Everlast', url: 'https://www.everlast.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 3, name: 'Protège-dents Mouthguard', price: 16.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1552631580-fca0d4e963ee?q=80&w=600', stores: [{ name: 'Amazon', url: 'https://www.amazon.fr' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Vestiaire Ringside Pro', price: 89.00, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=600', stores: [{ name: 'Ringside', url: 'https://www.ringside.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+  ]
+};
 
 export default function EquipmentStore({ sport }) {
   const [equipments, setEquipments] = useState([]);
   const [activeLevelFilter, setActiveLevelFilter] = useState('Tous');
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
-    const fetchEquipments = async () => {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(`http://localhost:5000/api/equipments/${sport}`);
-        if (!response.ok) throw new Error('Erreur de chargement');
-        const data = await response.json();
-        setEquipments(data);
-      } catch (err) {
-        console.error(err);
-        setError("Erreur de connexion au système central (Backend).");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchEquipments();
+    setIsLoading(true);
+    // Simule un délai de chargement
+    setTimeout(() => {
+      setEquipments(realProducts[sport.toLowerCase()] || realProducts.football);
+      setIsLoading(false);
+    }, 600);
   }, [sport]);
 
   const filteredEquipments = equipments.filter(item => 
@@ -35,7 +44,7 @@ export default function EquipmentStore({ sport }) {
 
   return (
     <div className="flex flex-col lg:flex-row gap-8">
-      {/* Sidebar Filtres (Brutaliste) */}
+      {/* Sidebar Filtres */}
       <div className="w-full lg:w-1/4">
         <div className="sticky top-8 bg-fusion-darkGray p-6 border border-fusion-white/10 rounded-sm">
           <h3 className="text-2xl font-heading text-fusion-white flex items-center gap-2 mb-6 uppercase">
@@ -45,7 +54,7 @@ export default function EquipmentStore({ sport }) {
           <div className="space-y-4 font-body">
             <div>
               <p className="text-fusion-white/50 text-sm uppercase tracking-widest mb-3 font-bold">Niveau Requis</p>
-              {['Tous', 'Débutant', 'Pro'].map(level => (
+              {['Tous', 'Débutant', 'Intermédiaire', 'Pro'].map(level => (
                 <label key={level} className="flex items-center gap-3 cursor-pointer group mb-3">
                   <div className="relative flex items-center justify-center w-6 h-6 border-2 border-fusion-white/20 group-hover:border-fusion-neon transition-colors">
                     <input 
@@ -68,21 +77,8 @@ export default function EquipmentStore({ sport }) {
             </div>
 
             <div className="pt-4 border-t border-fusion-white/10">
-              <p className="text-fusion-white/50 text-sm uppercase tracking-widest mb-3 font-bold">Prix</p>
-              <div className="space-y-2">
-                <label className="flex items-center gap-2 cursor-pointer text-fusion-white/70 hover:text-fusion-white">
-                  <input type="checkbox" className="w-4 h-4" />
-                  <span className="text-sm">Moins de 50€</span>
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer text-fusion-white/70 hover:text-fusion-white">
-                  <input type="checkbox" className="w-4 h-4" />
-                  <span className="text-sm">50€ - 150€</span>
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer text-fusion-white/70 hover:text-fusion-white">
-                  <input type="checkbox" className="w-4 h-4" />
-                  <span className="text-sm">Plus de 150€</span>
-                </label>
-              </div>
+              <p className="text-fusion-neon font-body text-xs uppercase tracking-widest font-bold mb-2">💰 Tous les prix</p>
+              <p className="text-fusion-white/50 text-xs">Filtrés par pertinence</p>
             </div>
           </div>
         </div>
@@ -93,12 +89,8 @@ export default function EquipmentStore({ sport }) {
         {isLoading ? (
           <div className="w-full flex-col h-64 flex items-center justify-center font-heading text-xl text-fusion-neon uppercase tracking-widest gap-4">
              <div className="w-12 h-12 border-4 border-fusion-white/20 border-t-fusion-neon rounded-full animate-spin"></div>
-             Chargement de l'arsenal...
+             Chargement des meilleurs produits...
           </div>
-        ) : error ? (
-           <div className="w-full p-8 border border-red-500 bg-red-900/20 text-red-500 font-body">
-             {error}
-           </div>
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -123,7 +115,7 @@ export default function EquipmentStore({ sport }) {
                       <img 
                         src={item.image} 
                         alt={item.name} 
-                        className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 will-change-transform"
+                        className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                       />
                       <div className="absolute top-4 right-4 bg-fusion-neon text-fusion-black px-3 py-1 font-heading text-sm uppercase font-bold">
                         -15%
@@ -132,39 +124,57 @@ export default function EquipmentStore({ sport }) {
 
                     <div className="p-6 flex-grow flex flex-col justify-between">
                       <div>
-                        <h4 className="font-heading text-2xl text-fusion-white mb-2 uppercase">{item.name}</h4>
+                        <h4 className="font-heading text-2xl text-fusion-white mb-3 uppercase">{item.name}</h4>
                         <div className="flex items-center gap-2 mb-4">
                           <div className="flex text-fusion-neon">
                             {[...Array(5)].map((_, i) => (
                               <Star key={i} size={14} fill="currentColor" />
                             ))}
                           </div>
-                          <span className="text-fusion-white/60 text-sm font-body">(125 avis)</span>
+                          <span className="text-fusion-white/60 text-sm font-body">(240+ avis)</span>
                         </div>
-                        <p className="font-body text-fusion-neon text-xl font-bold mb-2">{item.price.toFixed(2)} €</p>
+                        <p className="font-body text-fusion-neon text-2xl font-black mb-2">{item.price.toFixed(2)} €</p>
                         <p className="font-body text-fusion-white/60 text-sm mb-4">Livraison offerte au delà de 100€</p>
                       </div>
                       
                       <div>
                         <button className="w-full bg-transparent border-2 border-fusion-white hover:border-fusion-neon hover:text-fusion-black hover:bg-fusion-neon transition-all text-fusion-white font-heading text-lg py-3 uppercase tracking-widest flex items-center justify-center gap-2 mb-3">
-                          <ShoppingBag size={20} /> Acheter
+                          <ShoppingBag size={20} /> Voir les tarifs
                         </button>
                         {selectedProduct?.id === item.id && (
                           <motion.div 
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
-                            className="bg-fusion-darkGray p-4 rounded-sm border border-fusion-white/10 mt-3 text-sm"
+                            className="bg-fusion-darkGray p-4 rounded-sm border border-fusion-white/10 space-y-3"
                           >
-                            <div className="space-y-2 text-fusion-white/70 font-body">
+                            <div className="space-y-2 text-fusion-white/70 font-body text-sm">
                               <div className="flex items-center gap-2">
                                 <Zap size={16} className="text-fusion-neon" />
                                 <span>Matériau haute performance</span>
                               </div>
                               <div className="flex items-center gap-2">
                                 <Truck size={16} className="text-fusion-neon" />
-                                <span>Livraison 24h en France</span>
+                                <span>Livraison 24h gratuite</span>
                               </div>
-                              <p className="text-xs mt-2">Garantie 2 ans | Retour 30 jours gratuit</p>
+                            </div>
+                            
+                            {/* Liens externes vers les magasins */}
+                            <div className="pt-3 border-t border-fusion-white/10">
+                              <p className="text-xs uppercase text-fusion-neon font-bold mb-3">Acheter chez :</p>
+                              <div className="space-y-2">
+                                {item.stores.map((store, idx) => (
+                                  <a
+                                    key={idx}
+                                    href={store.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-2 p-2 bg-fusion-black border border-fusion-white/20 hover:border-fusion-neon text-fusion-white hover:text-fusion-neon transition-all rounded text-sm font-body group/link"
+                                  >
+                                    <span className="flex-1">{store.name}</span>
+                                    <ExternalLink size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                                  </a>
+                                ))}
+                              </div>
                             </div>
                           </motion.div>
                         )}
@@ -177,7 +187,7 @@ export default function EquipmentStore({ sport }) {
             
             {filteredEquipments.length === 0 && (
               <div className="text-center py-24 text-fusion-white/40 font-heading text-2xl uppercase">
-                Aucun équipement de ce niveau disponible pour l'instant.
+                Aucun équipement de ce niveau disponible.
               </div>
             )}
           </>
