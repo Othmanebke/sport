@@ -135,7 +135,7 @@ export default function EquipmentStore({ sport }) {
                         alt={item.name} 
                         className="w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-110 transition-all duration-500"
                       />
-                      <div className="absolute top-4 right-4 backdrop-blur-md bg-fusion-blue-accent/90 text-white px-3 py-1 font-heading text-sm uppercase font-bold rounded-full shadow-lg">
+                      <div className="absolute top-4 right-4 backdrop-blur-md bg-fusion-blue-accent/90 text-fusion-blue-accent px-3 py-1 font-heading text-sm uppercase font-bold rounded-full shadow-lg">
                         -15%
                       </div>
                     </div>
@@ -156,7 +156,7 @@ export default function EquipmentStore({ sport }) {
                       </div>
                       
                       <div>
-                        <button className="w-full backdrop-blur-md bg-fusion-blue-accent border-2 border-blue-600 hover:bg-blue-700 text-white font-heading text-lg py-3 uppercase tracking-widest flex items-center justify-center gap-2 mb-3 rounded-xl transition-all hover:shadow-lg hover:shadow-blue-500/50">
+                        <button className="w-full backdrop-blur-md bg-fusion-blue-accent border-2 border-blue-600 hover:bg-blue-700 text-fusion-blue-accent font-heading text-lg py-3 uppercase tracking-widest flex items-center justify-center gap-2 mb-3 rounded-xl transition-all hover:shadow-lg hover:shadow-blue-500/50">
                           <ShoppingBag size={20} /> Voir les tarifs
                         </button>
                         {selectedProduct?.id === item.id && (
@@ -186,7 +186,7 @@ export default function EquipmentStore({ sport }) {
                                     href={store.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 p-3 backdrop-blur-md bg-fusion-blue-accent hover:bg-blue-700 border border-blue-600 text-white hover:text-white transition-all rounded-lg text-sm font-body font-bold group/link hover:shadow-lg"
+                                    className="flex items-center gap-2 p-3 backdrop-blur-md bg-fusion-blue-accent hover:bg-blue-700 border border-blue-600 text-fusion-blue-accent hover:text-fusion-blue-accent transition-all rounded-lg text-sm font-body font-bold group/link hover:shadow-lg"
                                   >
                                     <span className="flex-1">{store.name}</span>
                                     <ExternalLink size={14} className="group-hover/link:translate-x-1 transition-transform" />

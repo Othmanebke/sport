@@ -107,7 +107,7 @@ export default function ClubLocator({ sport }) {
                 animate={{ opacity: 1, height: 'auto' }}
                 className="mt-4 pt-4 border-t border-blue-200"
               >
-                <button className="w-full py-3 backdrop-blur-md bg-fusion-blue-accent/90 text-white font-heading uppercase text-sm hover:scale-105 transition-transform flex items-center justify-center gap-2 rounded-2xl hover:bg-blue-700">
+                <button className="w-full py-3 backdrop-blur-md bg-fusion-blue-accent/90 text-fusion-blue-accent font-heading uppercase text-sm hover:scale-105 transition-transform flex items-center justify-center gap-2 rounded-2xl hover:bg-blue-700">
                   <Phone size={16} /> Contacter
                 </button>
               </motion.div>

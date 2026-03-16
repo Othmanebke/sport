@@ -443,7 +443,7 @@ export default function HomePage() {
             transition={{ delay: 2.3, duration: 0.8 }}
             className="text-center"
           >
-            <button className="px-10 py-5 backdrop-blur-md bg-fusion-blue-accent hover:bg-blue-700 text-white font-heading text-xl uppercase font-bold hover:scale-110 transition-transform flex items-center justify-center gap-2 group mx-auto rounded-2xl hover:shadow-lg hover:shadow-blue-500/40">
+            <button className="px-10 py-5 backdrop-blur-md bg-fusion-blue-accent hover:bg-blue-700 text-fusion-blue-accent font-heading text-xl uppercase font-bold hover:scale-110 transition-transform flex items-center justify-center gap-2 group mx-auto rounded-2xl hover:shadow-lg hover:shadow-blue-500/40">
               <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
               ENTRER DANS L'ARÈNE
             </button>
@@ -523,7 +523,7 @@ export default function HomePage() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-12 py-4 backdrop-blur-md bg-fusion-blue-accent hover:bg-blue-700 text-white font-heading text-xl uppercase font-bold rounded-2xl hover:shadow-lg hover:shadow-blue-500/40 transition-shadow"
+            className="px-12 py-4 backdrop-blur-md bg-fusion-blue-accent hover:bg-blue-700 text-fusion-blue-accent font-heading text-xl uppercase font-bold rounded-2xl hover:shadow-lg hover:shadow-blue-500/40 transition-shadow"
           >
             Commencer Gratuitement
           </motion.button>
