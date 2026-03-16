@@ -31,7 +31,7 @@ export default function ClubLocator({ sport }) {
             const data = await response.json();
             setClubs(data);
           } catch (err) {
-            setError("Impossible de joindre le système radar FUSION (Backend hors-ligne).");
+            setError("Impossible de joindre le système. Veuillez réessayer plus tard.");
             console.error(err);
           }
         },
@@ -48,18 +48,15 @@ export default function ClubLocator({ sport }) {
     <div className="flex flex-col xl:flex-row gap-8">
       {/* Panneau latéral des clubs */}
       <div className="w-full xl:w-1/3 flex flex-col gap-4">
-        <h3 className="text-3xl font-heading text-fusion-neon uppercase flex items-center gap-2 mb-4">
-          <Navigation className="text-fusion-blue-accent" /> Clubs à proximité
-        </h3>
         
         {!position && !error && (
-          <div className="p-6 backdrop-blur-xl bg-slate-300 animate-pulse rounded-3xl border border-gray-400">
-            <p className="text-gray-600 font-body">Recherche de votre position en cours...</p>
+          <div className="p-6 bg-white shadow-sm border border-gray-100 animate-pulse rounded-3xl">
+            <p className="text-gray-500 font-medium">Recherche de votre position en cours...</p>
           </div>
         )}
 
         {error && (
-          <div className="p-6 backdrop-blur-xl bg-red-100 text-red-700 border border-red-300 rounded-3xl font-body">
+          <div className="p-6 bg-red-50 text-red-600 border border-red-100 rounded-3xl font-medium">
             {error}
           </div>
         )}
@@ -73,29 +70,29 @@ export default function ClubLocator({ sport }) {
             animate={{ opacity: 1, x: 0 }}
             className={`p-6 rounded-3xl border transition-all cursor-pointer ${
               selectedClub?.id === club.id 
-                ? 'backdrop-blur-xl bg-slate-300 border-fusion-blue-accent shadow-lg shadow-blue-500/30' 
-                : 'backdrop-blur-md bg-slate-200 hover:bg-slate-300 border-gray-400 hover:border-fusion-blue-accent hover:shadow-lg hover:shadow-blue-500/20'
+                ? 'bg-white border-[#406b4a] shadow-lg' 
+                : 'bg-white border-gray-100 hover:border-[#406b4a] hover:shadow-md'
             }`}
           >
-            <h4 className="text-lg font-heading uppercase text-gray-900 group-hover:text-fusion-blue-accent transition-colors mb-3">
+            <h4 className="text-lg font-bold text-gray-900 group-hover:text-[#406b4a] transition-colors mb-4">
               {club.name}
             </h4>
             
-            <div className="space-y-2 text-sm font-body text-gray-600">
-              <div className="flex items-center gap-2">
-                <MapPin size={16} className="text-fusion-blue-accent" />
+            <div className="space-y-3 text-sm font-medium text-gray-600">
+              <div className="flex items-center gap-3">
+                <MapPin size={18} className="text-[#406b4a]" />
                 <span>{club.distance}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Trophy size={16} className="text-fusion-blue-accent" />
-                <span className="px-2 py-1 bg-blue-100 rounded text-fusion-blue-accent">{club.level}</span>
+              <div className="flex items-center gap-3">
+                <Trophy size={18} className="text-[#406b4a]" />
+                <span className="px-3 py-1 bg-[#ebf2ed] border border-[#d5e6d9] rounded-md text-[#406b4a] text-xs font-bold">{club.level}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Users size={16} className="text-fusion-blue-accent" />
+              <div className="flex items-center gap-3">
+                <Users size={18} className="text-[#406b4a]" />
                 <span>{150 + club.id * 30} membres</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Star size={16} className="text-fusion-blue-accent" />
+              <div className="flex items-center gap-3">
+                <Star size={18} className="text-[#406b4a]" />
                 <span>{(4.5 + club.id * 0.1).toFixed(1)}/5 (240 avis)</span>
               </div>
             </div>
@@ -104,10 +101,10 @@ export default function ClubLocator({ sport }) {
               <motion.div 
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
-                className="mt-4 pt-4 border-t border-blue-200"
+                className="mt-6 pt-6 border-t border-gray-100"
               >
-                <button className="w-full py-3 backdrop-blur-md bg-fusion-blue-accent/90 text-fusion-blue-accent font-heading uppercase text-sm hover:scale-105 transition-transform flex items-center justify-center gap-2 rounded-2xl hover:bg-blue-700">
-                  <Phone size={16} /> Contacter
+                <button className="w-full py-4 bg-[#406b4a] text-white font-bold text-sm transition-transform flex items-center justify-center gap-2 rounded-xl hover:bg-[#34583d]">
+                  <Phone size={18} /> Contacter
                 </button>
               </motion.div>
             )}
@@ -116,36 +113,36 @@ export default function ClubLocator({ sport }) {
       </div>
 
       {/* Carte Interactive */}
-      <div className="w-full xl:w-2/3 h-[500px] xl:h-[600px] rounded-3xl overflow-hidden border border-gray-400 relative backdrop-blur-sm bg-slate-200 flex items-center justify-center shadow-xl shadow-blue-500/10">
+      <div className="w-full xl:w-2/3 h-[500px] xl:h-[600px] rounded-3xl overflow-hidden border border-gray-200 relative bg-gray-50 flex items-center justify-center shadow-inner">
         {!position && !error ? (
-          <div className="text-fusion-blue-accent/60 font-heading text-xl uppercase animate-pulse">
-            Initialisation de la carte radar...
+          <div className="text-gray-400 font-medium text-lg animate-pulse">
+            Initialisation de la carte...
           </div>
         ) : position ? (
           <MapContainer center={position} zoom={13} scrollWheelZoom={false} className="h-full w-full">
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-              url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+              url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
             />
             <Marker position={position}>
-              <Popup className="font-body font-bold text-fusion-black">
+              <Popup>
                 📍 Vous êtes ici
               </Popup>
             </Marker>
             
             {clubs.map(club => (
               <Marker key={club.id} position={[club.lat, club.lng]}>
-                <Popup className="font-body font-bold text-fusion-black">
-                  <div className="text-sm">
-                    <strong>{club.name}</strong> <br/> 
-                    {club.level}
+                <Popup>
+                  <div className="font-sans">
+                    <strong className="text-gray-900">{club.name}</strong> <br/> 
+                    <span className="text-[#406b4a] text-xs font-bold">{club.level}</span>
                   </div>
                 </Popup>
               </Marker>
             ))}
           </MapContainer>
         ) : (
-          <div className="text-fusion-blue-accent/60 font-heading text-xl uppercase">
+          <div className="text-gray-400 font-medium text-lg">
             Carte indisponible
           </div>
         )}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { Filter, ShoppingBag, Star, Zap, Truck, ExternalLink } from 'lucide-react';
 
@@ -97,19 +98,19 @@ export default function EquipmentStore({ sport }) {
 
   return (
     <div className="flex flex-col lg:flex-row gap-8">
-      {/* Sidebar Filtres - Glassmorphism */}
+      {/* Sidebar Filtres */}
       <div className="w-full lg:w-1/4">
-        <div className="sticky top-8 backdrop-blur-xl bg-slate-300 p-6 border border-gray-400 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow">
-          <h3 className="text-2xl font-heading text-gray-900 flex items-center gap-2 mb-6 uppercase">
-            <Filter size={24} className="text-fusion-blue-accent" /> FILTRES
+        <div className="sticky top-8 bg-white p-6 border border-gray-100 rounded-3xl shadow-sm">
+          <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2 mb-6">
+            <Filter size={20} className="text-[#406b4a]" /> FILTRES
           </h3>
 
-          <div className="space-y-4 font-body">
+          <div className="space-y-4 font-sans">
             <div>
-              <p className="text-gray-700 text-sm uppercase tracking-widest mb-3 font-bold">Niveau Requis</p>
+              <p className="text-gray-500 text-xs uppercase tracking-wider mb-4 font-bold">Niveau Requis</p>
               {['Tous', 'Débutant', 'Intermédiaire', 'Pro'].map(level => (
                 <label key={level} className="flex items-center gap-3 cursor-pointer group mb-3">
-                  <div className="relative flex items-center justify-center w-6 h-6 backdrop-blur-md border-2 border-gray-400 group-hover:border-fusion-blue-accent rounded-lg transition-all bg-slate-200">
+                  <div className="relative flex items-center justify-center w-5 h-5 border-2 border-gray-300 group-hover:border-[#406b4a] rounded-md transition-all bg-white">
                     <input 
                       type="radio" 
                       name="level" 
@@ -119,18 +120,18 @@ export default function EquipmentStore({ sport }) {
                       className="opacity-0 absolute"
                     />
                     {activeLevelFilter === level && (
-                      <motion.div layoutId="radio-indicator" className="w-3 h-3 bg-fusion-blue-accent rounded-md" />
+                      <motion.div layoutId="radio-indicator" className="w-2.5 h-2.5 bg-[#406b4a] rounded-sm" />
                     )}
                   </div>
-                  <span className={`text-lg transition-colors ${activeLevelFilter === level ? 'text-gray-900 font-bold' : 'text-gray-600'}`}>
+                  <span className={`text-base transition-colors ${activeLevelFilter === level ? 'text-gray-900 font-bold' : 'text-gray-600'}`}>
                     {level}
                   </span>
                 </label>
               ))}
             </div>
 
-            <div className="pt-4 border-t border-blue-200">
-              <p className="text-fusion-blue-accent font-body text-xs uppercase tracking-widest font-bold mb-2">💰 Tous les prix</p>
+            <div className="pt-4 border-t border-gray-100">
+              <p className="text-[#406b4a] text-xs uppercase tracking-wider font-bold mb-2">💰 Tous les prix</p>
               <p className="text-gray-500 text-xs">Filtrés par pertinence</p>
             </div>
           </div>
@@ -140,8 +141,8 @@ export default function EquipmentStore({ sport }) {
       {/* Grille Produits */}
       <div className="w-full lg:w-3/4">
         {isLoading ? (
-          <div className="w-full flex-col h-64 flex items-center justify-center font-heading text-xl text-fusion-blue-accent uppercase tracking-widest gap-4">
-             <div className="w-12 h-12 border-4 border-blue-200 border-t-fusion-blue-accent rounded-full animate-spin"></div>
+          <div className="w-full flex-col h-64 flex items-center justify-center font-bold text-lg text-gray-400 gap-4">
+             <div className="w-10 h-10 border-4 border-gray-200 border-t-[#406b4a] rounded-full animate-spin"></div>
              Chargement des meilleurs produits...
           </div>
         ) : (
@@ -157,63 +158,63 @@ export default function EquipmentStore({ sport }) {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => setSelectedProduct(selectedProduct?.id === item.id ? null : item)}
-                    className="group relative backdrop-blur-xl bg-slate-200 border border-gray-400 hover:border-fusion-blue-accent transition-all overflow-hidden rounded-3xl flex flex-col cursor-pointer shadow-xl hover:shadow-blue-500/30 hover:scale-105"
+                    className="group relative bg-white border border-gray-100 hover:border-[#406b4a] transition-all overflow-hidden rounded-3xl flex flex-col cursor-pointer shadow-sm hover:shadow-xl hover:-translate-y-1"
                   >
-                    {/* Badge Niveau - Glass */}
-                    <div className="absolute top-4 left-4 z-10 backdrop-blur-md bg-gray-900/40 border border-gray-300 text-fusion-blue-accent px-3 py-1 font-body text-xs uppercase tracking-wider rounded-full">
+                    {/* Badge Niveau */}
+                    <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur text-gray-900 px-3 py-1 font-bold text-xs uppercase tracking-wider rounded-full shadow-sm">
                       {item.level}
                     </div>
 
-                    <div className="h-64 md:h-80 w-full bg-gray-100 overflow-hidden relative rounded-t-3xl">
+                    <div className="h-64 md:h-72 w-full bg-gray-50 overflow-hidden relative rounded-t-3xl">
                       <img 
                         src={item.image} 
                         alt={item.name} 
-                        className="w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-110 transition-all duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                       />
-                      <div className="absolute top-4 right-4 backdrop-blur-md bg-fusion-blue-accent/90 text-fusion-blue-accent px-3 py-1 font-heading text-sm uppercase font-bold rounded-full shadow-lg">
+                      <div className="absolute top-4 right-4 bg-[#ebf2ed] text-[#406b4a] px-3 py-1 text-sm font-bold rounded-full shadow-sm">
                         -15%
                       </div>
                     </div>
 
                     <div className="p-6 flex-grow flex flex-col justify-between">
                       <div>
-                        <h4 className="font-heading text-2xl text-gray-900 mb-3 uppercase">{item.name}</h4>
+                        <h4 className="font-bold text-xl text-gray-900 mb-2 leading-snug">{item.name}</h4>
                         <div className="flex items-center gap-2 mb-4">
-                          <div className="flex text-fusion-blue-accent">
+                          <div className="flex text-yellow-400">
                             {[...Array(5)].map((_, i) => (
                               <Star key={i} size={14} fill="currentColor" />
                             ))}
                           </div>
-                          <span className="text-gray-600 text-sm font-body">(240+ avis)</span>
+                          <span className="text-gray-500 text-sm">(240+ avis)</span>
                         </div>
-                        <p className="font-body text-fusion-blue-accent text-2xl font-black mb-2">{item.price.toFixed(2)} €</p>
-                        <p className="font-body text-gray-600 text-sm mb-4">Livraison offerte au delà de 100€</p>
+                        <p className="text-gray-900 text-2xl font-black mb-2">{item.price.toFixed(2)} €</p>
+                        <p className="text-gray-500 text-sm mb-6">Livraison offerte au delà de 100€</p>
                       </div>
                       
                       <div>
-                        <button className="w-full backdrop-blur-md bg-fusion-blue-accent border-2 border-blue-600 hover:bg-blue-700 text-fusion-blue-accent font-heading text-lg py-3 uppercase tracking-widest flex items-center justify-center gap-2 mb-3 rounded-xl transition-all hover:shadow-lg hover:shadow-blue-500/50">
+                        <button className="w-full bg-[#406b4a] hover:bg-[#34583d] text-white font-bold py-3 flex items-center justify-center gap-2 mb-3 rounded-xl transition-colors">
                           <ShoppingBag size={20} /> Voir les tarifs
                         </button>
                         {selectedProduct?.id === item.id && (
                           <motion.div 
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
-                            className="backdrop-blur-md bg-slate-300 p-4 rounded-xl border border-gray-400 space-y-3"
+                            className="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-3 mt-4"
                           >
-                            <div className="space-y-2 text-gray-700 font-body text-sm">
+                            <div className="space-y-2 text-gray-700 text-sm font-medium">
                               <div className="flex items-center gap-2">
-                                <Zap size={16} className="text-fusion-blue-accent" />
+                                <Zap size={16} className="text-[#406b4a]" />
                                 <span>Matériau haute performance</span>
                               </div>
                               <div className="flex items-center gap-2">
-                                <Truck size={16} className="text-fusion-blue-accent" />
+                                <Truck size={16} className="text-[#406b4a]" />
                                 <span>Livraison 24h gratuite</span>
                               </div>
                             </div>
                             
                             {/* Liens externes vers les magasins */}
-                            <div className="pt-3 border-t border-blue-200">
-                              <p className="text-xs uppercase text-fusion-blue-accent font-bold mb-3">Acheter chez :</p>
+                            <div className="pt-4 border-t border-gray-200">
+                              <p className="text-xs uppercase text-gray-500 font-bold mb-3">Acheter chez :</p>
                               <div className="space-y-2">
                                 {item.stores.map((store, idx) => (
                                   <a
@@ -221,10 +222,10 @@ export default function EquipmentStore({ sport }) {
                                     href={store.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 p-3 backdrop-blur-md bg-fusion-blue-accent hover:bg-blue-700 border border-blue-600 text-fusion-blue-accent hover:text-fusion-blue-accent transition-all rounded-lg text-sm font-body font-bold group/link hover:shadow-lg"
+                                    className="flex items-center gap-2 p-3 bg-white hover:bg-gray-50 border border-gray-200 text-gray-900 transition-all rounded-lg text-sm font-bold group/link hover:border-[#406b4a]"
                                   >
                                     <span className="flex-1">{store.name}</span>
-                                    <ExternalLink size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                                    <ExternalLink size={14} className="text-gray-400 group-hover/link:text-[#406b4a] group-hover/link:translate-x-1 transition-all" />
                                   </a>
                                 ))}
                               </div>
@@ -239,7 +240,7 @@ export default function EquipmentStore({ sport }) {
             </div>
             
             {filteredEquipments.length === 0 && (
-              <div className="text-center py-24 text-gray-500 font-heading text-2xl uppercase">
+              <div className="text-center py-24 text-gray-500 text-xl font-medium">
                 Aucun équipement de ce niveau disponible.
               </div>
             )}

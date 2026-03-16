@@ -1,0 +1,58 @@
+import React, { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import SignupModal from './SignupModal';
+
+const Navbar = () => {
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
+
+  return (
+    <>
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed top-0 left-0 right-0 z-50 px-6 py-4 md:px-12 md:py-6"
+      >
+        {/* Rounded glass background */}
+        <div className="max-w-7xl mx-auto bg-white/70 backdrop-blur-2xl rounded-full border border-white/40 px-6 py-3 md:px-8 flex items-center justify-between shadow-lg hover:shadow-xl transition-shadow">
+          
+          {/* Logo */}
+          <Link to="/">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 cursor-pointer text-gray-900"
+            >
+              <span className="text-[#406b4a] text-2xl font-bold">⚡</span>
+              <span className="text-gray-900 font-bold text-xl md:text-2xl tracking-tight hidden sm:inline">fusion</span>
+            </motion.div>
+          </Link>
+
+          <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-700">
+            <Link to="/" className="hover:text-[#406b4a] transition-colors">Accueil</Link>
+            <Link to="/comment-ca-marche" className="hover:text-[#406b4a] transition-colors">Comment ça marche ?</Link>
+            <Link to="/guide-des-sports" className="hover:text-[#406b4a] transition-colors">Guide des Sports</Link>
+          </div>
+
+          {/* Sign Up Button */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsSignupOpen(true)}
+            className="px-6 py-2.5 md:px-6 md:py-2.5 rounded-full bg-gray-900 text-white font-medium text-sm md:text-base transition-all shadow-md hover:bg-gray-800"
+          >
+            Rejoindre
+          </motion.button>
+        </div>
+      </motion.nav>
+
+      {/* Signup Modal */}
+      <SignupModal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)} />
+    </>
+  );
+};
+
+export default Navbar;
