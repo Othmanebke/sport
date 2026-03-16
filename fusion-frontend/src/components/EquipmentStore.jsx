@@ -20,6 +20,24 @@ const realProducts = {
     { id: 2, name: 'Bandes de protection Everlast', price: 24.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1585832770485-e68a5dbfd528?q=80&w=600', stores: [{ name: 'Everlast', url: 'https://www.everlast.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
     { id: 3, name: 'Protège-dents Mouthguard', price: 16.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1552631580-fca0d4e963ee?q=80&w=600', stores: [{ name: 'Amazon', url: 'https://www.amazon.fr' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
     { id: 4, name: 'Vestiaire Ringside Pro', price: 89.00, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=600', stores: [{ name: 'Ringside', url: 'https://www.ringside.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+  ],
+  mma: [
+    { id: 1, name: 'Gants Octagon MMA Pro', price: 179.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1566818735527-74ac2201e406?q=80&w=600', stores: [{ name: 'Venum', url: 'https://www.venum.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 2, name: 'Short UFC Combat', price: 69.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=600', stores: [{ name: 'UFC Store', url: 'https://store.ufc.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 3, name: 'Paire de shin Twins', price: 129.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1552072092-7f9b8d63fd52?q=80&w=600', stores: [{ name: 'Twins Special', url: 'https://twinsspecia.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Tapis d\'entraînement MMA', price: 199.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=600', stores: [{ name: 'Amazon', url: 'https://www.amazon.fr' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+  ],
+  natation: [
+    { id: 1, name: 'Maillot Speedo FastSkin', price: 159.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1576610616656-570b081eaf00?q=80&w=600', stores: [{ name: 'Speedo', url: 'https://www.speedo.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 2, name: 'Palmes de compétition Arena', price: 79.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1576610616656-570b081eaf00?q=80&w=600', stores: [{ name: 'Arena', url: 'https://www.arenawaterinstinct.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 3, name: 'Lunettes Aquasphere', price: 45.00, level: 'Tous', image: 'https://images.unsplash.com/photo-1576610616656-570b081eaf00?q=80&w=600', stores: [{ name: 'Aquasphere', url: 'https://www.aquasphereswim.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 4, name: 'Bonnet de bain Pro', price: 25.00, level: 'Débutant', image: 'https://images.unsplash.com/photo-1576610616656-570b081eaf00?q=80&w=600', stores: [{ name: 'Speedo', url: 'https://www.speedo.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+  ],
+  basketball: [
+    { id: 1, name: 'Chaussures Air Jordan XXXVII', price: 219.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'Nike', url: 'https://www.nike.com' }, { name: 'JD Sports', url: 'https://www.jdsports.fr' }] },
+    { id: 2, name: 'Ballon Spalding NBA', price: 89.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'Spalding', url: 'https://www.spalding.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 3, name: 'Maillot Adidas Creator Pro', price: 79.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'Adidas', url: 'https://www.adidas.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Protège-chevilles Elite', price: 39.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'McDavid', url: 'https://www.mcdavidusa.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
   ]
 };
 

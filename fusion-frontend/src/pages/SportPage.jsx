@@ -32,6 +32,33 @@ const sportDetails = {
       { label: 'Académies', value: '10k+' },
       { label: 'Événements/an', value: '200+' }
     ]
+  },
+  mma: {
+    banner: 'https://images.unsplash.com/photo-1566818735527-74ac2201e406?q=80&w=2000&auto=format&fit=crop',
+    description: 'L\'octogone attend. Puissance brute rencontre technique stratégique. Seuls les guerriers survivent.',
+    stats: [
+      { label: 'Combattants MMA', value: '100k+' },
+      { label: 'Promotions', value: '500+' },
+      { label: 'Fans', value: '50M+' }
+    ]
+  },
+  natation: {
+    banner: 'https://images.unsplash.com/photo-1576610616656-570b081eaf00?q=80&w=2000&auto=format&fit=crop',
+    description: 'Fends les vagues. Chaque seconde compte. Ton corps devient machine aquatique.',
+    stats: [
+      { label: 'Nageurs compétitifs', value: '2M+' },
+      { label: 'Piscines', value: '30k+' },
+      { label: 'Compétitions/an', value: '1000+' }
+    ]
+  },
+  basketball: {
+    banner: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=2000&auto=format&fit=crop',
+    description: 'Slam dunk. Vitesse. Précision. Un sport d\'équipe où chaque panier compte.',
+    stats: [
+      { label: 'Joueurs mondiaux', value: '1.5M' },
+      { label: 'Clubs professionnels', value: '100+' },
+      { label: 'Fans', value: '2B+' }
+    ]
   }
 };
 

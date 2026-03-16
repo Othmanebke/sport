@@ -365,6 +365,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
   );
 };
 
+export default function HomePage() {
   const navigate = useNavigate();
 
   return (
