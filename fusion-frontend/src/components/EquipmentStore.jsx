@@ -80,11 +80,10 @@ const realProducts = {
 export default function EquipmentStore({ sport }) {
   const [equipments, setEquipments] = useState([]);
   const [activeLevelFilter, setActiveLevelFilter] = useState('Tous');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
-    setIsLoading(true);
     // Simule un délai de chargement
     setTimeout(() => {
       setEquipments(realProducts[sport.toLowerCase()] || realProducts.football);
