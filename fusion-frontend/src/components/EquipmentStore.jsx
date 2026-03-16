@@ -169,8 +169,10 @@ export default function EquipmentStore({ sport }) {
                           </motion.div>
                         )}
                       </div>
-            ))}
-          </AnimatePresence>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
             </div>
             
             {filteredEquipments.length === 0 && (
