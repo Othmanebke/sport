@@ -123,7 +123,7 @@ const SportsCarousel = () => {
   };
 
   return (
-    <div className="relative w-full h-96 md:h-[500px] overflow-hidden rounded-3xl backdrop-blur-xl border border-fusion-white/30 hover:border-fusion-neon/50 transition-all group shadow-2xl hover:shadow-fusion-neon/20">
+    <div className="relative w-full h-96 md:h-[500px] overflow-hidden rounded-3xl backdrop-blur-xl border border-blue-300 hover:border-fusion-blue-accent transition-all group shadow-2xl hover:shadow-blue-500/20">
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div
           key={currentIndex}
@@ -144,7 +144,7 @@ const SportsCarousel = () => {
             className="w-full h-full object-cover opacity-60 group-hover:opacity-75 transition-opacity duration-500"
           />
           {/* Glass Effect Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-fusion-black/80 via-fusion-black/40 to-transparent backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-gray-900/20 to-transparent backdrop-blur-sm" />
           
           {/* Content */}
           <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-12">
@@ -155,7 +155,7 @@ const SportsCarousel = () => {
               transition={{ delay: 0.3 }}
               className="space-y-3"
             >
-              <h3 className="text-5xl md:text-6xl font-heading text-fusion-neon font-black uppercase">
+              <h3 className="text-5xl md:text-6xl font-heading text-fusion-blue-accent font-black uppercase">
                 {allSports[currentIndex].name}
               </h3>
               <p className="text-fusion-white text-lg md:text-2xl font-heading">
@@ -169,7 +169,7 @@ const SportsCarousel = () => {
       {/* Carousel Controls */}
       <button
         onClick={handlePrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-fusion-black/60 hover:bg-fusion-neon hover:text-fusion-black text-fusion-white p-3 rounded-full transition-all"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
         aria-label="Previous sport"
       >
         <ChevronLeft size={24} />
@@ -177,7 +177,7 @@ const SportsCarousel = () => {
       
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-fusion-black/60 hover:bg-fusion-neon hover:text-fusion-black text-fusion-white p-3 rounded-full transition-all"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
         aria-label="Next sport"
       >
         <ChevronRight size={24} />
@@ -263,7 +263,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
             opacity: { duration: 0.5 },
           }}
           onClick={() => onSportClick(currentSport.id)}
-          className="cursor-pointer group relative rounded-3xl overflow-hidden backdrop-blur-xl border border-fusion-white/30 hover:border-fusion-neon/60 transition-all duration-300 shadow-2xl hover:shadow-fusion-neon/30 hover:scale-[1.02]"
+          className="cursor-pointer group relative rounded-3xl overflow-hidden backdrop-blur-xl border border-blue-200 hover:border-fusion-blue-accent transition-all duration-300 shadow-2xl hover:shadow-blue-500/30 hover:scale-[1.02]"
         >
           {/* Image with overlay */}
           <div className="relative h-96 md:h-[450px] overflow-hidden rounded-3xl">
@@ -274,7 +274,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
             />
             
             {/* Glass Effect Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-fusion-black/90 via-fusion-black/40 to-fusion-black/20 backdrop-blur-md group-hover:backdrop-blur-sm transition-all" />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-gray-900/20 backdrop-blur-md group-hover:backdrop-blur-sm transition-all" />
 
             {/* Content */}
             <div className="relative h-full p-8 md:p-12 flex flex-col justify-between">
@@ -284,10 +284,10 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <h3 className="text-6xl md:text-7xl font-heading text-fusion-white group-hover:text-fusion-neon transition-colors font-black mb-2">
+                <h3 className="text-6xl md:text-7xl font-heading text-white group-hover:text-fusion-blue-accent transition-colors font-black mb-2">
                   {currentSport.name}
                 </h3>
-                <p className="text-fusion-neon font-heading text-xl uppercase tracking-widest">
+                <p className="text-fusion-blue-accent font-heading text-xl uppercase tracking-widest">
                   {currentSport.tagline}
                 </p>
               </motion.div>
@@ -305,9 +305,9 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + sIdx * 0.1 }}
-                    className="flex items-center gap-3 text-fusion-white/95 font-body text-sm md:text-base"
+                    className="flex items-center gap-3 text-white/95 font-body text-sm md:text-base"
                   >
-                    <div className="w-3 h-3 bg-fusion-neon rounded-full flex-shrink-0" />
+                    <div className="w-3 h-3 bg-fusion-blue-accent rounded-full flex-shrink-0" />
                     <span>{service}</span>
                   </motion.div>
                 ))}
@@ -316,7 +316,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
               {/* CTA Button */}
               <motion.div
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-2 text-fusion-neon font-heading text-lg uppercase font-bold group-hover:text-fusion-white transition-colors w-fit"
+                className="flex items-center gap-2 text-fusion-blue-accent font-heading text-lg uppercase font-bold group-hover:text-white transition-colors w-fit"
               >
                 EXPLORER <ChevronRight className="w-6 h-6" />
               </motion.div>
@@ -329,7 +329,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
       <div className="flex items-center justify-between gap-4 mt-8">
         <button
           onClick={handlePrev}
-          className="bg-fusion-black/60 hover:bg-fusion-neon hover:text-fusion-black text-fusion-white p-3 rounded-full transition-all"
+          className="bg-white/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
           aria-label="Previous sport"
         >
           <ChevronLeft size={24} />
@@ -346,8 +346,8 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
               }}
               className={`h-3 rounded-full transition-all ${
                 idx === currentIndex
-                  ? "bg-fusion-neon w-8"
-                  : "bg-fusion-white/40 w-3 hover:bg-fusion-white/60"
+                  ? "bg-fusion-blue-accent w-8"
+                  : "bg-gray-400/40 w-3 hover:bg-gray-400/60"
               }`}
               aria-label={`Go to sport ${idx + 1}`}
             />
@@ -356,7 +356,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
 
         <button
           onClick={handleNext}
-          className="bg-fusion-black/60 hover:bg-fusion-neon hover:text-fusion-black text-fusion-white p-3 rounded-full transition-all"
+          className="bg-white/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
           aria-label="Next sport"
         >
           <ChevronRight size={24} />
@@ -370,7 +370,7 @@ export default function HomePage() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-fusion-black text-fusion-white overflow-hidden">
+    <div className="min-h-screen bg-white text-gray-900 overflow-hidden">
       {/* MEGA HERO WITH CAROUSEL */}
       <section className="relative min-h-[140vh] flex flex-col items-center justify-center overflow-hidden px-4 py-12">
         {/* Background animated blur */}
@@ -378,9 +378,9 @@ export default function HomePage() {
           <motion.div
             animate={{ 
               background: [
-                'radial-gradient(800px at 0% 0%, rgba(204, 255, 0, 0.15) 0%, transparent 80%)',
-                'radial-gradient(800px at 100% 100%, rgba(204, 255, 0, 0.15) 0%, transparent 80%)',
-                'radial-gradient(800px at 0% 100%, rgba(204, 255, 0, 0.15) 0%, transparent 80%)',
+                'radial-gradient(800px at 0% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 80%)',
+                'radial-gradient(800px at 100% 100%, rgba(37, 99, 235, 0.15) 0%, transparent 80%)',
+                'radial-gradient(800px at 0% 100%, rgba(37, 99, 235, 0.15) 0%, transparent 80%)',
               ]
             }}
             transition={{ duration: 6, repeat: Infinity, repeatType: "reverse" }}
@@ -397,9 +397,9 @@ export default function HomePage() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="mb-8 inline-block"
             >
-              <div className="px-6 py-3 backdrop-blur-md bg-white/10 border border-fusion-neon rounded-full flex items-center gap-2 hover:bg-white/15 transition-all">
-                <Flame className="w-5 h-5 text-fusion-neon animate-pulse" />
-                <span className="font-heading text-fusion-neon uppercase text-sm tracking-widest">Prêt à transcender ?</span>
+              <div className="px-6 py-3 backdrop-blur-md bg-blue-50 border border-fusion-blue-accent rounded-full flex items-center gap-2 hover:bg-blue-100 transition-all">
+                <Flame className="w-5 h-5 text-fusion-blue-accent animate-pulse" />
+                <span className="font-heading text-fusion-blue-accent uppercase text-sm tracking-widest">Prêt à transcender ?</span>
               </div>
             </motion.div>
 
@@ -411,7 +411,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.8 }}
-              className="text-2xl md:text-4xl font-heading text-fusion-neon mb-8 uppercase tracking-wider"
+              className="text-2xl md:text-4xl font-heading text-fusion-blue-accent mb-8 uppercase tracking-wider"
             >
               La révolution sportive commence ici
             </motion.p>
@@ -420,7 +420,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.5, duration: 0.8 }}
-              className="text-lg md:text-xl font-body text-fusion-white/70 mb-12 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg md:text-xl font-body text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed"
             >
               Trouve tes clubs, tes équipes et tes équipements professionnels. Connecte-toi avec des champions. Surpasse-toi chaque jour.
             </motion.p>
@@ -443,7 +443,7 @@ export default function HomePage() {
             transition={{ delay: 2.3, duration: 0.8 }}
             className="text-center"
           >
-            <button className="px-10 py-5 backdrop-blur-md bg-fusion-neon/90 text-fusion-black font-heading text-xl uppercase font-bold hover:scale-110 transition-transform flex items-center justify-center gap-2 group mx-auto rounded-2xl hover:shadow-lg hover:shadow-fusion-neon/40">
+            <button className="px-10 py-5 backdrop-blur-md bg-fusion-blue-accent hover:bg-blue-700 text-white font-heading text-xl uppercase font-bold hover:scale-110 transition-transform flex items-center justify-center gap-2 group mx-auto rounded-2xl hover:shadow-lg hover:shadow-blue-500/40">
               <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
               ENTRER DANS L'ARÈNE
             </button>
@@ -456,7 +456,7 @@ export default function HomePage() {
           transition={{ duration: 2, repeat: Infinity }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2"
         >
-          <ChevronRight className="w-8 h-8 text-fusion-neon rotate-90" />
+          <ChevronRight className="w-8 h-8 text-fusion-blue-accent rotate-90" />
         </motion.div>
       </section>
 
@@ -467,16 +467,16 @@ export default function HomePage() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-heading mb-20 text-fusion-white"
+          className="text-5xl md:text-7xl font-heading mb-20 text-gray-900"
         >
-          CHOISIS <span className="text-fusion-neon">TON UNIVERS</span>
+          CHOISIS <span className="text-fusion-blue-accent">TON UNIVERS</span>
         </motion.h2>
 
         <SportsCarouselWithServices onSportClick={(sportId) => navigate(`/sport/${sportId}`)} />
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-4 md:px-12 backdrop-blur-sm bg-white/5 border-y border-white/20">
+      <section className="py-24 px-4 md:px-12 backdrop-blur-sm bg-gray-50 border-y border-gray-200">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
@@ -490,11 +490,11 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className="p-6 backdrop-blur-md bg-white/5 border border-white/30 hover:border-fusion-neon hover:bg-white/10 transition-all rounded-3xl group hover:shadow-lg hover:shadow-fusion-neon/20"
+                className="p-6 backdrop-blur-md bg-white border border-gray-300 hover:border-fusion-blue-accent hover:bg-blue-50 transition-all rounded-3xl group hover:shadow-lg hover:shadow-blue-500/20"
               >
-                <feat.icon className="w-12 h-12 text-fusion-neon mb-4 group-hover:scale-125 transition-transform" />
-                <h4 className="font-heading text-fusion-neon mb-2 uppercase">{feat.title}</h4>
-                <p className="text-fusion-white/60 font-body text-sm">{feat.desc}</p>
+                <feat.icon className="w-12 h-12 text-fusion-blue-accent mb-4 group-hover:scale-125 transition-transform" />
+                <h4 className="font-heading text-fusion-blue-accent mb-2 uppercase">{feat.title}</h4>
+                <p className="text-gray-500 font-body text-sm">{feat.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -510,20 +510,20 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-heading text-fusion-white mb-8"
           >
-            Tes limites n'existent <span className="text-fusion-neon">que dans ta tête</span>
+            Tes limites n'existent <span className="text-fusion-blue-accent">que dans ta tête</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-fusion-white/70 font-body text-lg max-w-2xl mx-auto mb-10"
+            className="text-gray-600 font-body text-lg max-w-2xl mx-auto mb-10"
           >
             Rejoins des milliers d'athlètes qui transforment leurs rêves en réalité.
           </motion.p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-12 py-4 backdrop-blur-md bg-fusion-neon/90 text-fusion-black font-heading text-xl uppercase font-bold rounded-2xl hover:shadow-lg hover:shadow-fusion-neon/40 transition-shadow"
+            className="px-12 py-4 backdrop-blur-md bg-fusion-blue-accent hover:bg-blue-700 text-white font-heading text-xl uppercase font-bold rounded-2xl hover:shadow-lg hover:shadow-blue-500/40 transition-shadow"
           >
             Commencer Gratuitement
           </motion.button>

@@ -64,17 +64,17 @@ export default function EquipmentStore({ sport }) {
     <div className="flex flex-col lg:flex-row gap-8">
       {/* Sidebar Filtres - Glassmorphism */}
       <div className="w-full lg:w-1/4">
-        <div className="sticky top-8 backdrop-blur-xl bg-fusion-white/10 p-6 border border-fusion-white/30 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow">
-          <h3 className="text-2xl font-heading text-fusion-white flex items-center gap-2 mb-6 uppercase">
-            <Filter size={24} className="text-fusion-neon" /> FILTRES
+        <div className="sticky top-8 backdrop-blur-xl bg-blue-50 p-6 border border-blue-200 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow">
+          <h3 className="text-2xl font-heading text-gray-900 flex items-center gap-2 mb-6 uppercase">
+            <Filter size={24} className="text-fusion-blue-accent" /> FILTRES
           </h3>
 
           <div className="space-y-4 font-body">
             <div>
-              <p className="text-fusion-white/70 text-sm uppercase tracking-widest mb-3 font-bold">Niveau Requis</p>
+              <p className="text-gray-700 text-sm uppercase tracking-widest mb-3 font-bold">Niveau Requis</p>
               {['Tous', 'Débutant', 'Intermédiaire', 'Pro'].map(level => (
                 <label key={level} className="flex items-center gap-3 cursor-pointer group mb-3">
-                  <div className="relative flex items-center justify-center w-6 h-6 backdrop-blur-md border-2 border-fusion-white/40 group-hover:border-fusion-neon rounded-lg transition-all bg-fusion-white/5">
+                  <div className="relative flex items-center justify-center w-6 h-6 backdrop-blur-md border-2 border-blue-300 group-hover:border-fusion-blue-accent rounded-lg transition-all bg-white">
                     <input 
                       type="radio" 
                       name="level" 
@@ -84,19 +84,19 @@ export default function EquipmentStore({ sport }) {
                       className="opacity-0 absolute"
                     />
                     {activeLevelFilter === level && (
-                      <motion.div layoutId="radio-indicator" className="w-3 h-3 bg-fusion-neon rounded-md" />
+                      <motion.div layoutId="radio-indicator" className="w-3 h-3 bg-fusion-blue-accent rounded-md" />
                     )}
                   </div>
-                  <span className={`text-lg transition-colors ${activeLevelFilter === level ? 'text-fusion-white font-bold' : 'text-fusion-white/60'}`}>
+                  <span className={`text-lg transition-colors ${activeLevelFilter === level ? 'text-gray-900 font-bold' : 'text-gray-600'}`}>
                     {level}
                   </span>
                 </label>
               ))}
             </div>
 
-            <div className="pt-4 border-t border-fusion-white/20">
-              <p className="text-fusion-neon font-body text-xs uppercase tracking-widest font-bold mb-2">💰 Tous les prix</p>
-              <p className="text-fusion-white/50 text-xs">Filtrés par pertinence</p>
+            <div className="pt-4 border-t border-blue-200">
+              <p className="text-fusion-blue-accent font-body text-xs uppercase tracking-widest font-bold mb-2">💰 Tous les prix</p>
+              <p className="text-gray-500 text-xs">Filtrés par pertinence</p>
             </div>
           </div>
         </div>
@@ -105,8 +105,8 @@ export default function EquipmentStore({ sport }) {
       {/* Grille Produits */}
       <div className="w-full lg:w-3/4">
         {isLoading ? (
-          <div className="w-full flex-col h-64 flex items-center justify-center font-heading text-xl text-fusion-neon uppercase tracking-widest gap-4">
-             <div className="w-12 h-12 border-4 border-fusion-white/20 border-t-fusion-neon rounded-full animate-spin"></div>
+          <div className="w-full flex-col h-64 flex items-center justify-center font-heading text-xl text-fusion-blue-accent uppercase tracking-widest gap-4">
+             <div className="w-12 h-12 border-4 border-blue-200 border-t-fusion-blue-accent rounded-full animate-spin"></div>
              Chargement des meilleurs produits...
           </div>
         ) : (
@@ -122,63 +122,63 @@ export default function EquipmentStore({ sport }) {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => setSelectedProduct(selectedProduct?.id === item.id ? null : item)}
-                    className="group relative backdrop-blur-xl bg-fusion-white/10 border border-fusion-white/30 hover:border-fusion-neon/60 transition-all overflow-hidden rounded-3xl flex flex-col cursor-pointer shadow-xl hover:shadow-fusion-neon/30 hover:scale-105"
+                    className="group relative backdrop-blur-xl bg-white border border-blue-200 hover:border-fusion-blue-accent transition-all overflow-hidden rounded-3xl flex flex-col cursor-pointer shadow-xl hover:shadow-blue-500/30 hover:scale-105"
                   >
                     {/* Badge Niveau - Glass */}
-                    <div className="absolute top-4 left-4 z-10 backdrop-blur-md bg-fusion-black/40 border border-fusion-white/30 text-fusion-white px-3 py-1 font-body text-xs uppercase tracking-wider rounded-full">
+                    <div className="absolute top-4 left-4 z-10 backdrop-blur-md bg-gray-900/40 border border-gray-300 text-white px-3 py-1 font-body text-xs uppercase tracking-wider rounded-full">
                       {item.level}
                     </div>
 
-                    <div className="h-64 md:h-80 w-full bg-fusion-darkGray/40 overflow-hidden relative rounded-t-3xl">
+                    <div className="h-64 md:h-80 w-full bg-gray-100 overflow-hidden relative rounded-t-3xl">
                       <img 
                         src={item.image} 
                         alt={item.name} 
                         className="w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-110 transition-all duration-500"
                       />
-                      <div className="absolute top-4 right-4 backdrop-blur-md bg-fusion-neon/90 text-fusion-black px-3 py-1 font-heading text-sm uppercase font-bold rounded-full shadow-lg">
+                      <div className="absolute top-4 right-4 backdrop-blur-md bg-fusion-blue-accent/90 text-white px-3 py-1 font-heading text-sm uppercase font-bold rounded-full shadow-lg">
                         -15%
                       </div>
                     </div>
 
                     <div className="p-6 flex-grow flex flex-col justify-between">
                       <div>
-                        <h4 className="font-heading text-2xl text-fusion-white mb-3 uppercase">{item.name}</h4>
+                        <h4 className="font-heading text-2xl text-gray-900 mb-3 uppercase">{item.name}</h4>
                         <div className="flex items-center gap-2 mb-4">
-                          <div className="flex text-fusion-neon">
+                          <div className="flex text-fusion-blue-accent">
                             {[...Array(5)].map((_, i) => (
                               <Star key={i} size={14} fill="currentColor" />
                             ))}
                           </div>
-                          <span className="text-fusion-white/60 text-sm font-body">(240+ avis)</span>
+                          <span className="text-gray-600 text-sm font-body">(240+ avis)</span>
                         </div>
-                        <p className="font-body text-fusion-neon text-2xl font-black mb-2">{item.price.toFixed(2)} €</p>
-                        <p className="font-body text-fusion-white/60 text-sm mb-4">Livraison offerte au delà de 100€</p>
+                        <p className="font-body text-fusion-blue-accent text-2xl font-black mb-2">{item.price.toFixed(2)} €</p>
+                        <p className="font-body text-gray-600 text-sm mb-4">Livraison offerte au delà de 100€</p>
                       </div>
                       
                       <div>
-                        <button className="w-full backdrop-blur-md bg-fusion-neon/90 border-2 border-fusion-neon hover:bg-fusion-neon text-fusion-black font-heading text-lg py-3 uppercase tracking-widest flex items-center justify-center gap-2 mb-3 rounded-xl transition-all hover:shadow-lg">
+                        <button className="w-full backdrop-blur-md bg-fusion-blue-accent/90 border-2 border-fusion-blue-accent hover:bg-blue-700 text-white font-heading text-lg py-3 uppercase tracking-widest flex items-center justify-center gap-2 mb-3 rounded-xl transition-all hover:shadow-lg">
                           <ShoppingBag size={20} /> Voir les tarifs
                         </button>
                         {selectedProduct?.id === item.id && (
                           <motion.div 
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
-                            className="backdrop-blur-md bg-fusion-white/10 p-4 rounded-xl border border-fusion-white/30 space-y-3"
+                            className="backdrop-blur-md bg-blue-50 p-4 rounded-xl border border-blue-200 space-y-3"
                           >
-                            <div className="space-y-2 text-fusion-white/80 font-body text-sm">
+                            <div className="space-y-2 text-gray-700 font-body text-sm">
                               <div className="flex items-center gap-2">
-                                <Zap size={16} className="text-fusion-neon" />
+                                <Zap size={16} className="text-fusion-blue-accent" />
                                 <span>Matériau haute performance</span>
                               </div>
                               <div className="flex items-center gap-2">
-                                <Truck size={16} className="text-fusion-neon" />
+                                <Truck size={16} className="text-fusion-blue-accent" />
                                 <span>Livraison 24h gratuite</span>
                               </div>
                             </div>
                             
                             {/* Liens externes vers les magasins */}
-                            <div className="pt-3 border-t border-fusion-white/20">
-                              <p className="text-xs uppercase text-fusion-neon font-bold mb-3">Acheter chez :</p>
+                            <div className="pt-3 border-t border-blue-200">
+                              <p className="text-xs uppercase text-fusion-blue-accent font-bold mb-3">Acheter chez :</p>
                               <div className="space-y-2">
                                 {item.stores.map((store, idx) => (
                                   <a
@@ -186,7 +186,7 @@ export default function EquipmentStore({ sport }) {
                                     href={store.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 p-2 backdrop-blur-md bg-fusion-white/5 border border-fusion-white/30 hover:border-fusion-neon text-fusion-white hover:text-fusion-neon transition-all rounded-lg text-sm font-body group/link"
+                                    className="flex items-center gap-2 p-2 backdrop-blur-md bg-blue-50 border border-blue-300 hover:border-fusion-blue-accent text-gray-700 hover:text-fusion-blue-accent transition-all rounded-lg text-sm font-body group/link"
                                   >
                                     <span className="flex-1">{store.name}</span>
                                     <ExternalLink size={14} className="group-hover/link:translate-x-1 transition-transform" />
@@ -204,7 +204,7 @@ export default function EquipmentStore({ sport }) {
             </div>
             
             {filteredEquipments.length === 0 && (
-              <div className="text-center py-24 text-fusion-white/40 font-heading text-2xl uppercase">
+              <div className="text-center py-24 text-gray-500 font-heading text-2xl uppercase">
                 Aucun équipement de ce niveau disponible.
               </div>
             )}

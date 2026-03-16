@@ -68,7 +68,7 @@ export default function SportPage() {
   const details = sportDetails[sport] || sportDetails.football;
 
   return (
-    <div className="bg-fusion-black min-h-screen text-fusion-white pb-24">
+    <div className="bg-white min-h-screen text-gray-900 pb-24">
       
       {/* Header avec image et glassmorphism */}
       <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
@@ -77,23 +77,23 @@ export default function SportPage() {
           alt={sport}
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-fusion-black/50 via-fusion-black/30 to-fusion-black backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-100/50 via-blue-50/30 to-white backdrop-blur-sm"></div>
         
         {/* Navigation avec glassmorphism */}
         <div className="relative z-10 p-6 md:p-12 flex justify-between items-center">
           <Link 
             to="/" 
-            className="inline-flex items-center text-fusion-neon hover:text-fusion-white transition-colors duration-300 font-heading text-lg group uppercase tracking-widest backdrop-blur-xl bg-fusion-white/10 py-2 px-4 rounded-full border border-fusion-white/30 hover:border-fusion-neon/60 hover:shadow-lg"
+            className="inline-flex items-center text-fusion-blue-accent hover:text-gray-900 transition-colors duration-300 font-heading text-lg group uppercase tracking-widest backdrop-blur-xl bg-blue-50 py-2 px-4 rounded-full border border-blue-200 hover:border-fusion-blue-accent/60 hover:shadow-lg"
           >
             <ArrowLeft className="mr-2 w-5 h-5 transform group-hover:-translate-x-1 transition-transform" />
             RETOUR
           </Link>
           
           <div className="flex gap-4">
-            <button className="p-3 backdrop-blur-xl bg-fusion-white/10 border border-fusion-white/30 hover:border-fusion-neon/60 text-fusion-white hover:text-fusion-neon transition-all rounded-full hover:shadow-lg">
+            <button className="p-3 backdrop-blur-xl bg-blue-50 border border-blue-200 hover:border-fusion-blue-accent/60 text-gray-900 hover:text-fusion-blue-accent transition-all rounded-full hover:shadow-lg">
               <Heart size={20} />
             </button>
-            <button className="p-3 backdrop-blur-xl bg-fusion-white/10 border border-fusion-white/30 hover:border-fusion-neon/60 text-fusion-white hover:text-fusion-neon transition-all rounded-full hover:shadow-lg">
+            <button className="p-3 backdrop-blur-xl bg-blue-50 border border-blue-200 hover:border-fusion-blue-accent/60 text-gray-900 hover:text-fusion-blue-accent transition-all rounded-full hover:shadow-lg">
               <Share2 size={20} />
             </button>
           </div>
@@ -109,11 +109,11 @@ export default function SportPage() {
           className="mb-16 -mt-24 relative z-10"
         >
           <h1 
-            className="text-7xl md:text-[10rem] font-heading font-black text-fusion-white uppercase leading-none mb-6"
+            className="text-7xl md:text-[10rem] font-heading font-black text-gray-900 uppercase leading-none mb-6"
           >
             {sport}
           </h1>
-          <p className="text-fusion-neon font-heading text-2xl md:text-3xl mb-6 max-w-2xl uppercase">
+          <p className="text-fusion-blue-accent font-heading text-2xl md:text-3xl mb-6 max-w-2xl uppercase">
             {details.description}
           </p>
         </motion.div>
@@ -123,12 +123,12 @@ export default function SportPage() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="grid grid-cols-3 gap-4 md:gap-8 mb-20 p-8 backdrop-blur-xl bg-fusion-white/10 border border-fusion-white/30 rounded-3xl shadow-xl"
+          className="grid grid-cols-3 gap-4 md:gap-8 mb-20 p-8 backdrop-blur-xl bg-blue-50 border border-blue-200 rounded-3xl shadow-xl"
         >
           {details.stats.map((stat, idx) => (
             <div key={idx} className="text-center">
-              <h3 className="text-3xl md:text-5xl font-heading text-fusion-neon mb-2">{stat.value}</h3>
-              <p className="text-fusion-white/60 font-body text-sm md:text-base uppercase tracking-widest">{stat.label}</p>
+              <h3 className="text-3xl md:text-5xl font-heading text-fusion-blue-accent mb-2">{stat.value}</h3>
+              <p className="text-gray-500 font-body text-sm md:text-base uppercase tracking-widest">{stat.label}</p>
             </div>
           ))}
         </motion.div>

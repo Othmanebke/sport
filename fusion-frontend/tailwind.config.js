@@ -8,10 +8,13 @@ export default {
     extend: {
       colors: {
         fusion: {
-          black: '#0A0A0A',
-          white: '#F5F5F3',
-          neon: '#CCFF00',
-          darkGray: '#1A1A1A',
+          bg: '#F8F9FA',
+          white: '#FFFFFF',
+          'gray-light': '#E8EEF5',
+          'gray-medium': '#9CA3AF',
+          'gray-dark': '#4B5563',
+          'blue-accent': '#2563EB',
+          'blue-dark': '#1E3A8A',
         }
       },
       fontFamily: {
