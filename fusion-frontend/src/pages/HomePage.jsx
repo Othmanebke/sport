@@ -169,7 +169,7 @@ const SportsCarousel = () => {
       {/* Carousel Controls */}
       <button
         onClick={handlePrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-slate-100/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
         aria-label="Previous sport"
       >
         <ChevronLeft size={24} />
@@ -177,7 +177,7 @@ const SportsCarousel = () => {
       
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-slate-100/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
         aria-label="Next sport"
       >
         <ChevronRight size={24} />
@@ -329,7 +329,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
       <div className="flex items-center justify-between gap-4 mt-8">
         <button
           onClick={handlePrev}
-          className="bg-white/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
+          className="bg-slate-100/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
           aria-label="Previous sport"
         >
           <ChevronLeft size={24} />
@@ -356,7 +356,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
 
         <button
           onClick={handleNext}
-          className="bg-white/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
+          className="bg-slate-100/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
           aria-label="Next sport"
         >
           <ChevronRight size={24} />
@@ -370,7 +370,7 @@ export default function HomePage() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-hidden">
+    <div className="min-h-screen bg-slate-50 text-gray-900 overflow-hidden">
       {/* MEGA HERO WITH CAROUSEL */}
       <section className="relative min-h-[140vh] flex flex-col items-center justify-center overflow-hidden px-4 py-12">
         {/* Background animated blur */}
@@ -476,7 +476,7 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-4 md:px-12 backdrop-blur-sm bg-gray-50 border-y border-gray-200">
+      <section className="py-24 px-4 md:px-12 backdrop-blur-sm bg-slate-100 border-y border-gray-200">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
@@ -490,7 +490,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className="p-6 backdrop-blur-md bg-white border border-gray-300 hover:border-fusion-blue-accent hover:bg-blue-50 transition-all rounded-3xl group hover:shadow-lg hover:shadow-blue-500/20"
+                className="p-6 backdrop-blur-md bg-slate-50 border border-gray-300 hover:border-fusion-blue-accent hover:bg-blue-50 transition-all rounded-3xl group hover:shadow-lg hover:shadow-blue-500/20"
               >
                 <feat.icon className="w-12 h-12 text-fusion-blue-accent mb-4 group-hover:scale-125 transition-transform" />
                 <h4 className="font-heading text-fusion-blue-accent mb-2 uppercase">{feat.title}</h4>

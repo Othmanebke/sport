@@ -68,7 +68,7 @@ export default function SportPage() {
   const details = sportDetails[sport] || sportDetails.football;
 
   return (
-    <div className="bg-white min-h-screen text-gray-900 pb-24">
+    <div className="bg-slate-50 min-h-screen text-gray-900 pb-24">
       
       {/* Header avec image et glassmorphism */}
       <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
