@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion';
-import { ChevronRight, Zap, Target, Users, Trophy, MapPin, ShoppingBag, Sparkles, Flame } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronRight, Zap, Target, Users, Trophy, MapPin, ShoppingBag, Sparkles, Flame, ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const sports = [
+const allSports = [
   { 
     id: 'football', 
     name: 'FOOTBALL', 
@@ -28,8 +28,34 @@ const sports = [
     tagline: 'SOIS UNE MACHINE',
     services: ['Académies proches', 'Gants & Protection', 'Entrainement 1v1'],
     color: 'from-red-600 to-pink-600'
+  },
+  {
+    id: 'mma',
+    name: 'MMA',
+    image: 'https://images.unsplash.com/photo-1566818735527-74ac2201e406?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'EVOLUE EN OCTOGONE',
+    services: ['Dojos MMA', 'Équipement combat', 'Coaching expert'],
+    color: 'from-purple-600 to-pink-600'
+  },
+  {
+    id: 'natation',
+    name: 'NATATION',
+    image: 'https://images.unsplash.com/photo-1576610616656-570b081eaf00?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'FENDS LES VAGUES',
+    services: ['Piscines proches', 'Palmes & Maillots', 'Coaching natatoire'],
+    color: 'from-blue-600 to-cyan-600'
+  },
+  {
+    id: 'basketball',
+    name: 'BASKETBALL',
+    image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'SLAM DUNK',
+    services: ['Terrains proches', 'Baskets pro', 'Stratégie avancée'],
+    color: 'from-orange-600 to-red-600'
   }
 ];
+
+const sports = allSports.slice(0, 3);
 
 const AnimatedText = ({ text, delay = 0 }) => {
   const letters = text.split('');
@@ -54,13 +80,137 @@ const AnimatedText = ({ text, delay = 0 }) => {
   );
 };
 
+// Carousel Component
+const SportsCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % allSports.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % allSports.length);
+  };
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + allSports.length) % allSports.length);
+  };
+
+  const slideVariants = {
+    enter: (dir) => ({
+      x: dir > 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (dir) => ({
+      zIndex: 0,
+      x: dir < 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+  };
+
+  return (
+    <div className="relative w-full h-96 md:h-[500px] overflow-hidden rounded-lg border-2 border-fusion-white/20 hover:border-fusion-neon transition-colors group">
+      <AnimatePresence initial={false} custom={direction} mode="wait">
+        <motion.div
+          key={currentIndex}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.5 },
+          }}
+          className="absolute inset-0"
+        >
+          <img
+            src={allSports[currentIndex].image}
+            alt={allSports[currentIndex].name}
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-fusion-black via-fusion-black/40 to-transparent" />
+          
+          {/* Content */}
+          <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-12">
+            <div />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="space-y-3"
+            >
+              <h3 className="text-5xl md:text-6xl font-heading text-fusion-neon font-black uppercase">
+                {allSports[currentIndex].name}
+              </h3>
+              <p className="text-fusion-white text-lg md:text-2xl font-heading">
+                {allSports[currentIndex].tagline}
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Carousel Controls */}
+      <button
+        onClick={handlePrev}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-fusion-black/60 hover:bg-fusion-neon hover:text-fusion-black text-fusion-white p-3 rounded-full transition-all"
+        aria-label="Previous sport"
+      >
+        <ChevronLeft size={24} />
+      </button>
+      
+      <button
+        onClick={handleNext}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-fusion-black/60 hover:bg-fusion-neon hover:text-fusion-black text-fusion-white p-3 rounded-full transition-all"
+        aria-label="Next sport"
+      >
+        <ChevronRight size={24} />
+      </button>
+
+      {/* Dots indicators */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+        {allSports.map((_, idx) => (
+          <motion.button
+            key={idx}
+            onClick={() => {
+              setDirection(idx > currentIndex ? 1 : -1);
+              setCurrentIndex(idx);
+            }}
+            className={`h-3 rounded-full transition-all ${
+              idx === currentIndex
+                ? "bg-fusion-neon w-8"
+                : "bg-fusion-white/40 w-3 hover:bg-fusion-white/60"
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function HomePage() {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-fusion-black text-fusion-white overflow-hidden">
-      {/* MEGA HERO */}
-      <section className="relative min-h-[120vh] flex items-center justify-center overflow-hidden px-4">
+      {/* MEGA HERO WITH CAROUSEL */}
+      <section className="relative min-h-[140vh] flex flex-col items-center justify-center overflow-hidden px-4 py-12">
         {/* Background animated blur */}
         <div className="absolute inset-0 -z-10">
           <motion.div
@@ -76,48 +226,62 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="relative z-10 text-center max-w-5xl">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-8 inline-block"
-          >
-            <div className="px-6 py-3 border-2 border-fusion-neon rounded-full flex items-center gap-2">
-              <Flame className="w-5 h-5 text-fusion-neon animate-pulse" />
-              <span className="font-heading text-fusion-neon uppercase text-sm tracking-widest">Prêt à transcender ?</span>
-            </div>
-          </motion.div>
+        <div className="relative z-10 w-full max-w-5xl">
+          {/* Top Badge and Title */}
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="mb-8 inline-block"
+            >
+              <div className="px-6 py-3 border-2 border-fusion-neon rounded-full flex items-center gap-2">
+                <Flame className="w-5 h-5 text-fusion-neon animate-pulse" />
+                <span className="font-heading text-fusion-neon uppercase text-sm tracking-widest">Prêt à transcender ?</span>
+              </div>
+            </motion.div>
 
-          <div className="mb-12 h-32 md:h-48 flex items-center justify-center">
-            <AnimatedText text="FUSION" delay={0.2} />
+            <div className="mb-12 h-32 md:h-48 flex items-center justify-center">
+              <AnimatedText text="FUSION" delay={0.2} />
+            </div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="text-2xl md:text-4xl font-heading text-fusion-neon mb-8 uppercase tracking-wider"
+            >
+              La révolution sportive commence ici
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
+              className="text-lg md:text-xl font-body text-fusion-white/70 mb-12 max-w-2xl mx-auto leading-relaxed"
+            >
+              Trouve tes clubs, tes équipes et tes équipements professionnels. Connecte-toi avec des champions. Surpasse-toi chaque jour.
+            </motion.p>
           </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
+          {/* Carousel */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="text-2xl md:text-4xl font-heading text-fusion-neon mb-8 uppercase tracking-wider"
+            transition={{ delay: 2, duration: 0.8 }}
+            className="mb-12"
           >
-            La révolution sportive commence ici
-          </motion.p>
+            <SportsCarousel />
+          </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-            className="text-lg md:text-xl font-body text-fusion-white/70 mb-12 max-w-2xl mx-auto leading-relaxed"
-          >
-            Trouve tes clubs, tes équipes et tes équipements professionnels. Connecte-toi avec des champions. Surpasse-toi chaque jour.
-          </motion.p>
-
+          {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 0.8 }}
-            className="flex flex-col md:flex-row justify-center gap-6"
+            transition={{ delay: 2.3, duration: 0.8 }}
+            className="text-center"
           >
-            <button className="px-10 py-5 bg-fusion-neon text-fusion-black font-heading text-xl uppercase font-bold hover:scale-110 transition-transform flex items-center justify-center gap-2 group">
+            <button className="px-10 py-5 bg-fusion-neon text-fusion-black font-heading text-xl uppercase font-bold hover:scale-110 transition-transform flex items-center justify-center gap-2 group mx-auto">
               <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
               ENTRER DANS L'ARÈNE
             </button>
