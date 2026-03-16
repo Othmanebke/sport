@@ -293,7 +293,6 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
 };
 
 export default function HomePage() {
-  // eslint-disable-next-line no-unused-vars
   const navigate = useNavigate();
   const [isEventsModalOpen, setIsEventsModalOpen] = useState(false);
 
@@ -565,6 +564,8 @@ export default function HomePage() {
     </div>
   );
 }
+
+
 
 
 
