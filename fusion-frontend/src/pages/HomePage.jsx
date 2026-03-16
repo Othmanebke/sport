@@ -204,7 +204,167 @@ const SportsCarousel = () => {
   );
 };
 
-export default function HomePage() {
+// Carousel Component for Sports with Services
+const SportsCarouselWithServices = ({ onSportClick }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % allSports.length);
+    }, 6000); // Change sport every 6 seconds
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % allSports.length);
+  };
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + allSports.length) % allSports.length);
+  };
+
+  const slideVariants = {
+    enter: (dir) => ({
+      x: dir > 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (dir) => ({
+      zIndex: 0,
+      x: dir < 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+  };
+
+  const currentSport = allSports[currentIndex];
+
+  return (
+    <div className="w-full">
+      <AnimatePresence initial={false} custom={direction} mode="wait">
+        <motion.div
+          key={currentIndex}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.5 },
+          }}
+          onClick={() => onSportClick(currentSport.id)}
+          className="cursor-pointer group relative rounded-lg overflow-hidden border-2 border-fusion-white/10 hover:border-fusion-neon transition-all duration-300 shadow-2xl hover:shadow-fusion-neon/50"
+        >
+          {/* Image with overlay */}
+          <div className="relative h-96 md:h-[450px] overflow-hidden rounded-lg">
+            <img 
+              src={currentSport.image} 
+              alt={currentSport.name}
+              className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+            />
+            
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-fusion-black via-fusion-black/50 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
+
+            {/* Content */}
+            <div className="relative h-full p-8 md:p-12 flex flex-col justify-between">
+              {/* Top section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <h3 className="text-6xl md:text-7xl font-heading text-fusion-white group-hover:text-fusion-neon transition-colors font-black mb-2">
+                  {currentSport.name}
+                </h3>
+                <p className="text-fusion-neon font-heading text-xl uppercase tracking-widest">
+                  {currentSport.tagline}
+                </p>
+              </motion.div>
+
+              {/* Services proposés */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="space-y-4 mb-6"
+              >
+                {currentSport.services.map((service, sIdx) => (
+                  <motion.div 
+                    key={sIdx} 
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + sIdx * 0.1 }}
+                    className="flex items-center gap-3 text-fusion-white/95 font-body text-sm md:text-base"
+                  >
+                    <div className="w-3 h-3 bg-fusion-neon rounded-full flex-shrink-0" />
+                    <span>{service}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* CTA Button */}
+              <motion.div
+                whileHover={{ x: 5 }}
+                className="flex items-center gap-2 text-fusion-neon font-heading text-lg uppercase font-bold group-hover:text-fusion-white transition-colors w-fit"
+              >
+                EXPLORER <ChevronRight className="w-6 h-6" />
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Carousel Controls */}
+      <div className="flex items-center justify-between gap-4 mt-8">
+        <button
+          onClick={handlePrev}
+          className="bg-fusion-black/60 hover:bg-fusion-neon hover:text-fusion-black text-fusion-white p-3 rounded-full transition-all"
+          aria-label="Previous sport"
+        >
+          <ChevronLeft size={24} />
+        </button>
+
+        {/* Dots indicators */}
+        <div className="flex gap-2 flex-1 justify-center">
+          {allSports.map((_, idx) => (
+            <motion.button
+              key={idx}
+              onClick={() => {
+                setDirection(idx > currentIndex ? 1 : -1);
+                setCurrentIndex(idx);
+              }}
+              className={`h-3 rounded-full transition-all ${
+                idx === currentIndex
+                  ? "bg-fusion-neon w-8"
+                  : "bg-fusion-white/40 w-3 hover:bg-fusion-white/60"
+              }`}
+              aria-label={`Go to sport ${idx + 1}`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={handleNext}
+          className="bg-fusion-black/60 hover:bg-fusion-neon hover:text-fusion-black text-fusion-white p-3 rounded-full transition-all"
+          aria-label="Next sport"
+        >
+          <ChevronRight size={24} />
+        </button>
+      </div>
+    </div>
+  );
+};
+
   const navigate = useNavigate();
 
   return (
@@ -298,7 +458,7 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* Sports Selection with Services */}
+      {/* Sports Selection with Services - Carousel */}
       <section className="py-32 px-4 md:px-12 max-w-[1400px] mx-auto">
         <motion.h2
           initial={{ opacity: 0, x: -100 }}
@@ -310,78 +470,7 @@ export default function HomePage() {
           CHOISIS <span className="text-fusion-neon">TON UNIVERS</span>
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {sports.map((sport, index) => (
-            <motion.div
-              key={sport.id}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: index * 0.2, duration: 0.7 }}
-              onClick={() => navigate(`/sport/${sport.id}`)}
-              className="group cursor-pointer"
-            >
-              {/* Card Container */}
-              <div className="relative h-96 rounded-lg overflow-hidden border-2 border-fusion-white/10 hover:border-fusion-neon transition-all duration-300 shadow-2xl hover:shadow-fusion-neon/50">
-                {/* Image with overlay */}
-                <img 
-                  src={sport.image} 
-                  alt={sport.name}
-                  className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
-                />
-                
-                {/* Gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-fusion-black via-fusion-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity`} />
-
-                {/* Content */}
-                <div className="relative h-full p-8 flex flex-col justify-between">
-                  {/* Top section */}
-                  <div>
-                    <motion.h3
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.2 + 0.3 }}
-                      className="text-5xl md:text-6xl font-heading text-fusion-white group-hover:text-fusion-neon transition-colors font-black"
-                    >
-                      {sport.name}
-                    </motion.h3>
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: index * 0.2 + 0.5 }}
-                      className="text-fusion-neon font-heading text-lg mt-2 uppercase tracking-widest"
-                    >
-                      {sport.tagline}
-                    </motion.p>
-                  </div>
-
-                  {/* Services proposés */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.2 + 0.6 }}
-                    className="space-y-3 mb-6"
-                  >
-                    {sport.services.map((service, sIdx) => (
-                      <div key={sIdx} className="flex items-center gap-3 text-fusion-white/90 font-body text-sm">
-                        <div className="w-2 h-2 bg-fusion-neon rounded-full" />
-                        <span>{service}</span>
-                      </div>
-                    ))}
-                  </motion.div>
-
-                  {/* CTA Button */}
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    className="flex items-center gap-2 text-fusion-neon font-heading text-lg uppercase font-bold group-hover:text-fusion-white transition-colors"
-                  >
-                    EXPLORER <ChevronRight className="w-6 h-6" />
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <SportsCarouselWithServices onSportClick={(sportId) => navigate(`/sport/${sportId}`)} />
       </section>
 
       {/* Features Section */}
