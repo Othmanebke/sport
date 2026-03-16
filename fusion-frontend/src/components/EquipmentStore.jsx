@@ -62,19 +62,19 @@ export default function EquipmentStore({ sport }) {
 
   return (
     <div className="flex flex-col lg:flex-row gap-8">
-      {/* Sidebar Filtres */}
+      {/* Sidebar Filtres - Glassmorphism */}
       <div className="w-full lg:w-1/4">
-        <div className="sticky top-8 bg-fusion-darkGray p-6 border border-fusion-white/10 rounded-sm">
+        <div className="sticky top-8 backdrop-blur-xl bg-fusion-white/10 p-6 border border-fusion-white/30 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow">
           <h3 className="text-2xl font-heading text-fusion-white flex items-center gap-2 mb-6 uppercase">
             <Filter size={24} className="text-fusion-neon" /> FILTRES
           </h3>
 
           <div className="space-y-4 font-body">
             <div>
-              <p className="text-fusion-white/50 text-sm uppercase tracking-widest mb-3 font-bold">Niveau Requis</p>
+              <p className="text-fusion-white/70 text-sm uppercase tracking-widest mb-3 font-bold">Niveau Requis</p>
               {['Tous', 'Débutant', 'Intermédiaire', 'Pro'].map(level => (
                 <label key={level} className="flex items-center gap-3 cursor-pointer group mb-3">
-                  <div className="relative flex items-center justify-center w-6 h-6 border-2 border-fusion-white/20 group-hover:border-fusion-neon transition-colors">
+                  <div className="relative flex items-center justify-center w-6 h-6 backdrop-blur-md border-2 border-fusion-white/40 group-hover:border-fusion-neon rounded-lg transition-all bg-fusion-white/5">
                     <input 
                       type="radio" 
                       name="level" 
@@ -84,7 +84,7 @@ export default function EquipmentStore({ sport }) {
                       className="opacity-0 absolute"
                     />
                     {activeLevelFilter === level && (
-                      <motion.div layoutId="radio-indicator" className="w-3 h-3 bg-fusion-neon" />
+                      <motion.div layoutId="radio-indicator" className="w-3 h-3 bg-fusion-neon rounded-md" />
                     )}
                   </div>
                   <span className={`text-lg transition-colors ${activeLevelFilter === level ? 'text-fusion-white font-bold' : 'text-fusion-white/60'}`}>
@@ -94,7 +94,7 @@ export default function EquipmentStore({ sport }) {
               ))}
             </div>
 
-            <div className="pt-4 border-t border-fusion-white/10">
+            <div className="pt-4 border-t border-fusion-white/20">
               <p className="text-fusion-neon font-body text-xs uppercase tracking-widest font-bold mb-2">💰 Tous les prix</p>
               <p className="text-fusion-white/50 text-xs">Filtrés par pertinence</p>
             </div>
@@ -122,20 +122,20 @@ export default function EquipmentStore({ sport }) {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => setSelectedProduct(selectedProduct?.id === item.id ? null : item)}
-                    className="group relative bg-fusion-black border-2 border-fusion-white/5 hover:border-fusion-neon transition-colors overflow-hidden rounded-sm flex flex-col cursor-pointer"
+                    className="group relative backdrop-blur-xl bg-fusion-white/10 border border-fusion-white/30 hover:border-fusion-neon/60 transition-all overflow-hidden rounded-3xl flex flex-col cursor-pointer shadow-xl hover:shadow-fusion-neon/30 hover:scale-105"
                   >
-                    {/* Badge Niveau */}
-                    <div className="absolute top-4 left-4 z-10 bg-fusion-black border border-fusion-white/20 text-fusion-white px-3 py-1 font-body text-xs uppercase tracking-wider">
+                    {/* Badge Niveau - Glass */}
+                    <div className="absolute top-4 left-4 z-10 backdrop-blur-md bg-fusion-black/40 border border-fusion-white/30 text-fusion-white px-3 py-1 font-body text-xs uppercase tracking-wider rounded-full">
                       {item.level}
                     </div>
 
-                    <div className="h-64 md:h-80 w-full bg-fusion-darkGray overflow-hidden relative">
+                    <div className="h-64 md:h-80 w-full bg-fusion-darkGray/40 overflow-hidden relative rounded-t-3xl">
                       <img 
                         src={item.image} 
                         alt={item.name} 
-                        className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                        className="w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-110 transition-all duration-500"
                       />
-                      <div className="absolute top-4 right-4 bg-fusion-neon text-fusion-black px-3 py-1 font-heading text-sm uppercase font-bold">
+                      <div className="absolute top-4 right-4 backdrop-blur-md bg-fusion-neon/90 text-fusion-black px-3 py-1 font-heading text-sm uppercase font-bold rounded-full shadow-lg">
                         -15%
                       </div>
                     </div>
@@ -156,16 +156,16 @@ export default function EquipmentStore({ sport }) {
                       </div>
                       
                       <div>
-                        <button className="w-full bg-transparent border-2 border-fusion-white hover:border-fusion-neon hover:text-fusion-black hover:bg-fusion-neon transition-all text-fusion-white font-heading text-lg py-3 uppercase tracking-widest flex items-center justify-center gap-2 mb-3">
+                        <button className="w-full backdrop-blur-md bg-fusion-neon/90 border-2 border-fusion-neon hover:bg-fusion-neon text-fusion-black font-heading text-lg py-3 uppercase tracking-widest flex items-center justify-center gap-2 mb-3 rounded-xl transition-all hover:shadow-lg">
                           <ShoppingBag size={20} /> Voir les tarifs
                         </button>
                         {selectedProduct?.id === item.id && (
                           <motion.div 
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
-                            className="bg-fusion-darkGray p-4 rounded-sm border border-fusion-white/10 space-y-3"
+                            className="backdrop-blur-md bg-fusion-white/10 p-4 rounded-xl border border-fusion-white/30 space-y-3"
                           >
-                            <div className="space-y-2 text-fusion-white/70 font-body text-sm">
+                            <div className="space-y-2 text-fusion-white/80 font-body text-sm">
                               <div className="flex items-center gap-2">
                                 <Zap size={16} className="text-fusion-neon" />
                                 <span>Matériau haute performance</span>
@@ -177,7 +177,7 @@ export default function EquipmentStore({ sport }) {
                             </div>
                             
                             {/* Liens externes vers les magasins */}
-                            <div className="pt-3 border-t border-fusion-white/10">
+                            <div className="pt-3 border-t border-fusion-white/20">
                               <p className="text-xs uppercase text-fusion-neon font-bold mb-3">Acheter chez :</p>
                               <div className="space-y-2">
                                 {item.stores.map((store, idx) => (
@@ -186,7 +186,7 @@ export default function EquipmentStore({ sport }) {
                                     href={store.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 p-2 bg-fusion-black border border-fusion-white/20 hover:border-fusion-neon text-fusion-white hover:text-fusion-neon transition-all rounded text-sm font-body group/link"
+                                    className="flex items-center gap-2 p-2 backdrop-blur-md bg-fusion-white/5 border border-fusion-white/30 hover:border-fusion-neon text-fusion-white hover:text-fusion-neon transition-all rounded-lg text-sm font-body group/link"
                                   >
                                     <span className="flex-1">{store.name}</span>
                                     <ExternalLink size={14} className="group-hover/link:translate-x-1 transition-transform" />

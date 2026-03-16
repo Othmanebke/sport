@@ -122,7 +122,7 @@ const SportsCarousel = () => {
   };
 
   return (
-    <div className="relative w-full h-96 md:h-[500px] overflow-hidden rounded-lg border-2 border-fusion-white/20 hover:border-fusion-neon transition-colors group">
+    <div className="relative w-full h-96 md:h-[500px] overflow-hidden rounded-3xl backdrop-blur-xl border border-fusion-white/30 hover:border-fusion-neon/50 transition-all group shadow-2xl hover:shadow-fusion-neon/20">
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div
           key={currentIndex}
@@ -140,10 +140,10 @@ const SportsCarousel = () => {
           <img
             src={allSports[currentIndex].image}
             alt={allSports[currentIndex].name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-60 group-hover:opacity-75 transition-opacity duration-500"
           />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-fusion-black via-fusion-black/40 to-transparent" />
+          {/* Glass Effect Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-fusion-black/80 via-fusion-black/40 to-transparent backdrop-blur-sm" />
           
           {/* Content */}
           <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-12">
@@ -262,18 +262,18 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
             opacity: { duration: 0.5 },
           }}
           onClick={() => onSportClick(currentSport.id)}
-          className="cursor-pointer group relative rounded-lg overflow-hidden border-2 border-fusion-white/10 hover:border-fusion-neon transition-all duration-300 shadow-2xl hover:shadow-fusion-neon/50"
+          className="cursor-pointer group relative rounded-3xl overflow-hidden backdrop-blur-xl border border-fusion-white/30 hover:border-fusion-neon/60 transition-all duration-300 shadow-2xl hover:shadow-fusion-neon/30 hover:scale-[1.02]"
         >
           {/* Image with overlay */}
-          <div className="relative h-96 md:h-[450px] overflow-hidden rounded-lg">
+          <div className="relative h-96 md:h-[450px] overflow-hidden rounded-3xl">
             <img 
               src={currentSport.image} 
               alt={currentSport.name}
-              className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+              className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-all duration-700 group-hover:scale-110"
             />
             
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-fusion-black via-fusion-black/50 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
+            {/* Glass Effect Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-fusion-black/90 via-fusion-black/40 to-fusion-black/20 backdrop-blur-md group-hover:backdrop-blur-sm transition-all" />
 
             {/* Content */}
             <div className="relative h-full p-8 md:p-12 flex flex-col justify-between">

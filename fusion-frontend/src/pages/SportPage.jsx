@@ -70,30 +70,30 @@ export default function SportPage() {
   return (
     <div className="bg-fusion-black min-h-screen text-fusion-white pb-24">
       
-      {/* Header avec image */}
+      {/* Header avec image et glassmorphism */}
       <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <img 
           src={details.banner} 
           alt={sport}
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-fusion-black/30 via-transparent to-fusion-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-fusion-black/50 via-fusion-black/30 to-fusion-black backdrop-blur-sm"></div>
         
-        {/* Navigation */}
+        {/* Navigation avec glassmorphism */}
         <div className="relative z-10 p-6 md:p-12 flex justify-between items-center">
           <Link 
             to="/" 
-            className="inline-flex items-center text-fusion-neon hover:text-fusion-white transition-colors duration-300 font-heading text-lg group uppercase tracking-widest bg-fusion-darkGray/80 py-2 px-4 rounded-sm border border-fusion-white/20 hover:border-fusion-neon"
+            className="inline-flex items-center text-fusion-neon hover:text-fusion-white transition-colors duration-300 font-heading text-lg group uppercase tracking-widest backdrop-blur-xl bg-fusion-white/10 py-2 px-4 rounded-full border border-fusion-white/30 hover:border-fusion-neon/60 hover:shadow-lg"
           >
             <ArrowLeft className="mr-2 w-5 h-5 transform group-hover:-translate-x-1 transition-transform" />
             RETOUR
           </Link>
           
           <div className="flex gap-4">
-            <button className="p-3 border border-fusion-white/20 hover:border-fusion-neon text-fusion-white hover:text-fusion-neon transition-colors rounded-sm">
+            <button className="p-3 backdrop-blur-xl bg-fusion-white/10 border border-fusion-white/30 hover:border-fusion-neon/60 text-fusion-white hover:text-fusion-neon transition-all rounded-full hover:shadow-lg">
               <Heart size={20} />
             </button>
-            <button className="p-3 border border-fusion-white/20 hover:border-fusion-neon text-fusion-white hover:text-fusion-neon transition-colors rounded-sm">
+            <button className="p-3 backdrop-blur-xl bg-fusion-white/10 border border-fusion-white/30 hover:border-fusion-neon/60 text-fusion-white hover:text-fusion-neon transition-all rounded-full hover:shadow-lg">
               <Share2 size={20} />
             </button>
           </div>
@@ -118,12 +118,12 @@ export default function SportPage() {
           </p>
         </motion.div>
 
-        {/* Stats rapides */}
+        {/* Stats rapides avec glassmorphism */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="grid grid-cols-3 gap-4 md:gap-8 mb-20 p-8 bg-fusion-darkGray/50 border border-fusion-white/10 rounded-sm"
+          className="grid grid-cols-3 gap-4 md:gap-8 mb-20 p-8 backdrop-blur-xl bg-fusion-white/10 border border-fusion-white/30 rounded-3xl shadow-xl"
         >
           {details.stats.map((stat, idx) => (
             <div key={idx} className="text-center">

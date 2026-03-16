@@ -17,8 +17,20 @@ export default {
       fontFamily: {
         heading: ['"Anton"', 'sans-serif'],
         body: ['"Inter"', 'sans-serif'],
+      },
+      backdropBlur: {
+        'xs': '2px',
+        'sm': '4px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '20px',
+        '2xl': '40px',
+      },
+      backgroundImage: {
+        'glass': 'rgba(255, 255, 255, 0.1)',
       }
     },
   },
   plugins: [],
 }
+
