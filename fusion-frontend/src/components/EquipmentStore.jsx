@@ -9,23 +9,17 @@ const realProducts = {
     { id: 3, name: 'Protège-tibias Puma Future', price: 35.00, level: 'Tous', image: 'https://images.unsplash.com/photo-1549449429-1a0e101bd0cd?q=80&w=600', stores: [{ name: 'Puma', url: 'https://www.puma.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
     { id: 4, name: 'Maillot Nike Dri-FIT', price: 55.00, level: 'Débutant', image: 'https://images.unsplash.com/photo-1521509303-366085a210f9?q=80&w=600', stores: [{ name: 'Nike', url: 'https://www.nike.com' }, { name: 'JD Sports', url: 'https://www.jdsports.fr' }] },
   ],
-  tennis: [
-    { id: 1, name: 'Raquette Wilson Blade 100', price: 249.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1615555431687-21a41dbcd809?q=80&w=600', stores: [{ name: 'Wilson', url: 'https://www.wilsonsporting.com' }, { name: 'Tennis Warehouse', url: 'https://www.tenniswarehouse.com' }] },
-    { id: 2, name: 'Balles Penn Championship x4', price: 14.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1589578132988-cb94ff6debf6?q=80&w=600', stores: [{ name: 'Amazon', url: 'https://www.amazon.fr' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
-    { id: 3, name: 'Raquette Head Graphene 360', price: 189.00, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1622384157582-75d1dcb74279?q=80&w=600', stores: [{ name: 'Head', url: 'https://www.head.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
-    { id: 4, name: 'Sac de Tennis Babolat Team', price: 69.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=600', stores: [{ name: 'Babolat', url: 'https://www.babolat.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+  boxe: [
+    { id: 1, name: 'Gants Everlast Pro Style', price: 149.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1552072092-7f9b8d63fd52?q=80&w=600', stores: [{ name: 'Everlast', url: 'https://www.everlast.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 2, name: 'Bandes de boxe Ringside', price: 24.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1585832770485-e68a5dbfd528?q=80&w=600', stores: [{ name: 'Ringside', url: 'https://www.ringside.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 3, name: 'Protège-dents Champion', price: 16.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1552631580-fca0d4e963ee?q=80&w=600', stores: [{ name: 'Amazon', url: 'https://www.amazon.fr' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Sac de boxe lourd 100lbs', price: 134.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=600', stores: [{ name: 'Ringside', url: 'https://www.ringside.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
   ],
-  combat: [
-    { id: 1, name: 'Gants Venum Elite', price: 149.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1552072092-7f9b8d63fd52?q=80&w=600', stores: [{ name: 'Venum', url: 'https://www.venum.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
-    { id: 2, name: 'Bandes de protection Everlast', price: 24.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1585832770485-e68a5dbfd528?q=80&w=600', stores: [{ name: 'Everlast', url: 'https://www.everlast.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
-    { id: 3, name: 'Protège-dents Mouthguard', price: 16.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1552631580-fca0d4e963ee?q=80&w=600', stores: [{ name: 'Amazon', url: 'https://www.amazon.fr' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
-    { id: 4, name: 'Vestiaire Ringside Pro', price: 89.00, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=600', stores: [{ name: 'Ringside', url: 'https://www.ringside.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
-  ],
-  mma: [
-    { id: 1, name: 'Gants Octagon MMA Pro', price: 179.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1566818735527-74ac2201e406?q=80&w=600', stores: [{ name: 'Venum', url: 'https://www.venum.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
-    { id: 2, name: 'Short UFC Combat', price: 69.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=600', stores: [{ name: 'UFC Store', url: 'https://store.ufc.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
-    { id: 3, name: 'Paire de shin Twins', price: 129.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1552072092-7f9b8d63fd52?q=80&w=600', stores: [{ name: 'Twins Special', url: 'https://twinsspecia.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
-    { id: 4, name: 'Tapis d\'entraînement MMA', price: 199.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=600', stores: [{ name: 'Amazon', url: 'https://www.amazon.fr' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+  basketball: [
+    { id: 1, name: 'Chaussures Air Jordan XXXVII', price: 219.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'Nike', url: 'https://www.nike.com' }, { name: 'JD Sports', url: 'https://www.jdsports.fr' }] },
+    { id: 2, name: 'Ballon Spalding NBA', price: 89.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'Spalding', url: 'https://www.spalding.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 3, name: 'Maillot Adidas Creator Pro', price: 79.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'Adidas', url: 'https://www.adidas.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Protège-chevilles Elite', price: 39.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'McDavid', url: 'https://www.mcdavidusa.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
   ],
   natation: [
     { id: 1, name: 'Maillot Speedo FastSkin', price: 159.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1576610616656-570b081eaf00?q=80&w=600', stores: [{ name: 'Speedo', url: 'https://www.speedo.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
@@ -33,11 +27,53 @@ const realProducts = {
     { id: 3, name: 'Lunettes Aquasphere', price: 45.00, level: 'Tous', image: 'https://images.unsplash.com/photo-1576610616656-570b081eaf00?q=80&w=600', stores: [{ name: 'Aquasphere', url: 'https://www.aquasphereswim.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
     { id: 4, name: 'Bonnet de bain Pro', price: 25.00, level: 'Débutant', image: 'https://images.unsplash.com/photo-1576610616656-570b081eaf00?q=80&w=600', stores: [{ name: 'Speedo', url: 'https://www.speedo.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
   ],
-  basketball: [
-    { id: 1, name: 'Chaussures Air Jordan XXXVII', price: 219.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'Nike', url: 'https://www.nike.com' }, { name: 'JD Sports', url: 'https://www.jdsports.fr' }] },
-    { id: 2, name: 'Ballon Spalding NBA', price: 89.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'Spalding', url: 'https://www.spalding.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
-    { id: 3, name: 'Maillot Adidas Creator Pro', price: 79.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'Adidas', url: 'https://www.adidas.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
-    { id: 4, name: 'Protège-chevilles Elite', price: 39.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=600', stores: [{ name: 'McDavid', url: 'https://www.mcdavidusa.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+  tennis: [
+    { id: 1, name: 'Raquette Wilson Blade 100', price: 249.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1615555431687-21a41dbcd809?q=80&w=600', stores: [{ name: 'Wilson', url: 'https://www.wilsonsporting.com' }, { name: 'Tennis Warehouse', url: 'https://www.tenniswarehouse.com' }] },
+    { id: 2, name: 'Balles Penn Championship x4', price: 14.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1589578132988-cb94ff6debf6?q=80&w=600', stores: [{ name: 'Amazon', url: 'https://www.amazon.fr' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 3, name: 'Raquette Head Graphene 360', price: 189.00, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1622384157582-75d1dcb74279?q=80&w=600', stores: [{ name: 'Head', url: 'https://www.head.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Sac de Tennis Babolat Team', price: 69.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=600', stores: [{ name: 'Babolat', url: 'https://www.babolat.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+  ],
+  golf: [
+    { id: 1, name: 'Driver Callaway Paradym', price: 499.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=600', stores: [{ name: 'Callaway', url: 'https://www.callawaygolf.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 2, name: 'Balles Titleist Pro V1', price: 49.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=600', stores: [{ name: 'Titleist', url: 'https://www.titleist.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 3, name: 'Sac de golf Support Stand', price: 89.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=600', stores: [{ name: 'TaylorMade', url: 'https://www.taylormadegolf.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Gant de golf Ping', price: 34.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=600', stores: [{ name: 'Ping', url: 'https://www.pinggolf.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+  ],
+  mma: [
+    { id: 1, name: 'Gants Octagon MMA Pro', price: 179.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1566818735527-74ac2201e406?q=80&w=600', stores: [{ name: 'Venum', url: 'https://www.venum.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 2, name: 'Short UFC Combat', price: 69.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=600', stores: [{ name: 'UFC Store', url: 'https://store.ufc.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 3, name: 'Paire de shin Twins', price: 129.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1552072092-7f9b8d63fd52?q=80&w=600', stores: [{ name: 'Twins Special', url: 'https://twinsspecia.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Tapis d\'entraînement MMA', price: 199.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=600', stores: [{ name: 'Amazon', url: 'https://www.amazon.fr' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+  ],
+  accrobranche: [
+    { id: 1, name: 'Harnais de sécurité Pro', price: 199.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1551632786-de41efc89fcd?q=80&w=600', stores: [{ name: 'Petzl', url: 'https://www.petzl.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 2, name: 'Gants de protection Grip', price: 29.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1551632786-de41efc89fcd?q=80&w=600', stores: [{ name: 'Decathlon', url: 'https://www.decathlon.fr' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 3, name: 'Casque Climbing CAMP', price: 79.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1551632786-de41efc89fcd?q=80&w=600', stores: [{ name: 'CAMP', url: 'https://www.campstore.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Cordes de sécurité 100m', price: 149.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1551632786-de41efc89fcd?q=80&w=600', stores: [{ name: 'Petzl', url: 'https://www.petzl.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+  ],
+  randonnee: [
+    { id: 1, name: 'Chaussures de rando Salomon', price: 189.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600', stores: [{ name: 'Salomon', url: 'https://www.salomon.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 2, name: 'Sac à dos 60L Osprey', price: 249.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600', stores: [{ name: 'Osprey', url: 'https://www.ospreypacks.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 3, name: 'Gourde Hydro Flask 946ml', price: 49.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600', stores: [{ name: 'Hydro Flask', url: 'https://www.hydroflask.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 4, name: 'Lampe frontale Petzl Core', price: 99.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600', stores: [{ name: 'Petzl', url: 'https://www.petzl.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+  ],
+  karate: [
+    { id: 1, name: 'Kimono Karaté Tokaido', price: 159.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1555921015-5eb63b1e0f90?q=80&w=600', stores: [{ name: 'Tokaido', url: 'https://www.tokaido.info' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 2, name: 'Mitaines de karaté Adidas', price: 49.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1555921015-5eb63b1e0f90?q=80&w=600', stores: [{ name: 'Adidas', url: 'https://www.adidas.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 3, name: 'Ceinture de karaté Piqué', price: 35.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1555921015-5eb63b1e0f90?q=80&w=600', stores: [{ name: 'Decathlon', url: 'https://www.decathlon.fr' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 4, name: 'Protège-tibia de karaté', price: 29.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1555921015-5eb63b1e0f90?q=80&w=600', stores: [{ name: 'Decathlon', url: 'https://www.decathlon.fr' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+  ],
+  judo: [
+    { id: 1, name: 'Judogi Mizuno Excellence', price: 189.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=600', stores: [{ name: 'Mizuno', url: 'https://www.mizuno.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 2, name: 'Ceinture de judo IJF', price: 45.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=600', stores: [{ name: 'IJF Official', url: 'https://www.ijf.org' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 3, name: 'Coussinets de genou Judo', price: 39.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=600', stores: [{ name: 'Decathlon', url: 'https://www.decathlon.fr' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 4, name: 'Sac de judo Adidas', price: 74.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=600', stores: [{ name: 'Adidas', url: 'https://www.adidas.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+  ],
+  danse: [
+    { id: 1, name: 'Chaussures de danse Jazz Bloch', price: 129.99, level: 'Pro', image: 'https://images.unsplash.com/photo-1540575467063-178f50902f4b?q=80&w=600', stores: [{ name: 'Bloch', url: 'https://www.blochworld.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 2, name: 'Body de danse Capezio', price: 69.99, level: 'Tous', image: 'https://images.unsplash.com/photo-1540575467063-178f50902f4b?q=80&w=600', stores: [{ name: 'Capezio', url: 'https://www.capezio.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
+    { id: 3, name: 'Legging Dansers Adidas', price: 59.99, level: 'Intermédiaire', image: 'https://images.unsplash.com/photo-1540575467063-178f50902f4b?q=80&w=600', stores: [{ name: 'Adidas', url: 'https://www.adidas.com' }, { name: 'Decathlon', url: 'https://www.decathlon.fr' }] },
+    { id: 4, name: 'Sac de danse Eastpak', price: 54.99, level: 'Débutant', image: 'https://images.unsplash.com/photo-1540575467063-178f50902f4b?q=80&w=600', stores: [{ name: 'Eastpak', url: 'https://www.eastpak.com' }, { name: 'Amazon', url: 'https://www.amazon.fr' }] },
   ]
 };
 

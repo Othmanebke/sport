@@ -14,6 +14,30 @@ const allSports = [
     color: 'from-green-600 to-emerald-600'
   },
   { 
+    id: 'boxe', 
+    name: 'BOXE', 
+    image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'FRAPPE COMME UN CHAMPION',
+    services: ['Salles de boxe', 'Gants & Protections', 'Coaching expert'],
+    color: 'from-red-600 to-red-700'
+  },
+  { 
+    id: 'basketball', 
+    name: 'BASKETBALL', 
+    image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'SLAM DUNK',
+    services: ['Terrains proches', 'Baskets pro', 'Stratégie avancée'],
+    color: 'from-orange-600 to-red-600'
+  },
+  {
+    id: 'natation',
+    name: 'NATATION',
+    image: 'https://images.unsplash.com/photo-1576610616656-570b081eaf00?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'FENDS LES VAGUES',
+    services: ['Piscines proches', 'Palmes & Maillots', 'Coaching natatoire'],
+    color: 'from-blue-600 to-cyan-600'
+  },
+  { 
     id: 'tennis', 
     name: 'TENNIS', 
     image: 'https://images.unsplash.com/photo-1554224311-beee415c15ae?q=80&w=2000&auto=format&fit=crop',
@@ -21,13 +45,13 @@ const allSports = [
     services: ['Trouver des courts', 'Raquettes & Balles', 'Coaching Virtuel'],
     color: 'from-yellow-500 to-orange-500'
   },
-  { 
-    id: 'combat', 
-    name: 'COMBAT', 
-    image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=2000&auto=format&fit=crop',
-    tagline: 'SOIS UNE MACHINE',
-    services: ['Académies proches', 'Gants & Protection', 'Entrainement 1v1'],
-    color: 'from-red-600 to-pink-600'
+  {
+    id: 'golf',
+    name: 'GOLF',
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'PRÉCISION ET ÉLÉGANCE',
+    services: ['Golfs proches', 'Clubs & Balles', 'Coaching technique'],
+    color: 'from-green-700 to-green-800'
   },
   {
     id: 'mma',
@@ -38,20 +62,44 @@ const allSports = [
     color: 'from-purple-600 to-pink-600'
   },
   {
-    id: 'natation',
-    name: 'NATATION',
-    image: 'https://images.unsplash.com/photo-1576610616656-570b081eaf00?q=80&w=2000&auto=format&fit=crop',
-    tagline: 'FENDS LES VAGUES',
-    services: ['Piscines proches', 'Palmes & Maillots', 'Coaching natatoire'],
-    color: 'from-blue-600 to-cyan-600'
+    id: 'accrobranche',
+    name: 'ACCROBRANCHE',
+    image: 'https://images.unsplash.com/photo-1551632786-de41efc89fcd?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'DÉFI EN HAUTEUR',
+    services: ['Parcs proches', 'Équipements sécurisés', 'Formation guidée'],
+    color: 'from-emerald-600 to-teal-600'
   },
   {
-    id: 'basketball',
-    name: 'BASKETBALL',
-    image: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=2000&auto=format&fit=crop',
-    tagline: 'SLAM DUNK',
-    services: ['Terrains proches', 'Baskets pro', 'Stratégie avancée'],
-    color: 'from-orange-600 to-red-600'
+    id: 'randonnee',
+    name: 'RANDONNÉE',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'EXPLORE LA NATURE',
+    services: ['Sentiers proches', 'Équipements outdoor', 'Guides locaux'],
+    color: 'from-amber-600 to-orange-600'
+  },
+  {
+    id: 'karate',
+    name: 'KARATÉ',
+    image: 'https://images.unsplash.com/photo-1555921015-5eb63b1e0f90?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'MAÎTRISE & DISCIPLINE',
+    services: ['Dojos proches', 'Kimonos & Ceintures', 'Progression technique'],
+    color: 'from-blue-600 to-blue-700'
+  },
+  {
+    id: 'judo',
+    name: 'JUDO',
+    image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'FORCE ET TECHNIQUE',
+    services: ['Clubs proches', 'Kimonos & Tatamis', 'Entraînement complet'],
+    color: 'from-indigo-600 to-purple-600'
+  },
+  {
+    id: 'danse',
+    name: 'DANSE',
+    image: 'https://images.unsplash.com/photo-1540575467063-178f50902f4b?q=80&w=2000&auto=format&fit=crop',
+    tagline: 'EXPRESSION EN MOUVEMENT',
+    services: ['Studios proches', 'Tenues & Chaussures', 'Cours tous niveaux'],
+    color: 'from-pink-500 to-rose-600'
   }
 ];
 

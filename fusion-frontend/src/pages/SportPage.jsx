@@ -15,31 +15,22 @@ const sportDetails = {
       { label: 'Matchs /jour', value: '1000+' }
     ]
   },
-  tennis: {
-    banner: 'https://images.unsplash.com/photo-1554224311-beee415c15ae?q=80&w=2000&auto=format&fit=crop',
-    description: 'La précision absolue. Chaque coup compte. Chaque centimètre décide. Bienvenue dans le jeu des champions.',
-    stats: [
-      { label: 'Joueurs mondiaux', value: '800k' },
-      { label: 'Tournois/an', value: '500+' },
-      { label: 'Spectateurs millions', value: '100M+' }
-    ]
-  },
-  combat: {
+  boxe: {
     banner: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?q=80&w=2000&auto=format&fit=crop',
-    description: 'L\'arène de la volonté pure. Du sang, de la sueur, de la gloire. Seuls les forts survivent.',
+    description: 'La boxe : art martiale, science stratégique. Chaque coup est une question, chaque réponse est une décision.',
     stats: [
-      { label: 'Combattants', value: '500k' },
-      { label: 'Académies', value: '10k+' },
-      { label: 'Événements/an', value: '200+' }
+      { label: 'Boxeurs mondiaux', value: '800k' },
+      { label: 'Salles de boxe', value: '15k+' },
+      { label: 'Combats/an', value: '5k+' }
     ]
   },
-  mma: {
-    banner: 'https://images.unsplash.com/photo-1566818735527-74ac2201e406?q=80&w=2000&auto=format&fit=crop',
-    description: 'L\'octogone attend. Puissance brute rencontre technique stratégique. Seuls les guerriers survivent.',
+  basketball: {
+    banner: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=2000&auto=format&fit=crop',
+    description: 'Slam dunk. Vitesse. Précision. Un sport d\'équipe où chaque panier compte.',
     stats: [
-      { label: 'Combattants MMA', value: '100k+' },
-      { label: 'Promotions', value: '500+' },
-      { label: 'Fans', value: '50M+' }
+      { label: 'Joueurs mondiaux', value: '1.5M' },
+      { label: 'Clubs professionnels', value: '100+' },
+      { label: 'Fans', value: '2B+' }
     ]
   },
   natation: {
@@ -51,13 +42,76 @@ const sportDetails = {
       { label: 'Compétitions/an', value: '1000+' }
     ]
   },
-  basketball: {
-    banner: 'https://images.unsplash.com/photo-1627963249261-ffd7924a10f9?q=80&w=2000&auto=format&fit=crop',
-    description: 'Slam dunk. Vitesse. Précision. Un sport d\'équipe où chaque panier compte.',
+  tennis: {
+    banner: 'https://images.unsplash.com/photo-1554224311-beee415c15ae?q=80&w=2000&auto=format&fit=crop',
+    description: 'La précision absolue. Chaque coup compte. Chaque centimètre décide. Bienvenue dans le jeu des champions.',
     stats: [
-      { label: 'Joueurs mondiaux', value: '1.5M' },
-      { label: 'Clubs professionnels', value: '100+' },
-      { label: 'Fans', value: '2B+' }
+      { label: 'Joueurs mondiaux', value: '800k' },
+      { label: 'Tournois/an', value: '500+' },
+      { label: 'Spectateurs millions', value: '100M+' }
+    ]
+  },
+  golf: {
+    banner: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=2000&auto=format&fit=crop',
+    description: 'L\'élégance du jeu. Chaque coup de club est une œuvre d\'art. Le golf c\'est la stratégie et la maîtrise.',
+    stats: [
+      { label: 'Golfeurs mondiaux', value: '1M+' },
+      { label: 'Golfs', value: '25k+' },
+      { label: 'Tournois/an', value: '1000+' }
+    ]
+  },
+  mma: {
+    banner: 'https://images.unsplash.com/photo-1566818735527-74ac2201e406?q=80&w=2000&auto=format&fit=crop',
+    description: 'L\'octogone attend. Puissance brute rencontre technique stratégique. Seuls les guerriers survivent.',
+    stats: [
+      { label: 'Combattants MMA', value: '100k+' },
+      { label: 'Promotions', value: '500+' },
+      { label: 'Fans', value: '50M+' }
+    ]
+  },
+  accrobranche: {
+    banner: 'https://images.unsplash.com/photo-1551632786-de41efc89fcd?q=80&w=2000&auto=format&fit=crop',
+    description: 'Au-delà des limites. Escalade, tyrolienne, sensations. L\'accrobranche c\'est surpasser la peur.',
+    stats: [
+      { label: 'Parcs d\'accrobranche', value: '2k+' },
+      { label: 'Adeptes/an', value: '5M+' },
+      { label: 'Parcours varieties', value: '10k+' }
+    ]
+  },
+  randonnee: {
+    banner: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2000&auto=format&fit=crop',
+    description: 'Explorer la nature. Sentiers secrets, vues époustouflantes. La randonnée libère l\'esprit et renforce le corps.',
+    stats: [
+      { label: 'Randonneurs mondiaux', value: '100M+' },
+      { label: 'Sentiers', value: '50k+' },
+      { label: 'Clubs/communautés', value: '5k+' }
+    ]
+  },
+  karate: {
+    banner: 'https://images.unsplash.com/photo-1555921015-5eb63b1e0f90?q=80&w=2000&auto=format&fit=crop',
+    description: 'Discipline et maîtrise. Le karaté forge le caractère. Force, respect, et progression perpétuelle.',
+    stats: [
+      { label: 'Pratiquants', value: '50M+' },
+      { label: 'Dojos mondiaux', value: '20k+' },
+      { label: 'Ceintures/grades', value: '10+' }
+    ]
+  },
+  judo: {
+    banner: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=2000&auto=format&fit=crop',
+    description: 'L\'art du judo. Force rencontre flexibilité. La victoire vient du contrôle, pas juste de la puissance.',
+    stats: [
+      { label: 'Pratiquants', value: '8M+' },
+      { label: 'Clubs', value: '10k+' },
+      { label: 'Compétitions/an', value: '500+' }
+    ]
+  },
+  danse: {
+    banner: 'https://images.unsplash.com/photo-1540575467063-178f50902f4b?q=80&w=2000&auto=format&fit=crop',
+    description: 'Exprime-toi par le mouvement. La danse c\'est liberté, créativité, et connexion émotionnelle totale.',
+    stats: [
+      { label: 'Danseurs mondiaux', value: '300M+' },
+      { label: 'Studios de danse', value: '50k+' },
+      { label: 'Styles de danse', value: '100+' }
     ]
   }
 };
