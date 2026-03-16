@@ -64,7 +64,7 @@ export default function EquipmentStore({ sport }) {
     <div className="flex flex-col lg:flex-row gap-8">
       {/* Sidebar Filtres - Glassmorphism */}
       <div className="w-full lg:w-1/4">
-        <div className="sticky top-8 backdrop-blur-xl bg-slate-100 p-6 border border-blue-200 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow">
+        <div className="sticky top-8 backdrop-blur-xl bg-slate-300 p-6 border border-gray-400 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow">
           <h3 className="text-2xl font-heading text-gray-900 flex items-center gap-2 mb-6 uppercase">
             <Filter size={24} className="text-fusion-blue-accent" /> FILTRES
           </h3>
@@ -74,7 +74,7 @@ export default function EquipmentStore({ sport }) {
               <p className="text-gray-700 text-sm uppercase tracking-widest mb-3 font-bold">Niveau Requis</p>
               {['Tous', 'Débutant', 'Intermédiaire', 'Pro'].map(level => (
                 <label key={level} className="flex items-center gap-3 cursor-pointer group mb-3">
-                  <div className="relative flex items-center justify-center w-6 h-6 backdrop-blur-md border-2 border-blue-300 group-hover:border-fusion-blue-accent rounded-lg transition-all bg-slate-50">
+                  <div className="relative flex items-center justify-center w-6 h-6 backdrop-blur-md border-2 border-gray-400 group-hover:border-fusion-blue-accent rounded-lg transition-all bg-slate-200">
                     <input 
                       type="radio" 
                       name="level" 
@@ -122,7 +122,7 @@ export default function EquipmentStore({ sport }) {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => setSelectedProduct(selectedProduct?.id === item.id ? null : item)}
-                    className="group relative backdrop-blur-xl bg-slate-50 border border-blue-200 hover:border-fusion-blue-accent transition-all overflow-hidden rounded-3xl flex flex-col cursor-pointer shadow-xl hover:shadow-blue-500/30 hover:scale-105"
+                    className="group relative backdrop-blur-xl bg-slate-200 border border-gray-400 hover:border-fusion-blue-accent transition-all overflow-hidden rounded-3xl flex flex-col cursor-pointer shadow-xl hover:shadow-blue-500/30 hover:scale-105"
                   >
                     {/* Badge Niveau - Glass */}
                     <div className="absolute top-4 left-4 z-10 backdrop-blur-md bg-gray-900/40 border border-gray-300 text-white px-3 py-1 font-body text-xs uppercase tracking-wider rounded-full">
@@ -163,7 +163,7 @@ export default function EquipmentStore({ sport }) {
                           <motion.div 
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
-                            className="backdrop-blur-md bg-slate-100 p-4 rounded-xl border border-blue-200 space-y-3"
+                            className="backdrop-blur-md bg-slate-300 p-4 rounded-xl border border-gray-400 space-y-3"
                           >
                             <div className="space-y-2 text-gray-700 font-body text-sm">
                               <div className="flex items-center gap-2">
@@ -186,7 +186,7 @@ export default function EquipmentStore({ sport }) {
                                     href={store.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 p-2 backdrop-blur-md bg-slate-100 border border-blue-300 hover:border-fusion-blue-accent text-gray-700 hover:text-fusion-blue-accent transition-all rounded-lg text-sm font-body group/link"
+                                    className="flex items-center gap-2 p-2 backdrop-blur-md bg-slate-300 border border-gray-400 hover:border-fusion-blue-accent text-gray-700 hover:text-fusion-blue-accent transition-all rounded-lg text-sm font-body group/link"
                                   >
                                     <span className="flex-1">{store.name}</span>
                                     <ExternalLink size={14} className="group-hover/link:translate-x-1 transition-transform" />

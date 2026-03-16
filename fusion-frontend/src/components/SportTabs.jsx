@@ -23,8 +23,8 @@ export default function SportTabs({ sport }) {
             onClick={() => setActiveTab(tab.id)}
             className={`relative text-2xl md:text-4xl font-heading tracking-wide transition-all duration-300 pb-4 px-4 rounded-t-2xl ${
               activeTab === tab.id 
-                ? 'backdrop-blur-md bg-slate-100 border-b-2 border-fusion-blue-accent text-fusion-blue-accent shadow-lg shadow-blue-500/20' 
-                : 'text-gray-700 hover:text-fusion-blue-accent/60 hover:backdrop-blur-sm hover:bg-slate-100'
+                ? 'backdrop-blur-md bg-slate-300 border-b-2 border-fusion-blue-accent text-fusion-blue-accent shadow-lg shadow-blue-500/20' 
+                : 'text-gray-700 hover:text-fusion-blue-accent/60 hover:backdrop-blur-sm hover:bg-slate-300'
             }`}
           >
             {tab.label}
@@ -85,7 +85,7 @@ export default function SportTabs({ sport }) {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.1 }}
-                      className="cursor-pointer group border border-blue-300 hover:border-fusion-blue-accent transition-all overflow-hidden rounded-3xl hover:shadow-lg hover:shadow-blue-500/30 backdrop-blur-md bg-slate-50 hover:bg-slate-100"
+                      className="cursor-pointer group border border-gray-400 hover:border-fusion-blue-accent transition-all overflow-hidden rounded-3xl hover:shadow-lg hover:shadow-blue-500/30 backdrop-blur-md bg-slate-200 hover:bg-slate-300"
                     >
                       <div className="flex flex-col md:flex-row h-auto md:h-48">
                         <div className="w-full md:w-48 h-48 md:h-full overflow-hidden bg-gray-100 flex-shrink-0">

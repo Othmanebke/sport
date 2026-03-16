@@ -54,7 +54,7 @@ export default function ClubLocator({ sport }) {
         </h3>
         
         {!position && !error && (
-          <div className="p-6 backdrop-blur-xl bg-slate-100 animate-pulse rounded-3xl border border-blue-200">
+          <div className="p-6 backdrop-blur-xl bg-slate-300 animate-pulse rounded-3xl border border-gray-400">
             <p className="text-gray-600 font-body">Recherche de votre position en cours...</p>
           </div>
         )}
@@ -74,8 +74,8 @@ export default function ClubLocator({ sport }) {
             animate={{ opacity: 1, x: 0 }}
             className={`p-6 rounded-3xl border transition-all cursor-pointer ${
               selectedClub?.id === club.id 
-                ? 'backdrop-blur-xl bg-slate-100 border-fusion-blue-accent shadow-lg shadow-blue-500/30' 
-                : 'backdrop-blur-md bg-slate-50 hover:bg-slate-100 border-blue-200 hover:border-fusion-blue-accent hover:shadow-lg hover:shadow-blue-500/20'
+                ? 'backdrop-blur-xl bg-slate-300 border-fusion-blue-accent shadow-lg shadow-blue-500/30' 
+                : 'backdrop-blur-md bg-slate-200 hover:bg-slate-300 border-gray-400 hover:border-fusion-blue-accent hover:shadow-lg hover:shadow-blue-500/20'
             }`}
           >
             <h4 className="text-lg font-heading uppercase text-gray-900 group-hover:text-fusion-blue-accent transition-colors mb-3">
@@ -117,7 +117,7 @@ export default function ClubLocator({ sport }) {
       </div>
 
       {/* Carte Interactive */}
-      <div className="w-full xl:w-2/3 h-[500px] xl:h-[600px] rounded-3xl overflow-hidden border border-blue-200 relative backdrop-blur-sm bg-slate-50 flex items-center justify-center shadow-xl shadow-blue-500/10">
+      <div className="w-full xl:w-2/3 h-[500px] xl:h-[600px] rounded-3xl overflow-hidden border border-gray-400 relative backdrop-blur-sm bg-slate-200 flex items-center justify-center shadow-xl shadow-blue-500/10">
         {!position && !error ? (
           <div className="text-fusion-white/50 font-heading text-xl uppercase animate-pulse">
             Initialisation de la carte radar...
