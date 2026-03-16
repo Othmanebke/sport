@@ -55,6 +55,7 @@ const allSports = [
   }
 ];
 
+// eslint-disable-next-line no-unused-vars
 const sports = allSports.slice(0, 3);
 
 const AnimatedText = ({ text, delay = 0 }) => {
@@ -396,7 +397,7 @@ export default function HomePage() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="mb-8 inline-block"
             >
-              <div className="px-6 py-3 border-2 border-fusion-neon rounded-full flex items-center gap-2">
+              <div className="px-6 py-3 backdrop-blur-md bg-white/10 border border-fusion-neon rounded-full flex items-center gap-2 hover:bg-white/15 transition-all">
                 <Flame className="w-5 h-5 text-fusion-neon animate-pulse" />
                 <span className="font-heading text-fusion-neon uppercase text-sm tracking-widest">Prêt à transcender ?</span>
               </div>
@@ -442,7 +443,7 @@ export default function HomePage() {
             transition={{ delay: 2.3, duration: 0.8 }}
             className="text-center"
           >
-            <button className="px-10 py-5 bg-fusion-neon text-fusion-black font-heading text-xl uppercase font-bold hover:scale-110 transition-transform flex items-center justify-center gap-2 group mx-auto">
+            <button className="px-10 py-5 backdrop-blur-md bg-fusion-neon/90 text-fusion-black font-heading text-xl uppercase font-bold hover:scale-110 transition-transform flex items-center justify-center gap-2 group mx-auto rounded-2xl hover:shadow-lg hover:shadow-fusion-neon/40">
               <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
               ENTRER DANS L'ARÈNE
             </button>
@@ -475,7 +476,7 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-4 md:px-12 bg-fusion-darkGray/30 border-y border-fusion-white/10">
+      <section className="py-24 px-4 md:px-12 backdrop-blur-sm bg-white/5 border-y border-white/20">
         <div className="max-w-[1400px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
@@ -489,7 +490,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
-                className="p-6 border border-fusion-white/10 hover:border-fusion-neon transition-colors group"
+                className="p-6 backdrop-blur-md bg-white/5 border border-white/30 hover:border-fusion-neon hover:bg-white/10 transition-all rounded-3xl group hover:shadow-lg hover:shadow-fusion-neon/20"
               >
                 <feat.icon className="w-12 h-12 text-fusion-neon mb-4 group-hover:scale-125 transition-transform" />
                 <h4 className="font-heading text-fusion-neon mb-2 uppercase">{feat.title}</h4>
@@ -522,7 +523,7 @@ export default function HomePage() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-12 py-4 bg-fusion-neon text-fusion-black font-heading text-xl uppercase font-bold"
+            className="px-12 py-4 backdrop-blur-md bg-fusion-neon/90 text-fusion-black font-heading text-xl uppercase font-bold rounded-2xl hover:shadow-lg hover:shadow-fusion-neon/40 transition-shadow"
           >
             Commencer Gratuitement
           </motion.button>

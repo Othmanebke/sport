@@ -54,13 +54,13 @@ export default function ClubLocator({ sport }) {
         </h3>
         
         {!position && !error && (
-          <div className="p-6 bg-fusion-darkGray animate-pulse rounded-sm border border-fusion-white/10">
+          <div className="p-6 backdrop-blur-xl bg-white/10 animate-pulse rounded-3xl border border-white/30">
             <p className="text-fusion-white/60 font-body">Recherche de votre position en cours...</p>
           </div>
         )}
 
         {error && (
-          <div className="p-6 bg-red-900/20 text-red-500 border border-red-500/50 rounded-sm font-body">
+          <div className="p-6 backdrop-blur-xl bg-red-900/20 text-red-500 border border-red-500/50 rounded-3xl font-body">
             {error}
           </div>
         )}
@@ -72,10 +72,10 @@ export default function ClubLocator({ sport }) {
             onClick={() => setSelectedClub(selectedClub?.id === club.id ? null : club)}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className={`p-6 rounded-sm border transition-all cursor-pointer ${
+            className={`p-6 rounded-3xl border transition-all cursor-pointer ${
               selectedClub?.id === club.id 
-                ? 'bg-fusion-darkGray/80 border-fusion-neon shadow-lg shadow-fusion-neon/30' 
-                : 'bg-fusion-darkGray hover:bg-fusion-darkGray/80 border-fusion-white/10 hover:border-fusion-neon'
+                ? 'backdrop-blur-xl bg-white/10 border-white/30 shadow-lg shadow-fusion-neon/30' 
+                : 'backdrop-blur-md bg-white/5 hover:bg-white/10 border-white/20 hover:border-fusion-neon hover:shadow-lg hover:shadow-fusion-neon/20'
             }`}
           >
             <h4 className="text-lg font-heading uppercase text-fusion-white group-hover:text-fusion-neon transition-colors mb-3">
@@ -105,9 +105,9 @@ export default function ClubLocator({ sport }) {
               <motion.div 
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
-                className="mt-4 pt-4 border-t border-fusion-white/10"
+                className="mt-4 pt-4 border-t border-white/20"
               >
-                <button className="w-full py-2 bg-fusion-neon text-fusion-black font-heading uppercase text-sm hover:scale-105 transition-transform flex items-center justify-center gap-2">
+                <button className="w-full py-3 backdrop-blur-md bg-fusion-neon/90 text-fusion-black font-heading uppercase text-sm hover:scale-105 transition-transform flex items-center justify-center gap-2 rounded-2xl">
                   <Phone size={16} /> Contacter
                 </button>
               </motion.div>
@@ -117,7 +117,7 @@ export default function ClubLocator({ sport }) {
       </div>
 
       {/* Carte Interactive */}
-      <div className="w-full xl:w-2/3 h-[500px] xl:h-[600px] rounded-sm overflow-hidden border border-fusion-white/10 relative bg-fusion-darkGray flex items-center justify-center">
+      <div className="w-full xl:w-2/3 h-[500px] xl:h-[600px] rounded-3xl overflow-hidden border border-white/30 relative backdrop-blur-sm bg-white/5 flex items-center justify-center shadow-xl shadow-fusion-neon/10">
         {!position && !error ? (
           <div className="text-fusion-white/50 font-heading text-xl uppercase animate-pulse">
             Initialisation de la carte radar...

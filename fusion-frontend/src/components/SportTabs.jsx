@@ -16,24 +16,18 @@ export default function SportTabs({ sport }) {
   return (
     <div className="w-full mt-12">
       {/* Navigation par onglets animés */}
-      <div className="flex gap-8 border-b-2 border-fusion-white/10 pb-4 mb-12 overflow-x-auto whitespace-nowrap scrollbar-hide">
+      <div className="flex gap-8 border-b border-white/20 pb-4 mb-12 overflow-x-auto whitespace-nowrap scrollbar-hide">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`relative text-2xl md:text-4xl font-heading tracking-wide transition-colors duration-300 ${
-              activeTab === tab.id ? 'text-fusion-neon' : 'text-fusion-white hover:text-fusion-neon/60'
+            className={`relative text-2xl md:text-4xl font-heading tracking-wide transition-all duration-300 pb-4 px-4 rounded-t-2xl ${
+              activeTab === tab.id 
+                ? 'backdrop-blur-md bg-white/10 border-b-2 border-fusion-neon text-fusion-neon shadow-lg shadow-fusion-neon/20' 
+                : 'text-fusion-white hover:text-fusion-neon/60 hover:backdrop-blur-sm hover:bg-white/5'
             }`}
           >
             {tab.label}
-            {activeTab === tab.id && (
-              <motion.div
-                layoutId="activeTabIndicator"
-                className="absolute -bottom-[18px] left-0 right-0 h-1 bg-fusion-neon"
-                initial={false}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              />
-            )}
           </button>
         ))}
       </div>
@@ -91,13 +85,13 @@ export default function SportTabs({ sport }) {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.1 }}
-                      className="cursor-pointer group border border-fusion-white/10 hover:border-fusion-neon transition-all overflow-hidden rounded-sm hover:shadow-lg hover:shadow-fusion-neon/20"
+                      className="cursor-pointer group border border-white/30 hover:border-fusion-neon transition-all overflow-hidden rounded-3xl hover:shadow-lg hover:shadow-fusion-neon/30 backdrop-blur-md bg-white/5 hover:bg-white/10"
                     >
                       <div className="flex flex-col md:flex-row h-auto md:h-48">
-                        <div className="w-full md:w-48 h-48 md:h-full overflow-hidden bg-fusion-darkGray flex-shrink-0">
-                          <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <div className="w-full md:w-48 h-48 md:h-full overflow-hidden bg-white/5 flex-shrink-0">
+                          <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-80 group-hover:opacity-100" />
                         </div>
-                        <div className="p-6 flex-1 flex flex-col justify-between bg-fusion-darkGray/30">
+                        <div className="p-6 flex-1 flex flex-col justify-between">
                           <div>
                             <p className="text-fusion-neon font-body text-sm uppercase tracking-wider mb-2">{news.date}</p>
                             <h4 className="text-2xl font-heading text-fusion-white group-hover:text-fusion-neon transition-colors mb-2">{news.title}</h4>
