@@ -57,7 +57,7 @@ const SignupModal = ({ isOpen, onClose }) => {
                 ⚡
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">
-                Rejoindre sportix
+                Rejoindre fusion
               </h2>
               <p className="text-gray-500">Connectez-vous à votre compte</p>
             </div>

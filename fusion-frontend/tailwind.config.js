@@ -10,11 +10,15 @@ export default {
         fusion: {
           bg: '#F8F9FA',
           white: '#FFFFFF',
-          'gray-light': '#E8EEF5',
-          'gray-medium': '#9CA3AF',
-          'gray-dark': '#4B5563',
-          'blue-accent': '#2563EB',
-          'blue-dark': '#1E3A8A',
+          primary: '#406b4a',
+          'primary-dark': '#34583d',
+          'primary-darker': '#2c4c34',
+          light: '#ebf2ed',
+          'light-border': '#d2e3d8',
+          accent: '#8bcda3',
+          text: '#1a2f22',
+          // Keep blue-accent mapped to brand green to fix broken carousel references
+          'blue-accent': '#406b4a',
         }
       },
       fontFamily: {

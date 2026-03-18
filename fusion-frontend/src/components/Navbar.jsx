@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SignupModal from './SignupModal';
 
+const navLinks = [
+  { to: '/', label: 'Accueil' },
+  { to: '/comment-ca-marche', label: 'Comment ça marche ?' },
+  { to: '/guide-des-sports', label: 'Guide des Sports' },
+];
+
 const Navbar = () => {
   const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <>
@@ -18,7 +25,7 @@ const Navbar = () => {
       >
         {/* Rounded glass background */}
         <div className="max-w-7xl mx-auto bg-white/70 backdrop-blur-2xl rounded-full border border-white/40 px-6 py-3 md:px-8 flex items-center justify-between shadow-lg hover:shadow-xl transition-shadow">
-          
+
           {/* Logo */}
           <Link to="/">
             <motion.div
@@ -31,22 +38,62 @@ const Navbar = () => {
             </motion.div>
           </Link>
 
+          {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-700">
-            <Link to="/" className="hover:text-[#406b4a] transition-colors">Accueil</Link>
-            <Link to="/comment-ca-marche" className="hover:text-[#406b4a] transition-colors">Comment ça marche ?</Link>
-            <Link to="/guide-des-sports" className="hover:text-[#406b4a] transition-colors">Guide des Sports</Link>
+            {navLinks.map((link) => (
+              <Link key={link.to} to={link.to} className="hover:text-[#406b4a] transition-colors">
+                {link.label}
+              </Link>
+            ))}
           </div>
 
-          {/* Sign Up Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsSignupOpen(true)}
-            className="px-6 py-2.5 md:px-6 md:py-2.5 rounded-full bg-gray-900 text-white font-medium text-sm md:text-base transition-all shadow-md hover:bg-gray-800"
-          >
-            Rejoindre
-          </motion.button>
+          <div className="flex items-center gap-3">
+            {/* Sign Up Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsSignupOpen(true)}
+              className="px-6 py-2.5 rounded-full bg-[#406b4a] text-white font-medium text-sm md:text-base transition-all shadow-md hover:bg-[#34583d]"
+            >
+              Rejoindre
+            </motion.button>
+
+            {/* Mobile menu toggle */}
+            <button
+              className="md:hidden p-2 rounded-full hover:bg-gray-100 transition-colors text-gray-700"
+              onClick={() => setIsMobileMenuOpen((v) => !v)}
+              aria-label="Menu"
+            >
+              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile dropdown menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden max-w-7xl mx-auto mt-2 bg-white/90 backdrop-blur-2xl rounded-3xl border border-white/40 shadow-xl overflow-hidden"
+            >
+              <div className="flex flex-col py-4">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="px-8 py-4 text-sm font-semibold text-gray-700 hover:text-[#406b4a] hover:bg-[#ebf2ed] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       {/* Signup Modal */}

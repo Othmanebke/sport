@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Zap, Target, Users, Trophy, MapPin, ShoppingBag, Sparkles, Flame, ChevronLeft, Activity, Star, Quote, Play } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import EventsModal from '../components/EventsModal';
 
@@ -189,7 +189,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
             opacity: { duration: 0.5 },
           }}
           onClick={() => onSportClick(currentSport.id)}
-          className="cursor-pointer group relative rounded-3xl overflow-hidden backdrop-blur-xl border border-blue-200 hover:border-fusion-blue-accent transition-all duration-300 shadow-2xl hover:shadow-blue-500/30 hover:scale-[1.02]"
+          className="cursor-pointer group relative rounded-3xl overflow-hidden backdrop-blur-xl border border-[#d2e3d8] hover:border-[#406b4a] transition-all duration-300 shadow-2xl hover:shadow-[#406b4a]/20 hover:scale-[1.02]"
         >
           {/* Image with overlay */}
           <div className="relative h-96 md:h-[450px] overflow-hidden rounded-3xl">
@@ -210,10 +210,10 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <h3 className="text-6xl md:text-7xl font-heading text-fusion-blue-accent group-hover:text-blue-700 transition-colors font-black mb-2">
+                <h3 className="text-6xl md:text-7xl font-heading text-white group-hover:text-[#ebf2ed] transition-colors font-black mb-2">
                   {currentSport.name}
                 </h3>
-                <p className="text-fusion-blue-accent font-heading text-xl uppercase tracking-widest">
+                <p className="text-[#8bcda3] font-heading text-xl uppercase tracking-widest">
                   {currentSport.tagline}
                 </p>
               </motion.div>
@@ -231,9 +231,9 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + sIdx * 0.1 }}
-                    className="flex items-center gap-3 text-fusion-blue-accent/95 font-body text-sm md:text-base"
+                    className="flex items-center gap-3 text-white/90 font-body text-sm md:text-base"
                   >
-                    <div className="w-3 h-3 bg-fusion-blue-accent rounded-full flex-shrink-0" />
+                    <div className="w-3 h-3 bg-[#8bcda3] rounded-full flex-shrink-0" />
                     <span>{service}</span>
                   </motion.div>
                 ))}
@@ -242,7 +242,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
               {/* CTA Button */}
               <motion.div
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-2 text-fusion-blue-accent font-heading text-lg uppercase font-bold group-hover:text-blue-700 transition-colors w-fit"
+                className="flex items-center gap-2 text-[#8bcda3] font-heading text-lg uppercase font-bold group-hover:text-white transition-colors w-fit"
               >
                 EXPLORER <ChevronRight className="w-6 h-6" />
               </motion.div>
@@ -255,7 +255,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
       <div className="flex items-center justify-between gap-4 mt-8">
         <button
           onClick={handlePrev}
-          className="bg-slate-100/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
+          className="bg-white hover:bg-[#406b4a] hover:text-white text-gray-900 p-3 rounded-full transition-all shadow-sm border border-gray-200"
           aria-label="Previous sport"
         >
           <ChevronLeft size={24} />
@@ -272,8 +272,8 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
               }}
               className={`h-3 rounded-full transition-all ${
                 idx === currentIndex
-                  ? "bg-fusion-blue-accent w-8"
-                  : "bg-gray-400/40 w-3 hover:bg-gray-400/60"
+                  ? "bg-[#406b4a] w-8"
+                  : "bg-gray-300 w-3 hover:bg-gray-400"
               }`}
               aria-label={`Go to sport ${idx + 1}`}
             />
@@ -282,7 +282,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
 
         <button
           onClick={handleNext}
-          className="bg-slate-100/60 hover:bg-fusion-blue-accent hover:text-white text-gray-900 p-3 rounded-full transition-all"
+          className="bg-white hover:bg-[#406b4a] hover:text-white text-gray-900 p-3 rounded-full transition-all shadow-sm border border-gray-200"
           aria-label="Next sport"
         >
           <ChevronRight size={24} />
@@ -297,7 +297,7 @@ export default function HomePage() {
   const [isEventsModalOpen, setIsEventsModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans overflow-hidden">
+    <div className="min-h-screen bg-[#f8f9fa] text-gray-900 font-sans overflow-hidden">
       <Navbar />
       
       {/* 1. HERO SECTION */}
@@ -389,16 +389,16 @@ export default function HomePage() {
       </section>
 
       {/* 2. CHOOSE YOUR SPORT (Adapted "What we do") */}
-      <section className="py-24 px-4 md:px-12 max-w-[1400px] mx-auto bg-white">
+      <section className="py-24 px-4 md:px-12 max-w-[1400px] mx-auto">
         <div className="mb-12">
           <p className="text-xs uppercase tracking-wider text-gray-500 mb-2">Explorez et choisissez</p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2 className="text-4xl md:text-5xl text-gray-900 leading-tight max-w-2xl">
               Filtrez, comparez et <br/> <span className="font-bold">trouvez</span> votre passion.
             </h2>
-            <button className="px-6 py-2 bg-[#406b4a] text-white rounded-full hover:bg-[#34583d] transition-colors w-fit font-medium">
+            <Link to="/guide-des-sports" className="px-6 py-2 bg-[#406b4a] text-white rounded-full hover:bg-[#34583d] transition-colors w-fit font-medium">
               Voir tous les sports
-            </button>
+            </Link>
           </div>
         </div>
 
