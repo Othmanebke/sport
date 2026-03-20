@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEvents } from '../context/EventsHooks';
 import { X, Calendar, MapPin, Clock } from 'lucide-react';
 

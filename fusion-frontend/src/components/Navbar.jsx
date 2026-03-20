@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SignupModal from './SignupModal';
+import { useUser } from '../context/UserContext';
 
 const Navbar = () => {
   const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const { user } = useUser();
 
   return (
     <>
@@ -33,19 +34,34 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-700">
             <Link to="/" className="hover:text-[#406b4a] transition-colors">Accueil</Link>
+            <Link to="/guide-des-sports" className="hover:text-[#406b4a] transition-colors">Sports</Link>
+            <Link to="/calendrier" className="hover:text-[#406b4a] transition-colors">Calendrier</Link>
             <Link to="/comment-ca-marche" className="hover:text-[#406b4a] transition-colors">Comment ça marche ?</Link>
-            <Link to="/guide-des-sports" className="hover:text-[#406b4a] transition-colors">Guide des Sports</Link>
           </div>
 
-          {/* Sign Up Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsSignupOpen(true)}
-            className="px-6 py-2.5 md:px-6 md:py-2.5 rounded-full bg-gray-900 text-white font-medium text-sm md:text-base transition-all shadow-md hover:bg-gray-800"
-          >
-            Rejoindre
-          </motion.button>
+          {user ? (
+            <Link to="/profil">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#ebf2ed] text-[#406b4a] font-semibold text-sm transition-all hover:bg-[#d6e5db]"
+              >
+                <div className="w-6 h-6 rounded-full bg-[#406b4a] text-white flex items-center justify-center text-xs font-bold">
+                  {user.name?.[0]?.toUpperCase() || '?'}
+                </div>
+                {user.name}
+              </motion.div>
+            </Link>
+          ) : (
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsSignupOpen(true)}
+              className="px-6 py-2.5 rounded-full bg-gray-900 text-white font-medium text-sm transition-all shadow-md hover:bg-gray-800"
+            >
+              Rejoindre
+            </motion.button>
+          )}
         </div>
       </motion.nav>
 

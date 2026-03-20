@@ -7,6 +7,8 @@ import HowItWorksPage from './pages/HowItWorksPage';
 import SportsGuidePage from './pages/SportsGuidePage';
 import CalendarPage from './pages/CalendarPage';
 import AuthPage from './pages/AuthPage';
+import ProfilePage from './pages/ProfilePage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route path="/guide-des-sports" element={<SportsGuidePage />} />
             <Route path="/calendrier" element={<CalendarPage />} />
             <Route path="/auth" element={<AuthPage />} />
+            <Route path="/profil" element={<ProfilePage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Router>
       </EventsProvider>

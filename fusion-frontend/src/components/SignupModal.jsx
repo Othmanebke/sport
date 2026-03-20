@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const SignupModal = ({ isOpen, onClose }) => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogin = async (provider) => {
+  const handleLogin = async () => {
     setLoading(true);
-    console.log(`${provider} login`);
     setTimeout(() => {
       setLoading(false);
-      // onClose();
-    }, 2000);
+      onClose();
+      navigate('/auth');
+    }, 800);
   };
 
   if (!isOpen) return null;
@@ -66,7 +68,7 @@ const SignupModal = ({ isOpen, onClose }) => {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => handleLogin('gmail')}
+              onClick={() => handleLogin()}
               disabled={loading}
               className="w-full py-4 bg-white hover:bg-gray-50 text-gray-900 font-bold rounded-2xl flex items-center justify-center gap-3 transition-all border border-gray-200 shadow-sm"
             >
@@ -83,7 +85,7 @@ const SignupModal = ({ isOpen, onClose }) => {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => handleLogin('outlook')}
+              onClick={() => handleLogin()}
               disabled={loading}
               className="w-full py-4 bg-[#0078D4] hover:bg-[#106EBE] disabled:opacity-70 text-white font-bold rounded-2xl flex items-center justify-center gap-3 transition-colors shadow-md"
             >

@@ -397,7 +397,7 @@ export default function HomePage() {
             <h2 className="text-4xl md:text-5xl text-gray-900 leading-tight max-w-2xl">
               Filtrez, comparez et <br/> <span className="font-bold">trouvez</span> votre passion.
             </h2>
-            <button className="px-6 py-2 bg-[#406b4a] text-white rounded-full hover:bg-[#34583d] transition-colors w-fit font-medium">
+            <button onClick={() => navigate('/guide-des-sports')} className="px-6 py-2 bg-[#406b4a] text-white rounded-full hover:bg-[#34583d] transition-colors w-fit font-medium">
               Voir tous les sports
             </button>
           </div>
@@ -528,10 +528,10 @@ export default function HomePage() {
                 Rejoignez la communauté <strong>Fusion</strong>. Recevez des recommandations de clubs, des alertes d'événements et des offres exclusives sur l'équipement de votre sport favori.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button className="w-full sm:w-auto px-8 py-4 bg-[#406b4a] text-white rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-[#2c4c34] transition-all hover:-translate-y-0.5">
+                <button onClick={() => navigate('/auth')} className="w-full sm:w-auto px-8 py-4 bg-[#406b4a] text-white rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-[#2c4c34] transition-all hover:-translate-y-0.5">
                   Créer mon profil sportif
                 </button>
-                <button className="w-full sm:w-auto px-8 py-4 bg-white text-[#406b4a] rounded-full font-bold shadow-sm border border-[#d2e3d8] hover:bg-gray-50 transition-all">
+                <button onClick={() => navigate('/comment-ca-marche')} className="w-full sm:w-auto px-8 py-4 bg-white text-[#406b4a] rounded-full font-bold shadow-sm border border-[#d2e3d8] hover:bg-gray-50 transition-all">
                   En savoir plus
                 </button>
                 </div>

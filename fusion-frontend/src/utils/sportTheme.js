@@ -53,12 +53,39 @@ const sportTheme = {
   },
   accrobranche: {
     color: '#6d4c41',
-    bgGradient: 'from-brown-700 to-brown-400',
+    bgGradient: 'from-amber-800 to-amber-500',
     mascot: '/assets/accrobranche-mascot.png',
     font: 'font-bold',
     illustration: '/assets/accrobranche-illustration.svg',
   },
-  // Ajoutez les autres sports ici...
+  karate: {
+    color: '#1565c0',
+    bgGradient: 'from-blue-800 to-blue-500',
+    mascot: '/assets/karate-mascot.png',
+    font: 'font-black',
+    illustration: '/assets/karate-illustration.svg',
+  },
+  judo: {
+    color: '#4527a0',
+    bgGradient: 'from-indigo-800 to-purple-500',
+    mascot: '/assets/judo-mascot.png',
+    font: 'font-bold',
+    illustration: '/assets/judo-illustration.svg',
+  },
+  danse: {
+    color: '#c2185b',
+    bgGradient: 'from-pink-700 to-rose-400',
+    mascot: '/assets/danse-mascot.png',
+    font: 'font-semibold',
+    illustration: '/assets/danse-illustration.svg',
+  },
+  golf: {
+    color: '#2e7d32',
+    bgGradient: 'from-green-800 to-green-600',
+    mascot: '/assets/golf-mascot.png',
+    font: 'font-bold',
+    illustration: '/assets/golf-illustration.svg',
+  },
 };
 
 export default sportTheme;

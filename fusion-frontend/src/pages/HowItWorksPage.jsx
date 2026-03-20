@@ -1,85 +1,125 @@
 import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { Search, MapPin, ShoppingBag, Calendar, ArrowRight } from 'lucide-react';
+import { Search, MapPin, ShoppingBag, Calendar, ArrowRight, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
-export default function HowItWorksPage() {
-  const steps = [
-    {
-      icon: <Search className="w-8 h-8 text-[#406b4a]" />,
-      title: "1. Trouvez votre passion",
-      description: "Explorez notre guide des sports pour découvrir celui qui correspond à vos envies et à vos objectifs."
-    },
-    {
-      icon: <MapPin className="w-8 h-8 text-[#406b4a]" />,
-      title: "2. Repérez les clubs autour de vous",
-      description: "Grâce à notre carte interactive, trouvez instantanément les clubs, salles ou terrains les plus proches."
-    },
-    {
-      icon: <ShoppingBag className="w-8 h-8 text-[#406b4a]" />,
-      title: "3. Équipez-vous au meilleur prix",
-      description: "Consultez notre comparateur d'équipements pour trouver le matériel adéquat selon votre niveau (débutant à pro)."
-    },
-    {
-      icon: <Calendar className="w-8 h-8 text-[#406b4a]" />,
-      title: "4. Participez aux événements",
-      description: "Rejoignez des séances d'initiation, des tournois et rencontrez des passionnés de votre nouveau sport."
-    }
-  ];
+const steps = [
+  {
+    number: '01',
+    icon: <Search className="w-7 h-7" />,
+    title: 'Trouvez votre passion',
+    description: 'Explorez notre guide des sports pour découvrir celui qui correspond à vos envies et à vos objectifs. Filtrez par intensité, budget ou proximité.',
+    perks: ['12 sports disponibles', 'Fiches détaillées', 'Comparatif niveau/prix']
+  },
+  {
+    number: '02',
+    icon: <MapPin className="w-7 h-7" />,
+    title: 'Repérez les clubs près de vous',
+    description: 'Grâce à notre carte interactive, trouvez instantanément les clubs, salles ou terrains les plus proches de chez vous.',
+    perks: ['Géolocalisation automatique', 'Carte interactive', 'Avis et notes']
+  },
+  {
+    number: '03',
+    icon: <ShoppingBag className="w-7 h-7" />,
+    title: 'Équipez-vous au meilleur prix',
+    description: 'Consultez notre sélection d\'équipements par niveau. Du débutant au pro, trouvez le matériel adapté avec les meilleures offres.',
+    perks: ['Filtres par niveau', 'Liens vers Decathlon, Nike...', 'Sélection curatée']
+  },
+  {
+    number: '04',
+    icon: <Calendar className="w-7 h-7" />,
+    title: 'Participez aux événements',
+    description: 'Rejoignez des séances d\'initiation, des tournois et rencontrez des passionnés. Ajoutez vos propres événements à votre agenda.',
+    perks: ['Agenda hebdomadaire', 'Tournois & initiations', 'Rencontres locales']
+  }
+];
 
+export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen bg-[#f8f9fa] text-gray-900 font-sans pb-24">
+    <div className="min-h-screen bg-white text-gray-900 font-sans">
       <Navbar />
-      
-      <div className="pt-32 px-4 md:px-12 max-w-[1200px] mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Comment ça marche ?</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Fusion vous accompagne étape par étape pour vous aider à plonger dans l'univers de votre futur sport favori.
+
+      {/* Hero */}
+      <section className="pt-32 pb-20 px-4 md:px-12 max-w-[1100px] mx-auto text-center">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <span className="inline-block px-4 py-1.5 bg-[#ebf2ed] text-[#406b4a] text-xs font-bold uppercase tracking-widest rounded-full mb-6">
+            Simple & rapide
+          </span>
+          <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
+            De zéro à sportif<br/>
+            <span className="text-[#406b4a]">en 4 étapes.</span>
+          </h1>
+          <p className="text-xl text-gray-500 max-w-xl mx-auto">
+            Fusion vous accompagne pour choisir votre sport, trouver un club, vous équiper et participer à des événements.
           </p>
         </motion.div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 relative">
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2 z-0"></div>
-          
+      {/* Steps */}
+      <section className="px-4 md:px-12 max-w-[1100px] mx-auto pb-24">
+        <div className="space-y-6">
           {steps.map((step, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
-              className={`relative z-10 bg-white p-8 rounded-3xl shadow-sm border border-gray-100 ${idx % 2 === 0 ? 'md:mr-8' : 'md:ml-8 md:mt-16'}`}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              className={`flex flex-col md:flex-row gap-8 items-start p-8 md:p-10 rounded-3xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition-shadow ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
             >
-              <div className="w-16 h-16 bg-[#ebf2ed] rounded-2xl flex items-center justify-center mb-6">
-                {step.icon}
+              {/* Number + Icon */}
+              <div className="flex-shrink-0 flex flex-col items-center md:items-start">
+                <span className="text-6xl font-black text-gray-100 leading-none">{step.number}</span>
+                <div className="w-14 h-14 bg-[#ebf2ed] text-[#406b4a] rounded-2xl flex items-center justify-center -mt-4">
+                  {step.icon}
+                </div>
               </div>
-              <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{step.description}</p>
+
+              {/* Content */}
+              <div className="flex-1">
+                <h3 className="text-2xl font-black text-gray-900 mb-3">{step.title}</h3>
+                <p className="text-gray-500 leading-relaxed mb-6 max-w-lg">{step.description}</p>
+                <ul className="flex flex-wrap gap-3">
+                  {step.perks.map((perk, pIdx) => (
+                    <li key={pIdx} className="flex items-center gap-2 text-sm font-semibold text-[#406b4a] bg-[#ebf2ed] px-3 py-1.5 rounded-full">
+                      <CheckCircle size={14} />
+                      {perk}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           ))}
         </div>
+      </section>
 
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="text-center bg-[#406b4a] rounded-3xl p-12 text-white shadow-xl"
+      {/* CTA */}
+      <section className="px-4 md:px-12 pb-24 max-w-[1100px] mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-[#1a2f22] rounded-3xl p-12 md:p-16 text-center relative overflow-hidden"
         >
-          <h2 className="text-3xl font-bold mb-6">Prêt à commencer l'aventure ?</h2>
-          <Link 
-            to="/guide-des-sports" 
-            className="inline-flex items-center gap-2 bg-white text-[#406b4a] px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors"
-          >
-            Explorer les sports <ArrowRight className="w-5 h-5" />
-          </Link>
+          <div className="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=1200&q=80" alt="" className="w-full h-full object-cover" />
+          </div>
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Prêt à commencer l'aventure ?</h2>
+            <p className="text-white/60 mb-8 max-w-md mx-auto">Rejoignez des milliers de sportifs qui ont trouvé leur passion grâce à Fusion.</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/guide-des-sports" className="inline-flex items-center justify-center gap-2 bg-[#406b4a] text-white px-8 py-4 rounded-full font-bold hover:bg-[#34583d] transition-colors">
+                Explorer les sports <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link to="/auth" className="inline-flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-colors">
+                Créer un compte
+              </Link>
+            </div>
+          </div>
         </motion.div>
-      </div>
+      </section>
     </div>
   );
 }

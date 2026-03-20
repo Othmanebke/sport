@@ -1,16 +1,15 @@
 import React from 'react';
+import { useUser } from '../context/UserContext';
 import Navbar from '../components/Navbar';
 import ProfileCard from '../components/ProfileCard';
 
 export default function ProfilePage() {
-  // Utilisation du contexte utilisateur
-  import { useUser } from '../context/UserContext';
   const { user } = useUser();
 
   return (
     <div className="min-h-screen bg-[#f8f9fa] text-gray-900 font-sans pb-24">
       <Navbar />
-      <div className="max-w-2xl mx-auto pt-32 px-4">
+      <div className="max-w-2xl mx-auto pt-28 px-4">
         {user ? (
           <ProfileCard user={user} />
         ) : (

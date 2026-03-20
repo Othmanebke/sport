@@ -1,11 +1,12 @@
-import React from 'react';
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { ArrowLeft, Heart, Share2, Clock } from 'lucide-react';
+import { ArrowLeft, Heart, Share2 } from 'lucide-react';
 import SportTabs from '../components/SportTabs';
 import Navbar from '../components/Navbar';
 import sportTheme from '../utils/sportTheme';
+import { useUser } from '../context/UserContext';
 
 const sportDetails = {
   football: {
@@ -123,9 +124,25 @@ export default function SportPage() {
   const sport = nomDuSport?.toLowerCase() || 'football';
   const details = sportDetails[sport] || sportDetails.football;
   const theme = sportTheme[sport] || sportTheme.football;
+  const { user, addFavoriteSport } = useUser();
+  const isFavorite = user?.favoriteSports?.includes(sport);
+  const [liked, setLiked] = useState(isFavorite || false);
+
+  const handleFavorite = () => {
+    if (!liked) addFavoriteSport(sport);
+    setLiked(true);
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({ title: sport, url: window.location.href });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+    }
+  };
 
   return (
-    <div className="min-h-screen pb-24 font-sans" style={{ background: theme.bgGradient ? `linear-gradient(${theme.bgGradient.replace('from-', '').replace('to-', ',')})` : '#f8f9fa' }}>
+    <div className="min-h-screen pb-24 font-sans bg-white">
       <Navbar />
       {/* Header avec image, mascotte et mood */}
       <div className="relative h-[50vh] md:h-[60vh] overflow-hidden pt-20">
@@ -149,10 +166,10 @@ export default function SportPage() {
             Retour à l'accueil
           </Link>
           <div className="flex gap-3">
-            <button className="w-12 h-12 bg-white text-gray-900 hover:text-white hover:bg-[#406b4a] transition-all rounded-full shadow-sm flex items-center justify-center">
-              <Heart size={20} />
+            <button onClick={handleFavorite} className={`w-12 h-12 transition-all rounded-full shadow-sm flex items-center justify-center ${liked ? 'bg-red-500 text-white' : 'bg-white text-gray-900 hover:text-white hover:bg-[#406b4a]'}`}>
+              <Heart size={20} fill={liked ? 'white' : 'none'} />
             </button>
-            <button className="w-12 h-12 bg-white text-gray-900 hover:text-white hover:bg-[#406b4a] transition-all rounded-full shadow-sm flex items-center justify-center">
+            <button onClick={handleShare} className="w-12 h-12 bg-white text-gray-900 hover:text-white hover:bg-[#406b4a] transition-all rounded-full shadow-sm flex items-center justify-center">
               <Share2 size={20} />
             </button>
           </div>

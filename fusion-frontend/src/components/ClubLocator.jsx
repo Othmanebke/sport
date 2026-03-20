@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { MapPin, Navigation, Phone, Star, Users, Trophy } from 'lucide-react';
+import { MapPin, Phone, Star, Users, Trophy } from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
