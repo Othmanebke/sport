@@ -144,53 +144,66 @@ export default function SportPage() {
   return (
     <div className="min-h-screen pb-24 font-sans bg-white">
       <Navbar />
-      {/* Header avec image, mascotte et mood */}
-      <div className="relative h-[50vh] md:h-[60vh] overflow-hidden pt-20">
-        <img 
-          src={details.banner} 
+      {/* Hero banner — titre DANS l'image avec fort dégradé */}
+      <div className="relative h-[65vh] md:h-[75vh] overflow-hidden">
+        <img
+          src={details.banner}
           alt={sport}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-transparent"></div>
-        {/* Mascotte/illustration */}
-        {theme.illustration && (
-          <img src={theme.illustration} alt="Illustration" className="absolute right-8 bottom-8 w-32 h-32 md:w-48 md:h-48 opacity-80 pointer-events-none" />
-        )}
-        {/* Navigation */}
-        <div className="relative z-10 mt-12 p-6 md:p-12 flex justify-between items-center max-w-[1400px] mx-auto">
-          <Link 
-            to="/" 
-            className="inline-flex items-center text-gray-900 hover:text-white transition-colors duration-300 font-semibold text-sm group tracking-wide bg-white hover:bg-[#406b4a] py-3 px-6 rounded-full shadow-sm"
+        {/* Dégradé fort : transparent en haut → noir en bas */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
+
+        {/* Barre nav top */}
+        <div className="relative z-10 pt-24 px-6 md:px-12 flex justify-between items-center max-w-[1400px] mx-auto">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-white/80 hover:text-white font-semibold text-sm bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 py-2.5 px-5 rounded-full transition-all"
           >
-            <ArrowLeft className="mr-2 w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-            Retour à l'accueil
+            <ArrowLeft className="w-4 h-4" />
+            Retour
           </Link>
-          <div className="flex gap-3">
-            <button onClick={handleFavorite} className={`w-12 h-12 transition-all rounded-full shadow-sm flex items-center justify-center ${liked ? 'bg-red-500 text-white' : 'bg-white text-gray-900 hover:text-white hover:bg-[#406b4a]'}`}>
-              <Heart size={20} fill={liked ? 'white' : 'none'} />
+          <div className="flex gap-2">
+            <button
+              onClick={handleFavorite}
+              className={`w-11 h-11 rounded-full backdrop-blur-sm border flex items-center justify-center transition-all ${liked ? 'bg-red-500 border-red-500 text-white' : 'bg-white/10 border-white/20 text-white hover:bg-white/20'}`}
+            >
+              <Heart size={18} fill={liked ? 'white' : 'none'} />
             </button>
-            <button onClick={handleShare} className="w-12 h-12 bg-white text-gray-900 hover:text-white hover:bg-[#406b4a] transition-all rounded-full shadow-sm flex items-center justify-center">
-              <Share2 size={20} />
+            <button
+              onClick={handleShare}
+              className="w-11 h-11 rounded-full backdrop-blur-sm border border-white/20 bg-white/10 text-white hover:bg-white/20 flex items-center justify-center transition-all"
+            >
+              <Share2 size={18} />
             </button>
           </div>
         </div>
-      </div>
-      <div className="px-4 md:px-12 max-w-[1400px] mx-auto">
-        {/* Titre et description */}
+
+        {/* Titre + description dans l'image */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-16 -mt-24 relative z-10 text-center md:text-left"
+          className="absolute bottom-0 left-0 right-0 px-6 md:px-12 pb-10 max-w-[1400px] mx-auto"
         >
-          <h1 
-            className={`text-6xl md:text-8xl capitalize tracking-tight mb-4 ${theme.font}`} style={{ color: theme.color }}>
+          <span
+            className="inline-block text-xs font-black uppercase tracking-[0.3em] px-3 py-1 rounded-full mb-4"
+            style={{ backgroundColor: theme.color + '30', color: theme.color, border: `1px solid ${theme.color}50` }}
+          >
             {sport}
+          </span>
+          <h1 className={`text-6xl md:text-8xl text-white tracking-tight leading-none mb-4 drop-shadow-2xl ${theme.font}`}>
+            {sport.charAt(0).toUpperCase() + sport.slice(1)}
           </h1>
-          <p className="font-medium text-xl md:text-2xl mb-8 max-w-3xl leading-relaxed" style={{ color: theme.color }}>
+          <p className="text-white/75 text-lg md:text-xl max-w-2xl leading-relaxed">
             {details.description}
           </p>
         </motion.div>
+      </div>
+
+      <div className="px-4 md:px-12 max-w-[1400px] mx-auto">
+        {/* Spacer remplaçant l'ancien bloc titre */}
+        <div className="mt-12" />
         {/* Stats rapides */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
