@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import SportCalendar from '../components/SportCalendar';
 import { useEvents } from '../context/EventsHooks';
-import { Calendar, MapPin, Clock, Plus } from 'lucide-react';
+import { MapPin, Clock, Plus, ChevronRight } from 'lucide-react';
 import EventsModal from '../components/EventsModal';
 
 export default function CalendarPage() {
@@ -21,111 +22,119 @@ export default function CalendarPage() {
   const totalEvents = calendarEvents.length;
 
   return (
-    <div className="min-h-screen bg-[#080e0a] text-white font-sans">
+    <div className="min-h-screen bg-[#080e0a] text-white">
       <Navbar />
 
       {/* ── HERO ── */}
-      <section className="relative pt-32 pb-12 px-4 md:px-12 overflow-hidden">
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '60px 60px' }} />
-        <div className="absolute top-10 right-1/4 w-[500px] h-[200px] bg-[#406b4a] opacity-15 blur-[100px] rounded-full pointer-events-none" />
-
-        <div className="relative max-w-[1100px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <section className="pt-28 pb-0 border-b border-white/5">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-12">
+          <div className="w-12 h-1 bg-[#406b4a] mb-10" />
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10">
             <div>
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#406b4a]/40 bg-[#406b4a]/10 text-[#6dbd7a] text-xs font-bold uppercase tracking-widest mb-6">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#6dbd7a] animate-pulse" />
-                {totalEvents} événements cette semaine
-              </span>
-              <h1 className="text-5xl md:text-7xl font-black leading-none tracking-tight">
-                Mon<br/>
+              <p className="text-[#6dbd7a] text-[10px] font-bold uppercase tracking-[0.3em] mb-3">
+                <span className="inline-block w-1.5 h-1.5 bg-[#6dbd7a] rounded-full mr-2 animate-pulse align-middle" />
+                {totalEvents} ÉVÉNEMENTS CETTE SEMAINE
+              </p>
+              <h1 className="text-7xl md:text-[9rem] font-black leading-none uppercase text-white">
+                MON<br/>
                 <span style={{ WebkitTextStroke: '2px #406b4a', color: 'transparent' }}>AGENDA.</span>
               </h1>
             </div>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-2 px-6 py-3 bg-[#406b4a] hover:bg-[#34583d] text-white font-bold rounded-2xl transition-all self-start md:self-auto shrink-0"
+              className="flex items-center gap-3 px-8 py-4 bg-[#406b4a] hover:bg-[#34583d] text-white font-bold uppercase tracking-wider transition-colors text-sm self-start md:self-end flex-shrink-0"
             >
-              <Plus size={18} /> Gérer les événements
+              <Plus size={16} /> GÉRER LES ÉVÉNEMENTS
             </button>
+          </div>
+
+          {/* Stats strip */}
+          <div className="flex items-center gap-0 border-t border-white/5">
+            {[
+              { val: totalEvents, label: 'Événements' },
+              { val: 7, label: 'Sports actifs' },
+              { val: '∞', label: 'Possibilités' },
+            ].map((s, i) => (
+              <React.Fragment key={i}>
+                {i > 0 && <div className="w-px h-12 bg-white/5 mx-8" />}
+                <div className="py-6">
+                  <span className="text-4xl font-black text-white">{s.val}</span>
+                  <span className="block text-white/25 text-[10px] uppercase tracking-[0.2em] mt-0.5">{s.label}</span>
+                </div>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── MAIN CONTENT ── */}
-      <section className="px-4 md:px-12 pb-32 max-w-[1100px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* ── MAIN ── */}
+      <section className="px-4 md:px-12 py-12 max-w-[1200px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           {/* Calendar */}
           <div className="lg:col-span-2">
-            <div className="bg-white/5 border border-white/10 rounded-3xl p-4 md:p-6 backdrop-blur-sm">
+            <div className="border-l-2 border-[#406b4a] pl-6">
               <SportCalendar onDateSelect={setSelectedDate} dark />
             </div>
           </div>
 
-          {/* Sidebar events */}
-          <div className="flex flex-col gap-4">
+          {/* Events sidebar */}
+          <div>
+            {/* Section header */}
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-1 h-6 bg-[#406b4a]" />
+              <h2 className="text-sm font-black uppercase tracking-[0.15em]">
+                {selectedDate
+                  ? selectedDate.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })
+                  : 'SÉLECTIONNE UNE DATE'}
+              </h2>
+            </div>
+
             {selectedDate ? (
-              <>
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Calendar className="text-[#6dbd7a] w-5 h-5" />
-                    <h3 className="font-bold text-white capitalize">
-                      {selectedDate.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
-                    </h3>
-                  </div>
-                  {eventsForSelectedDate.length > 0 ? (
-                    <div className="space-y-3">
-                      {eventsForSelectedDate.map((evt, idx) => (
-                        <motion.div
-                          key={idx}
-                          initial={{ opacity: 0, x: 10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: idx * 0.08 }}
-                          className="bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#406b4a]/60 transition-colors"
-                        >
-                          <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest bg-[#406b4a]/20 text-[#6dbd7a] border border-[#406b4a]/30">
+              eventsForSelectedDate.length > 0 ? (
+                <div className="space-y-0">
+                  {eventsForSelectedDate.map((evt, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, x: 10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.08 }}
+                      className="border-b border-white/5 py-5 group hover:border-[#406b4a]/40 transition-colors"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex-1">
+                          <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#6dbd7a] mb-2 block">
                             {evt.sport}
                           </span>
-                          <h4 className="mt-2 font-bold text-white text-sm">{evt.title}</h4>
-                          <div className="mt-1.5 flex flex-col gap-1 text-xs text-white/40">
-                            {evt.time && <span className="flex items-center gap-1"><Clock size={11} />{evt.time}</span>}
-                            {evt.location && <span className="flex items-center gap-1"><MapPin size={11} />{evt.location}</span>}
+                          <h4 className="font-black text-white text-sm uppercase leading-tight mb-3">
+                            {evt.title}
+                          </h4>
+                          <div className="flex flex-col gap-1 text-xs text-white/30">
+                            {evt.time && (
+                              <span className="flex items-center gap-1.5">
+                                <Clock size={10} /> {evt.time}
+                              </span>
+                            )}
+                            {evt.location && (
+                              <span className="flex items-center gap-1.5">
+                                <MapPin size={10} /> {evt.location}
+                              </span>
+                            )}
                           </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-white/30 text-sm text-center py-6">Aucun événement ce jour.</p>
-                  )}
+                        </div>
+                        <ChevronRight size={14} className="text-white/15 group-hover:text-[#6dbd7a] transition-colors mt-1 flex-shrink-0" />
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              </>
+              ) : (
+                <p className="text-white/20 text-sm uppercase tracking-wider font-bold pt-4">AUCUN ÉVÉNEMENT CE JOUR.</p>
+              )
             ) : (
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center text-center min-h-[200px]">
-                <Calendar className="w-10 h-10 text-white/10 mb-3" />
-                <p className="text-white/30 text-sm">Sélectionne une date<br/>pour voir les événements</p>
-              </div>
+              <p className="text-white/15 text-xs uppercase tracking-widest font-bold pt-4">
+                Clique sur une date<br/>pour voir les événements
+              </p>
             )}
-
-            {/* Stats card */}
-            <div className="bg-[#406b4a]/10 border border-[#406b4a]/20 rounded-2xl p-5">
-              <p className="text-[#6dbd7a] text-xs font-black uppercase tracking-widest mb-3">Cette semaine</p>
-              <div className="flex justify-between">
-                <div>
-                  <p className="text-3xl font-black text-white">{totalEvents}</p>
-                  <p className="text-white/40 text-xs">Événements</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-black text-white">7</p>
-                  <p className="text-white/40 text-xs">Sports actifs</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-black text-white">∞</p>
-                  <p className="text-white/40 text-xs">Possibilités</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
