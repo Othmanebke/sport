@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
 import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import { LogOut, Plus, Trophy, Users, Calendar, Settings } from 'lucide-react';
-import { useState } from 'react';
+import { LogOut, Plus, Trophy, Users, Calendar } from 'lucide-react';
 
 export default function ProfilePage() {
   const { user, addFavoriteSport, addClub, addPersonalEvent, logout } = useUser();
@@ -164,7 +163,7 @@ export default function ProfilePage() {
 
 function Section({ icon, title, count, children }) {
   return (
-    <div className="bg-white/[0.03] border border-white/8 rounded-3xl p-6">
+    <div className="bg-white/[0.03] border border-white/10 rounded-3xl p-6">
       <div className="flex items-center gap-3 mb-5">
         <div className="w-8 h-8 rounded-xl bg-[#406b4a]/20 text-[#6dbd7a] flex items-center justify-center">{icon}</div>
         <h3 className="font-black text-white text-base">{title}</h3>
