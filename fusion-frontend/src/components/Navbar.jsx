@@ -1,79 +1,68 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import SignupModal from './SignupModal';
 import { useUser } from '../context/UserContext';
 
 const Navbar = () => {
   const [isSignupOpen, setIsSignupOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const { user } = useUser();
-  const location = useLocation();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const navLinks = [
-    { to: '/guide-des-sports', label: 'SPORTS' },
-    { to: '/calendrier', label: 'AGENDA' },
-    { to: '/comment-ca-marche', label: 'COMMENT ÇA MARCHE' },
-  ];
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[#080e0a] border-b border-white/5' : 'bg-transparent'
-      }`}>
-        <div className="max-w-[1200px] mx-auto px-4 md:px-12 h-16 md:h-[72px] flex items-center justify-between gap-8">
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed top-0 left-0 right-0 z-50 px-6 py-4 md:px-12 md:py-6"
+      >
+        <div className="max-w-7xl mx-auto bg-white/70 backdrop-blur-2xl rounded-full border border-white/40 px-6 py-3 md:px-8 flex items-center justify-between shadow-lg hover:shadow-xl transition-shadow">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-            <span className="text-[#6dbd7a] text-xl font-black">⚡</span>
-            <span className="text-white font-black text-lg uppercase tracking-widest">FUSION</span>
+          <Link to="/">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 cursor-pointer text-gray-900"
+            >
+              <span className="text-[#406b4a] text-2xl font-bold">⚡</span>
+              <span className="text-gray-900 font-bold text-xl md:text-2xl tracking-tight hidden sm:inline">fusion</span>
+            </motion.div>
           </Link>
 
-          {/* Nav links */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map(link => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`text-[10px] font-bold uppercase tracking-[0.15em] transition-colors pb-0.5 border-b-2 ${
-                  location.pathname === link.to
-                    ? 'text-[#6dbd7a] border-[#6dbd7a]'
-                    : 'text-white/40 border-transparent hover:text-white hover:border-white/30'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-700">
+            <Link to="/" className="hover:text-[#406b4a] transition-colors">Accueil</Link>
+            <Link to="/guide-des-sports" className="hover:text-[#406b4a] transition-colors">Sports</Link>
+            <Link to="/calendrier" className="hover:text-[#406b4a] transition-colors">Calendrier</Link>
+            <Link to="/comment-ca-marche" className="hover:text-[#406b4a] transition-colors">Comment ça marche ?</Link>
           </div>
 
-          {/* CTA / User */}
           {user ? (
-            <Link to="/profil" className="flex items-center gap-2.5 group flex-shrink-0">
-              <div className="w-7 h-7 bg-[#406b4a] flex items-center justify-center text-white text-xs font-black flex-shrink-0">
-                {user.name?.[0]?.toUpperCase() || '?'}
-              </div>
-              <span className="text-white/50 text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors hidden sm:block">
+            <Link to="/profil">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#ebf2ed] text-[#406b4a] font-semibold text-sm transition-all hover:bg-[#d6e5db]"
+              >
+                <div className="w-6 h-6 rounded-full bg-[#406b4a] text-white flex items-center justify-center text-xs font-bold">
+                  {user.name?.[0]?.toUpperCase() || '?'}
+                </div>
                 {user.name}
-              </span>
+              </motion.div>
             </Link>
           ) : (
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setIsSignupOpen(true)}
-              className="flex-shrink-0 px-5 py-2.5 bg-[#406b4a] hover:bg-[#34583d] text-white text-[10px] font-bold uppercase tracking-[0.15em] transition-colors"
+              className="px-6 py-2.5 rounded-full bg-gray-900 text-white font-medium text-sm transition-all shadow-md hover:bg-gray-800"
             >
-              REJOINDRE
-            </button>
+              Rejoindre
+            </motion.button>
           )}
         </div>
-
-        {/* Bottom accent line */}
-        {scrolled && <div className="h-px bg-gradient-to-r from-transparent via-[#406b4a]/50 to-transparent" />}
-      </nav>
+      </motion.nav>
 
       <SignupModal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)} />
     </>
