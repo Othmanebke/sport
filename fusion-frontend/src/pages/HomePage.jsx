@@ -426,20 +426,24 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-all duration-500 group-hover:from-black/80" />
               
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                {/* Badge couleur sport */}
+                <div className="absolute top-4 left-4">
+                  <div className="w-3 h-3 rounded-full shadow-lg" style={{ background: theme.color }} />
+                </div>
                 <div className="transform transition-transform duration-500 translate-y-12 group-hover:translate-y-0">
-                  <h3 className={`text-2xl font-bold mb-1 uppercase tracking-wider drop-shadow-md ${theme.font}`} style={{ color: theme.color }}>{sport.name}</h3>
-                  <p className="font-medium text-xs uppercase tracking-widest mb-4 border-b border-white/20 pb-3" style={{ color: theme.color }}>{sport.tagline}</p>
-                  
+                  <h3 className={`text-2xl font-bold mb-1 uppercase tracking-wider text-white drop-shadow-lg ${theme.font}`}>{sport.name}</h3>
+                  <p className="font-medium text-xs uppercase tracking-widest mb-4 border-b border-white/20 pb-3 text-white/70">{sport.tagline}</p>
+
                   <div className="space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                     {sport.services.slice(0, 2).map((service, sIdx) => (
-                      <div key={sIdx} className={`flex items-center gap-2 text-sm ${theme.font}`} style={{ color: theme.color }}>
+                      <div key={sIdx} className="flex items-center gap-2 text-sm text-white/80">
                         <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: theme.color }} />
                         <span>{service}</span>
                       </div>
                     ))}
-                    
+
                     <div className="pt-3 flex items-center justify-between w-full">
-                      <span className={`font-bold uppercase text-xs ${theme.font}`} style={{ color: theme.color }}>Explorer</span>
+                      <span className="font-bold uppercase text-xs text-white">Explorer</span>
                       <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" style={{ color: theme.color }}>
                         <ChevronRight className="w-4 h-4" />
                       </div>
