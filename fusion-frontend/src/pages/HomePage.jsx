@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Play, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import EventsModal from '../components/EventsModal';
+
+const CYCLING_WORDS = ['TON SPORT.', 'TA VOIX.', 'TON DÉFI.', 'TON CLUB.', 'TA PASSION.'];
 
 const allSports = [
   { id: 'football',    name: 'FOOTBALL',    image: 'https://images.unsplash.com/photo-1556056504-5c7696c4c28d?w=1200&q=80',    tagline: 'DOMINEZ LE TERRAIN' },
@@ -26,6 +28,14 @@ const TICKER = ['FOOTBALL', 'BASKETBALL', 'TENNIS', 'BOXE', 'MMA', 'NATATION', '
 export default function HomePage() {
   const navigate = useNavigate();
   const [isEventsModalOpen, setIsEventsModalOpen] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex(i => (i + 1) % CYCLING_WORDS.length);
+    }, 2200);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -36,43 +46,38 @@ export default function HomePage() {
 
         {/* Background photo */}
         <img
-          src="https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=1600&q=80"
+          src="https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?q=80&w=1600&auto=format&fit=crop"
           alt="Sport"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/10" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
         {/* Vertical text left edge */}
         <div className="absolute left-3 top-1/2 -translate-y-1/2 -rotate-90 origin-center hidden md:block">
-          <span className="text-[8px] font-bold uppercase tracking-[0.6em] text-white/8 whitespace-nowrap">
+          <span className="text-[8px] font-bold uppercase tracking-[0.6em] text-white/[0.08] whitespace-nowrap">
             FUSION SPORT — PLATEFORME N°1 — 2026
           </span>
         </div>
 
-        {/* Top info bar */}
-        <div className="absolute top-24 left-6 md:left-16 right-6 md:right-16 flex items-center justify-between z-10">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/35">EN DIRECT — 14 ÉVÉNEMENTS CE SOIR</span>
-          </div>
-          <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/15 hidden sm:block">12 DISCIPLINES</span>
-        </div>
-
-        {/* ── MASSIVE TEXT ── */}
+        {/* ── MASSIVE TEXT — single flow, no overlaps ── */}
         <div className="absolute inset-0 flex flex-col justify-center overflow-hidden pl-6 md:pl-16">
 
-          {/* Label */}
-          <motion.p
+          {/* Info row — EN DIRECT + 12 DISCIPLINES */}
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-[#6dbd7a] text-[10px] font-bold uppercase tracking-[0.4em] mb-4 md:mb-6"
+            className="flex items-center gap-4 mb-5"
           >
-            PLATEFORME SPORT N°1
-          </motion.p>
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse flex-shrink-0" />
+              <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/35">EN DIRECT — 14 ÉVÉNEMENTS CE SOIR</span>
+            </div>
+            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/15 hidden sm:block">· 12 DISCIPLINES</span>
+          </motion.div>
 
-          {/* TROUVE — slides up from bottom */}
+          {/* TROUVE — slides up */}
           <div className="overflow-hidden">
             <motion.div
               initial={{ y: '100%' }}
@@ -88,26 +93,29 @@ export default function HomePage() {
             </motion.div>
           </div>
 
-          {/* TON SPORT. — offset right + outline — slides up */}
-          <div className="overflow-hidden">
-            <motion.div
-              initial={{ y: '100%' }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-              className="ml-[3vw] md:ml-[6vw]"
-            >
-              <span
-                className="block font-black uppercase whitespace-nowrap"
-                style={{
-                  fontSize: 'clamp(4rem, 17vw, 19rem)',
-                  lineHeight: 0.82,
-                  WebkitTextStroke: '2px #6dbd7a',
-                  color: 'transparent',
-                }}
+          {/* Cycling word — outline, offset right */}
+          <div className="overflow-hidden ml-[3vw] md:ml-[6vw]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={wordIndex}
+                initial={{ y: '100%', opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: '-100%', opacity: 0 }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               >
-                TON SPORT.
-              </span>
-            </motion.div>
+                <span
+                  className="block font-black uppercase whitespace-nowrap"
+                  style={{
+                    fontSize: 'clamp(4rem, 17vw, 19rem)',
+                    lineHeight: 0.82,
+                    WebkitTextStroke: '2px #6dbd7a',
+                    color: 'transparent',
+                  }}
+                >
+                  {CYCLING_WORDS[wordIndex]}
+                </span>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
           {/* Description + CTA */}
