@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ChevronRight, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import sportTheme from '../utils/sportTheme';
 
 const allSports = [
   { 
@@ -125,15 +126,18 @@ export default function SportsGuidePage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredSports.map((sport, index) => (
-            <motion.div
-              key={sport.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
-              onClick={() => navigate(`/sport/${sport.id}`)}
-              className="group relative h-[360px] rounded-2xl overflow-hidden cursor-pointer shadow-xl transition-all border border-gray-200 hover:border-[#406b4a] bg-slate-900"
-            >
+          {filteredSports.map((sport, index) => {
+            const theme = sportTheme[sport.id] || sportTheme.football;
+            return (
+              <motion.div
+                key={sport.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05, duration: 0.4 }}
+                onClick={() => navigate(`/sport/${sport.id}`)}
+                className={`group relative h-[360px] rounded-2xl overflow-hidden cursor-pointer shadow-xl transition-all border bg-slate-900 ${theme.font}`}
+                style={{ borderColor: theme.color || undefined }}
+              >
               <img 
                 src={sport.image} 
                 alt={sport.name} 
@@ -144,32 +148,29 @@ export default function SportsGuidePage() {
               
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="transform transition-transform duration-500 translate-y-12 group-hover:translate-y-0">
-                  <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-[#ebf2ed] transition-colors uppercase tracking-wider drop-shadow-md">
-                    {sport.name}
-                  </h3>
-                  <p className="text-[#8bcda3] font-medium text-xs uppercase tracking-widest mb-4 border-b border-white/20 pb-3">
-                    {sport.tagline}
-                  </p>
+                  <h3 className={`text-2xl font-bold mb-1 uppercase tracking-wider drop-shadow-md ${theme.font}`} style={{ color: theme.color }}>{sport.name}</h3>
+                  <p className="font-medium text-xs uppercase tracking-widest mb-4 border-b border-white/20 pb-3" style={{ color: theme.color }}>{sport.tagline}</p>
                   
                   <div className="space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                     {sport.services.slice(0, 2).map((service, sIdx) => (
-                      <div key={sIdx} className="flex items-center gap-2 text-white/90 text-sm">
-                        <div className="w-1.5 h-1.5 bg-[#8bcda3] rounded-full flex-shrink-0" />
+                      <div key={sIdx} className={`flex items-center gap-2 text-sm ${theme.font}`} style={{ color: theme.color }}>
+                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: theme.color }} />
                         <span>{service}</span>
                       </div>
                     ))}
                     
                     <div className="pt-3 flex items-center justify-between w-full">
-                      <span className="text-[#8bcda3] font-bold uppercase text-xs">Explorer</span>
-                      <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#406b4a] group-hover:scale-110 transition-transform">
+                      <span className={`font-bold uppercase text-xs ${theme.font}`} style={{ color: theme.color }}>Explorer</span>
+                      <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" style={{ color: theme.color }}>
                         <ChevronRight className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
         
         {filteredSports.length === 0 && (

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Heart, Share2, Clock } from 'lucide-react';
 import SportTabs from '../components/SportTabs';
 import Navbar from '../components/Navbar';
+import sportTheme from '../utils/sportTheme';
 
 const sportDetails = {
   football: {
@@ -119,22 +120,25 @@ const sportDetails = {
 
 export default function SportPage() {
   const { nomDuSport } = useParams();
-  const sport = nomDuSport?.toLowerCase() || 'sport';
+  const sport = nomDuSport?.toLowerCase() || 'football';
   const details = sportDetails[sport] || sportDetails.football;
+  const theme = sportTheme[sport] || sportTheme.football;
 
   return (
-    <div className="bg-[#f8f9fa] min-h-screen text-gray-900 pb-24 font-sans">
+    <div className="min-h-screen pb-24 font-sans" style={{ background: theme.bgGradient ? `linear-gradient(${theme.bgGradient.replace('from-', '').replace('to-', ',')})` : '#f8f9fa' }}>
       <Navbar />
-      
-      {/* Header avec image et transition fond blanc */}
+      {/* Header avec image, mascotte et mood */}
       <div className="relative h-[50vh] md:h-[60vh] overflow-hidden pt-20">
         <img 
           src={details.banner} 
           alt={sport}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-[#f8f9fa]"></div>
-        
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-transparent"></div>
+        {/* Mascotte/illustration */}
+        {theme.illustration && (
+          <img src={theme.illustration} alt="Illustration" className="absolute right-8 bottom-8 w-32 h-32 md:w-48 md:h-48 opacity-80 pointer-events-none" />
+        )}
         {/* Navigation */}
         <div className="relative z-10 mt-12 p-6 md:p-12 flex justify-between items-center max-w-[1400px] mx-auto">
           <Link 
@@ -144,7 +148,6 @@ export default function SportPage() {
             <ArrowLeft className="mr-2 w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
             Retour à l'accueil
           </Link>
-          
           <div className="flex gap-3">
             <button className="w-12 h-12 bg-white text-gray-900 hover:text-white hover:bg-[#406b4a] transition-all rounded-full shadow-sm flex items-center justify-center">
               <Heart size={20} />
@@ -155,7 +158,6 @@ export default function SportPage() {
           </div>
         </div>
       </div>
-
       <div className="px-4 md:px-12 max-w-[1400px] mx-auto">
         {/* Titre et description */}
         <motion.div
@@ -165,15 +167,13 @@ export default function SportPage() {
           className="mb-16 -mt-24 relative z-10 text-center md:text-left"
         >
           <h1 
-            className="text-6xl md:text-8xl font-bold text-gray-900 capitalize tracking-tight mb-4"
-          >
+            className={`text-6xl md:text-8xl capitalize tracking-tight mb-4 ${theme.font}`} style={{ color: theme.color }}>
             {sport}
           </h1>
-          <p className="text-[#406b4a] font-medium text-xl md:text-2xl mb-8 max-w-3xl leading-relaxed">
+          <p className="font-medium text-xl md:text-2xl mb-8 max-w-3xl leading-relaxed" style={{ color: theme.color }}>
             {details.description}
           </p>
         </motion.div>
-
         {/* Stats rapides */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -183,18 +183,16 @@ export default function SportPage() {
         >
           {details.stats.map((stat, idx) => (
             <div key={idx} className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
-              <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">{stat.value}</h3>
+              <h3 className={`text-4xl md:text-5xl mb-2 ${theme.font}`} style={{ color: theme.color }}>{stat.value}</h3>
               <p className="text-gray-500 font-semibold text-sm uppercase tracking-wider">{stat.label}</p>
             </div>
           ))}
         </motion.div>
-
         {/* Onglets principaux */}
         <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 md:p-10">
           <SportTabs sport={sport} />
         </div>
       </div>
-
     </div>
   );
 }

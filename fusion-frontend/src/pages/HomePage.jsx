@@ -5,6 +5,7 @@ import { ChevronRight, Zap, Target, Users, Trophy, MapPin, ShoppingBag, Sparkles
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import EventsModal from '../components/EventsModal';
+import sportTheme from '../utils/sportTheme';
 
 const allSports = [
   { 
@@ -173,6 +174,7 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
   };
 
   const currentSport = allSports[currentIndex];
+  const theme = sportTheme[currentSport.id] || sportTheme.football;
 
   return (
     <div className="w-full">
@@ -189,7 +191,8 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
             opacity: { duration: 0.5 },
           }}
           onClick={() => onSportClick(currentSport.id)}
-          className="cursor-pointer group relative rounded-3xl overflow-hidden backdrop-blur-xl border border-blue-200 hover:border-fusion-blue-accent transition-all duration-300 shadow-2xl hover:shadow-blue-500/30 hover:scale-[1.02]"
+          className={`cursor-pointer group relative rounded-3xl overflow-hidden backdrop-blur-xl border transition-all duration-300 shadow-2xl hover:scale-[1.02] ${theme.font}`}
+          style={{ borderColor: theme.color || undefined }}
         >
           {/* Image with overlay */}
           <div className="relative h-96 md:h-[450px] overflow-hidden rounded-3xl">
@@ -210,12 +213,8 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <h3 className="text-6xl md:text-7xl font-heading text-fusion-blue-accent group-hover:text-blue-700 transition-colors font-black mb-2">
-                  {currentSport.name}
-                </h3>
-                <p className="text-fusion-blue-accent font-heading text-xl uppercase tracking-widest">
-                  {currentSport.tagline}
-                </p>
+                <h3 className={`text-6xl md:text-7xl font-heading mb-2 ${theme.font}`} style={{ color: theme.color }}>{currentSport.name}</h3>
+                <p className="font-heading text-xl uppercase tracking-widest" style={{ color: theme.color }}>{currentSport.tagline}</p>
               </motion.div>
 
               {/* Services proposés */}
@@ -231,7 +230,8 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + sIdx * 0.1 }}
-                    className="flex items-center gap-3 text-fusion-blue-accent/95 font-body text-sm md:text-base"
+                    className={`flex items-center gap-3 font-body text-sm md:text-base ${theme.font}`}
+                    style={{ color: theme.color }}
                   >
                     <div className="w-3 h-3 bg-fusion-blue-accent rounded-full flex-shrink-0" />
                     <span>{service}</span>
@@ -242,7 +242,8 @@ const SportsCarouselWithServices = ({ onSportClick }) => {
               {/* CTA Button */}
               <motion.div
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-2 text-fusion-blue-accent font-heading text-lg uppercase font-bold group-hover:text-blue-700 transition-colors w-fit"
+                className={`flex items-center gap-2 font-heading text-lg uppercase font-bold w-fit ${theme.font}`}
+                style={{ color: theme.color }}
               >
                 EXPLORER <ChevronRight className="w-6 h-6" />
               </motion.div>
@@ -403,16 +404,19 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {allSports.slice(0, 8).map((sport, index) => (
-            <motion.div
-              key={sport.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: (index % 4) * 0.1, duration: 0.5 }}
-              onClick={() => navigate(`/sport/${sport.id}`)}
-              className="group relative h-[360px] rounded-2xl overflow-hidden cursor-pointer shadow-xl transition-all border border-gray-200 hover:border-[#406b4a] bg-slate-900"
-            >
+          {allSports.slice(0, 8).map((sport, index) => {
+            const theme = sportTheme[sport.id] || sportTheme.football;
+            return (
+              <motion.div
+                key={sport.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: (index % 4) * 0.1, duration: 0.5 }}
+                onClick={() => navigate(`/sport/${sport.id}`)}
+                className={`group relative h-[360px] rounded-2xl overflow-hidden cursor-pointer shadow-xl transition-all border bg-slate-900 ${theme.font}`}
+                style={{ borderColor: theme.color || undefined }}
+              >
               <img 
                 src={sport.image} 
                 alt={sport.name} 
@@ -423,32 +427,29 @@ export default function HomePage() {
               
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="transform transition-transform duration-500 translate-y-12 group-hover:translate-y-0">
-                  <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-[#ebf2ed] transition-colors uppercase tracking-wider drop-shadow-md">
-                    {sport.name}
-                  </h3>
-                  <p className="text-[#8bcda3] font-medium text-xs uppercase tracking-widest mb-4 border-b border-white/20 pb-3">
-                    {sport.tagline}
-                  </p>
+                  <h3 className={`text-2xl font-bold mb-1 uppercase tracking-wider drop-shadow-md ${theme.font}`} style={{ color: theme.color }}>{sport.name}</h3>
+                  <p className="font-medium text-xs uppercase tracking-widest mb-4 border-b border-white/20 pb-3" style={{ color: theme.color }}>{sport.tagline}</p>
                   
                   <div className="space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                     {sport.services.slice(0, 2).map((service, sIdx) => (
-                      <div key={sIdx} className="flex items-center gap-2 text-white/90 text-sm">
-                        <div className="w-1.5 h-1.5 bg-[#8bcda3] rounded-full flex-shrink-0" />
+                      <div key={sIdx} className={`flex items-center gap-2 text-sm ${theme.font}`} style={{ color: theme.color }}>
+                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: theme.color }} />
                         <span>{service}</span>
                       </div>
                     ))}
                     
                     <div className="pt-3 flex items-center justify-between w-full">
-                      <span className="text-[#8bcda3] font-bold uppercase text-xs">Explorer</span>
-                      <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#406b4a] group-hover:scale-110 transition-transform">
+                      <span className={`font-bold uppercase text-xs ${theme.font}`} style={{ color: theme.color }}>Explorer</span>
+                      <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" style={{ color: theme.color }}>
                         <ChevronRight className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 

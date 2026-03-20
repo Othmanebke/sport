@@ -6,6 +6,7 @@ import EquipmentStore from './EquipmentStore';
 
 const tabs = [
   { id: 'guide', label: 'CLUBS À PROXIMITÉ' },
+import sportTheme from '../utils/sportTheme';
   { id: 'news', label: 'ÉVÉNEMENTS' },
   { id: 'equipments', label: 'ÉQUIPEMENTS' }
 ];
@@ -13,8 +14,9 @@ const tabs = [
 export default function SportTabs({ sport }) {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
 
-  return (
+export default function SportTabs({ sport }) {
     <div className="w-full mt-8">
+  const theme = sportTheme[sport] || sportTheme.football;
       {/* Navigation par onglets animés */}
       <div className="flex gap-8 border-b border-gray-200 pb-4 mb-12 overflow-x-auto whitespace-nowrap scrollbar-hide">
         {tabs.map((tab) => (

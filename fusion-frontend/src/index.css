@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;900&family=Oswald:wght@700&family=Bebas+Neue&family=Montserrat:wght@800&family=Poppins:wght@600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,8 +8,19 @@
   body {
     @apply bg-slate-400 text-gray-900 font-body overflow-x-hidden;
   }
-  
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading uppercase tracking-wider;
+  }
+  .font-bold {
+    font-family: 'Oswald', sans-serif;
+  }
+  .font-black {
+    font-family: 'Bebas Neue', sans-serif;
+  }
+  .font-extrabold {
+    font-family: 'Montserrat', sans-serif;
+  }
+  .font-semibold {
+    font-family: 'Poppins', sans-serif;
   }
 }

@@ -1,69 +1,43 @@
-import React from 'react';
-// eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { useEvents } from '../context/EventsHooks';
 import { X, Calendar, MapPin, Clock } from 'lucide-react';
 
-const weekEvents = [
-  {
-    day: "Lundi",
-    date: "Aujourd'hui",
-    events: [
-      { sport: "Football", time: "18:30", title: "Tournoi d'ouverture local", location: "Stade Municipal" },
-      { sport: "Boxe", time: "20:00", title: "Initiation aux techniques de base", location: "Boxing Club Central" }
-    ]
-  },
-  {
-    day: "Mardi",
-    date: "Demain",
-    events: [
-      { sport: "Basketball", time: "17:30", title: "Match amical 5v5", location: "Terrain City Center" },
-      { sport: "Natation", time: "19:00", title: "Compétition régionale (Prépa)", location: "Piscine Olympique" }
-    ]
-  },
-  {
-    day: "Mercredi",
-    date: "18 Mars",
-    events: [
-      { sport: "Tennis", time: "15:00", title: "Open amateur - Sélections", location: "Tennis Club Fusion" },
-      { sport: "Danse", time: "18:00", title: "Masterclass Hip-Hop", location: "Studio Révolution" }
-    ]
-  },
-  {
-    day: "Jeudi",
-    date: "19 Mars",
-    events: [
-      { sport: "Golf", time: "10:00", title: "Matinée découverte en extérieur", location: "Golf Vert" },
-      { sport: "Judo", time: "19:00", title: "Passage de grades - Entraînement", location: "Dojo Principal" }
-    ]
-  },
-  {
-    day: "Vendredi",
-    date: "20 Mars",
-    events: [
-      { sport: "MMA", time: "20:00", title: "Sparring ouvert à tous", location: "Octogone Arena" },
-      { sport: "Karaté", time: "18:00", title: "Démonstration Kata", location: "Dojo Central" }
-    ]
-  },
-  {
-    day: "Samedi",
-    date: "21 Mars",
-    events: [
-      { sport: "Randonnée", time: "08:00", title: "Départ groupe - Pic des Aigles", location: "Point de rdv Gare" },
-      { sport: "Accrobranche", time: "14:00", title: "Parcours sensation nocturne", location: "Forêt Aventure" }
-    ]
-  },
-  {
-    day: "Dimanche",
-    date: "22 Mars",
-    events: [
-      { sport: "Football", time: "10:00", title: "Ligue du dimanche", location: "Stade Nord" },
-      { sport: "Tennis", time: "14:00", title: "Finales Tournoi Amateur", location: "Tennis Club Fusion" }
-    ]
-  }
-];
-
 export default function EventsModal({ isOpen, onClose }) {
+  const { weekEvents, addEvent, editEvent, deleteEvent } = useEvents();
+  const [showAdd, setShowAdd] = useState(false);
+  const [form, setForm] = useState({ dayIndex: 0, sport: '', time: '', title: '', location: '' });
+  const [editIdx, setEditIdx] = useState({ day: null, event: null });
+  const [editForm, setEditForm] = useState({ sport: '', time: '', title: '', location: '' });
+
   if (!isOpen) return null;
+
+  const handleAddEvent = () => {
+    if (!form.sport || !form.time || !form.title || !form.location) return;
+    addEvent(form.dayIndex, {
+      sport: form.sport,
+      time: form.time,
+      title: form.title,
+      location: form.location
+    });
+    setShowAdd(false);
+    setForm({ dayIndex: 0, sport: '', time: '', title: '', location: '' });
+  };
+
+  const handleEditEvent = () => {
+    if (!editForm.sport || !editForm.time || !editForm.title || !editForm.location) return;
+    editEvent(editIdx.day, editIdx.event, {
+      sport: editForm.sport,
+      time: editForm.time,
+      title: editForm.title,
+      location: editForm.location
+    });
+    setEditIdx({ day: null, event: null });
+    setEditForm({ sport: '', time: '', title: '', location: '' });
+  };
+
+  const handleDeleteEvent = (dayIndex, eventIndex) => {
+    deleteEvent(dayIndex, eventIndex);
+  };
 
   return (
     <AnimatePresence>
@@ -92,13 +66,87 @@ export default function EventsModal({ isOpen, onClose }) {
                 </h2>
                 <p className="text-gray-500 mt-1">Découvrez tout ce qui se passe près de chez vous cette semaine</p>
               </div>
-              <button
-                onClick={onClose}
-                className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-500 hover:text-gray-900 shadow-sm border border-gray-100 hover:scale-105 transition-all"
-              >
-                <X size={20} />
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setShowAdd(true)}
+                  className="px-4 py-2 bg-[#406b4a] text-white rounded-full font-bold hover:bg-[#34583d] transition-colors"
+                >Ajouter un événement</button>
+                <button
+                  onClick={onClose}
+                  className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-500 hover:text-gray-900 shadow-sm border border-gray-100 hover:scale-105 transition-all"
+                >
+                  <X size={20} />
+                </button>
+              </div>
             </div>
+
+            {/* Formulaire d'ajout */}
+            {showAdd && (
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center z-10">
+                <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+                  <h3 className="text-xl font-bold text-[#406b4a] mb-4">Ajouter un événement</h3>
+                  <div className="mb-4">
+                    <label className="block text-sm font-semibold mb-1">Jour</label>
+                    <select
+                      value={form.dayIndex}
+                      onChange={e => setForm({ ...form, dayIndex: Number(e.target.value) })}
+                      className="w-full border border-gray-200 rounded-lg p-2"
+                    >
+                      {weekEvents.map((d, i) => (
+                        <option key={i} value={i}>{d.day}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="mb-2">
+                    <label className="block text-sm font-semibold mb-1">Sport</label>
+                    <input
+                      type="text"
+                      value={form.sport}
+                      onChange={e => setForm({ ...form, sport: e.target.value })}
+                      className="w-full border border-gray-200 rounded-lg p-2"
+                    />
+                  </div>
+                  <div className="mb-2">
+                    <label className="block text-sm font-semibold mb-1">Heure</label>
+                    <input
+                      type="text"
+                      value={form.time}
+                      onChange={e => setForm({ ...form, time: e.target.value })}
+                      className="w-full border border-gray-200 rounded-lg p-2"
+                      placeholder="ex: 18:30"
+                    />
+                  </div>
+                  <div className="mb-2">
+                    <label className="block text-sm font-semibold mb-1">Titre</label>
+                    <input
+                      type="text"
+                      value={form.title}
+                      onChange={e => setForm({ ...form, title: e.target.value })}
+                      className="w-full border border-gray-200 rounded-lg p-2"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-semibold mb-1">Lieu</label>
+                    <input
+                      type="text"
+                      value={form.location}
+                      onChange={e => setForm({ ...form, location: e.target.value })}
+                      className="w-full border border-gray-200 rounded-lg p-2"
+                    />
+                  </div>
+                  <div className="flex gap-2 mt-4">
+                    <button
+                      onClick={handleAddEvent}
+                      className="px-6 py-2 bg-[#406b4a] text-white rounded-full font-bold hover:bg-[#34583d] transition-colors"
+                    >Ajouter</button>
+                    <button
+                      onClick={() => setShowAdd(false)}
+                      className="px-6 py-2 bg-gray-200 text-gray-700 rounded-full font-bold hover:bg-gray-300 transition-colors"
+                    >Annuler</button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Scrollable Content */}
             <div className="overflow-y-auto p-6 md:p-8 flex-1 scrollbar-hide">
@@ -133,8 +181,76 @@ export default function EventsModal({ isOpen, onClose }) {
                           <p className="flex items-center gap-1.5 text-sm text-gray-500">
                             <MapPin size={16} /> {evt.location}
                           </p>
+                          <div className="flex gap-2 mt-2">
+                            <button
+                              onClick={() => {
+                                setEditIdx({ day: index, event: idx });
+                                setEditForm({ sport: evt.sport, time: evt.time, title: evt.title, location: evt.location });
+                              }}
+                              className="px-3 py-1 text-xs bg-[#ebf2ed] text-[#406b4a] rounded-full font-bold hover:bg-[#d6e5db] transition-colors"
+                            >Modifier</button>
+                            <button
+                              onClick={() => handleDeleteEvent(index, idx)}
+                              className="px-3 py-1 text-xs bg-red-100 text-red-700 rounded-full font-bold hover:bg-red-200 transition-colors"
+                            >Supprimer</button>
+                          </div>
                         </div>
                       ))}
+                                {/* Formulaire de modification */}
+                                {editIdx.day !== null && editIdx.event !== null && (
+                                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center z-10">
+                                    <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+                                      <h3 className="text-xl font-bold text-[#406b4a] mb-4">Modifier l'événement</h3>
+                                      <div className="mb-2">
+                                        <label className="block text-sm font-semibold mb-1">Sport</label>
+                                        <input
+                                          type="text"
+                                          value={editForm.sport}
+                                          onChange={e => setEditForm({ ...editForm, sport: e.target.value })}
+                                          className="w-full border border-gray-200 rounded-lg p-2"
+                                        />
+                                      </div>
+                                      <div className="mb-2">
+                                        <label className="block text-sm font-semibold mb-1">Heure</label>
+                                        <input
+                                          type="text"
+                                          value={editForm.time}
+                                          onChange={e => setEditForm({ ...editForm, time: e.target.value })}
+                                          className="w-full border border-gray-200 rounded-lg p-2"
+                                          placeholder="ex: 18:30"
+                                        />
+                                      </div>
+                                      <div className="mb-2">
+                                        <label className="block text-sm font-semibold mb-1">Titre</label>
+                                        <input
+                                          type="text"
+                                          value={editForm.title}
+                                          onChange={e => setEditForm({ ...editForm, title: e.target.value })}
+                                          className="w-full border border-gray-200 rounded-lg p-2"
+                                        />
+                                      </div>
+                                      <div className="mb-4">
+                                        <label className="block text-sm font-semibold mb-1">Lieu</label>
+                                        <input
+                                          type="text"
+                                          value={editForm.location}
+                                          onChange={e => setEditForm({ ...editForm, location: e.target.value })}
+                                          className="w-full border border-gray-200 rounded-lg p-2"
+                                        />
+                                      </div>
+                                      <div className="flex gap-2 mt-4">
+                                        <button
+                                          onClick={handleEditEvent}
+                                          className="px-6 py-2 bg-[#406b4a] text-white rounded-full font-bold hover:bg-[#34583d] transition-colors"
+                                        >Valider</button>
+                                        <button
+                                          onClick={() => setEditIdx({ day: null, event: null })}
+                                          className="px-6 py-2 bg-gray-200 text-gray-700 rounded-full font-bold hover:bg-gray-300 transition-colors"
+                                        >Annuler</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
                     </div>
                   </motion.div>
                 ))}
