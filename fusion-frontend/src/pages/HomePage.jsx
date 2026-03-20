@@ -31,68 +31,130 @@ export default function HomePage() {
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
 
-      {/* ── HERO FULL SCREEN ── */}
-      <section className="relative w-full min-h-screen flex items-center">
-        {/* Full-bleed background image */}
+      {/* ── HERO ── */}
+      <section className="relative w-full h-screen overflow-hidden">
+
+        {/* Background photo */}
         <img
           src="https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=1600&q=80"
           alt="Sport"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-center scale-105"
         />
-        {/* Dark overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
-        {/* Live badge */}
-        <div className="absolute top-28 left-6 md:left-16 flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/50">EN DIRECT — 14 ÉVÉNEMENTS CE SOIR</span>
+        {/* Vertical text left edge */}
+        <div className="absolute left-3 top-1/2 -translate-y-1/2 -rotate-90 origin-center hidden md:block">
+          <span className="text-[8px] font-bold uppercase tracking-[0.6em] text-white/8 whitespace-nowrap">
+            FUSION SPORT — PLATEFORME N°1 — 2026
+          </span>
         </div>
 
-        {/* Hero content */}
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 md:px-16 pt-20">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <p className="text-[#6dbd7a] text-[11px] font-bold uppercase tracking-[0.35em] mb-5">
-              PLATEFORME SPORT N°1
-            </p>
-            <h1 className="text-[clamp(4rem,12vw,11rem)] font-black leading-[0.9] uppercase mb-8">
-              TROUVE<br/>TON<br/>
-              <span style={{ WebkitTextStroke: '2px #6dbd7a', color: 'transparent' }}>SPORT.</span>
-            </h1>
-            <p className="text-white/40 text-lg max-w-md mb-10 leading-relaxed">
-              Clubs, équipements, événements — tout ce dont tu as besoin pour commencer ou progresser.
+        {/* Top info bar */}
+        <div className="absolute top-24 left-6 md:left-16 right-6 md:right-16 flex items-center justify-between z-10">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/35">EN DIRECT — 14 ÉVÉNEMENTS CE SOIR</span>
+          </div>
+          <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/15 hidden sm:block">12 DISCIPLINES</span>
+        </div>
+
+        {/* ── MASSIVE TEXT ── */}
+        <div className="absolute inset-0 flex flex-col justify-center overflow-hidden pl-6 md:pl-16">
+
+          {/* Label */}
+          <motion.p
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-[#6dbd7a] text-[10px] font-bold uppercase tracking-[0.4em] mb-4 md:mb-6"
+          >
+            PLATEFORME SPORT N°1
+          </motion.p>
+
+          {/* TROUVE — slides up from bottom */}
+          <div className="overflow-hidden">
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span
+                className="block font-black uppercase text-white whitespace-nowrap"
+                style={{ fontSize: 'clamp(4.5rem, 19vw, 22rem)', lineHeight: 0.82 }}
+              >
+                TROUVE
+              </span>
+            </motion.div>
+          </div>
+
+          {/* TON SPORT. — offset right + outline — slides up */}
+          <div className="overflow-hidden">
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+              className="ml-[3vw] md:ml-[6vw]"
+            >
+              <span
+                className="block font-black uppercase whitespace-nowrap"
+                style={{
+                  fontSize: 'clamp(4rem, 17vw, 19rem)',
+                  lineHeight: 0.82,
+                  WebkitTextStroke: '2px #6dbd7a',
+                  color: 'transparent',
+                }}
+              >
+                TON SPORT.
+              </span>
+            </motion.div>
+          </div>
+
+          {/* Description + CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-8 md:mt-10 flex flex-col sm:flex-row sm:items-center gap-5"
+          >
+            <p className="text-white/30 text-sm max-w-[260px] leading-relaxed">
+              Clubs, équipements, événements —<br/>tout pour commencer ou progresser.
             </p>
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => navigate('/guide-des-sports')}
-                className="px-8 py-4 bg-[#6dbd7a] hover:bg-white text-black font-black uppercase tracking-wider transition-colors text-sm"
+                className="px-7 py-3.5 bg-[#6dbd7a] hover:bg-white text-black font-black uppercase tracking-wider transition-colors text-xs"
               >
-                EXPLORER LES SPORTS →
+                EXPLORER →
               </button>
               <button
                 onClick={() => navigate('/auth')}
-                className="px-8 py-4 border border-white/20 hover:border-white text-white font-bold uppercase tracking-wider transition-colors text-sm"
+                className="px-7 py-3.5 border border-white/20 hover:border-white text-white font-bold uppercase tracking-wider transition-colors text-xs"
               >
-                CRÉER UN COMPTE
+                REJOINDRE
               </button>
             </div>
           </motion.div>
+        </div>
 
-          {/* Stats strip at bottom */}
-          <div className="flex flex-wrap gap-10 mt-20 pb-12">
-            {[
-              { val: '12+', label: 'Sports' },
-              { val: '50K+', label: 'Membres actifs' },
-              { val: '100+', label: 'Clubs référencés' },
-            ].map((s, i) => (
-              <React.Fragment key={i}>
-                {i > 0 && <div className="hidden sm:block w-px bg-white/10 self-stretch" />}
-                <div>
-                  <span className="text-4xl font-black text-white">{s.val}</span>
-                  <span className="block text-white/25 text-[10px] uppercase tracking-[0.2em] mt-1">{s.label}</span>
-                </div>
-              </React.Fragment>
-            ))}
+        {/* Bottom stats */}
+        <div className="absolute bottom-0 left-0 right-0 border-t border-white/5 px-6 md:px-16 py-5 flex items-center gap-8 md:gap-14">
+          {[
+            { val: '12+', label: 'Sports' },
+            { val: '50K+', label: 'Membres' },
+            { val: '100+', label: 'Clubs' },
+          ].map((s, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <div className="w-px h-7 bg-white/10 hidden sm:block" />}
+              <div>
+                <span className="text-xl md:text-2xl font-black text-white">{s.val}</span>
+                <span className="block text-white/20 text-[8px] uppercase tracking-[0.25em] mt-0.5">{s.label}</span>
+              </div>
+            </React.Fragment>
+          ))}
+          <div className="ml-auto hidden md:flex items-center gap-3">
+            <div className="w-8 h-px bg-white/15" />
+            <span className="text-[8px] uppercase tracking-[0.3em] text-white/15">SCROLL</span>
           </div>
         </div>
       </section>

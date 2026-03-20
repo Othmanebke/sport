@@ -13,16 +13,17 @@ const tabs = [
 export default function SportTabs({ sport }) {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   return (
-    <div className="w-full mt-8">
-      <div className="flex gap-8 border-b border-gray-200 pb-4 mb-12 overflow-x-auto whitespace-nowrap scrollbar-hide">
+    <div className="w-full mt-0">
+      {/* Tab bar */}
+      <div className="flex gap-0 border-b border-white/5 overflow-x-auto scrollbar-hide">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`relative text-xl md:text-2xl font-bold tracking-wide transition-all duration-300 pb-4 px-4 rounded-t-2xl ${
-              activeTab === tab.id 
-                ? 'border-b-4 border-[#406b4a] text-[#406b4a] bg-[#ebf2ed]/50' 
-                : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+            className={`px-6 py-5 text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap transition-all border-b-2 -mb-px ${
+              activeTab === tab.id
+                ? 'border-[#6dbd7a] text-[#6dbd7a]'
+                : 'border-transparent text-white/30 hover:text-white/60'
             }`}
           >
             {tab.label}
@@ -30,91 +31,71 @@ export default function SportTabs({ sport }) {
         ))}
       </div>
 
-      {/* Contenu des onglets */}
-      <div className="relative min-h-[50vh]">
+      {/* Tab content */}
+      <div className="relative min-h-[50vh] py-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="text-gray-900"
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
           >
-            {activeTab === 'guide' && (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="w-full"
-              >
-                <ClubLocator sport={sport} />
-              </motion.div>
-            )}
-            
+            {activeTab === 'guide' && <ClubLocator sport={sport} />}
+
             {activeTab === 'news' && (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="w-full"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {[
-                    {
-                      title: "Tournoi régional d'été",
-                      date: "25 avril 2026",
-                      image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&q=80",
-                      content: "Inscrivez-vous ou venez encourager les équipes locales lors du grand rassemblement de la saison."
-                    },
-                    {
-                      title: "Session d'initiation gratuite",
-                      date: "12 mai 2026",
-                      image: "https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=600&q=80",
-                      content: "Découvrez ce sport avec des professionnels lors d'une demi-journée ouverte à tous les niveaux."
-                    },
-                    {
-                      title: "Rencontre avec les champions",
-                      date: "10 juin 2026",
-                      image: "https://images.unsplash.com/photo-1552072092-7f9b8d63fd52?w=600&q=80",
-                      content: "Échangez avec les athlètes professionnels, séances de dédicaces et démonstrations techniques."
-                    }
-                  ].map((news, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: idx * 0.1 }}
-                      className="cursor-pointer group bg-white border border-gray-100 transition-all overflow-hidden rounded-3xl shadow-sm hover:shadow-lg hover:-translate-y-1"
-                    >
-                      <div className="flex flex-col h-full">
-                        <div className="w-full h-48 overflow-hidden bg-gray-100 flex-shrink-0 relative">
-                          <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur text-xs font-bold text-gray-900 px-3 py-1 rounded-full">{news.date}</div>
-                        </div>
-                        <div className="p-6 flex flex-col justify-between flex-1">
-                          <div>
-                            <h4 className="text-xl font-bold text-gray-900 group-hover:text-[#406b4a] transition-colors mb-3 leading-snug">{news.title}</h4>
-                            <p className="text-gray-600 text-sm leading-relaxed mb-6">{news.content}</p>
-                          </div>
-                          <button className="text-[#406b4a] font-bold text-sm hover:text-gray-900 transition-colors flex items-center gap-2">
-                            Lire plus →
-                          </button>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5">
+                {[
+                  {
+                    title: "Tournoi régional d'été",
+                    date: '25 AVRIL 2026',
+                    image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&q=80',
+                    content: "Inscrivez-vous ou venez encourager les équipes locales lors du grand rassemblement de la saison.",
+                  },
+                  {
+                    title: "Session d'initiation gratuite",
+                    date: '12 MAI 2026',
+                    image: 'https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=600&q=80',
+                    content: "Découvrez ce sport avec des professionnels lors d'une demi-journée ouverte à tous les niveaux.",
+                  },
+                  {
+                    title: 'Rencontre avec les champions',
+                    date: '10 JUIN 2026',
+                    image: 'https://images.unsplash.com/photo-1552072092-7f9b8d63fd52?w=600&q=80',
+                    content: "Échangez avec les athlètes professionnels, séances de dédicaces et démonstrations techniques.",
+                  },
+                ].map((news, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: idx * 0.08 }}
+                    className="group relative overflow-hidden bg-black cursor-pointer"
+                  >
+                    <div className="aspect-[4/3] relative overflow-hidden">
+                      <img
+                        src={news.image}
+                        alt={news.title}
+                        className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+                      <span className="absolute top-4 left-4 text-[9px] font-bold uppercase tracking-[0.2em] text-[#6dbd7a]">
+                        {news.date}
+                      </span>
+                    </div>
+                    <div className="p-5 border-b border-white/5">
+                      <div className="w-5 h-0.5 bg-[#6dbd7a] mb-3 group-hover:w-10 transition-all duration-300" />
+                      <h4 className="text-base font-black text-white uppercase leading-tight mb-2 group-hover:text-[#6dbd7a] transition-colors">
+                        {news.title}
+                      </h4>
+                      <p className="text-white/35 text-xs leading-relaxed">{news.content}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             )}
-            
-            {activeTab === 'equipments' && (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="w-full"
-              >
-                <EquipmentStore sport={sport} />
-              </motion.div>
-            )}
+
+            {activeTab === 'equipments' && <EquipmentStore sport={sport} />}
           </motion.div>
         </AnimatePresence>
       </div>
