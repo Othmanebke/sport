@@ -15,13 +15,16 @@ export default function ProfilePage() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-[#080e0a] text-white">
+      <div className="min-h-screen bg-black text-white">
         <Navbar />
         <div className="max-w-[600px] mx-auto px-6 pt-48 pb-32 text-center">
-          <p className="text-[#6dbd7a] text-xs font-bold uppercase tracking-[0.2em] mb-4">ACCÈS RESTREINT</p>
-          <h1 className="text-6xl md:text-8xl font-black text-white uppercase leading-none mb-8">ZONE<br/>PRIVÉE.</h1>
+          <p className="text-[#6dbd7a] text-xs font-bold uppercase tracking-[0.2em] mb-4">ACCES RESTREINT</p>
+          <h1 className="text-6xl md:text-8xl font-black text-white uppercase leading-none mb-8">ZONE<br/>PRIVEE.</h1>
           <p className="text-white/30 mb-10 text-lg">Connecte-toi pour accéder à ton espace sportif personnalisé.</p>
-          <Link to="/auth" className="inline-flex items-center gap-3 px-8 py-4 bg-[#406b4a] hover:bg-[#34583d] text-white font-bold uppercase tracking-wider transition-colors">
+          <Link
+            to="/auth"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#6dbd7a] hover:bg-[#5aaa67] text-black font-black uppercase tracking-wider transition-colors"
+          >
             SE CONNECTER <ArrowRight size={16} />
           </Link>
         </div>
@@ -30,14 +33,14 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#080e0a] text-white">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
 
       {/* ── ATHLETE HEADER ── */}
       <section className="pt-28 pb-0 border-b border-white/5">
         <div className="max-w-[1000px] mx-auto px-4 md:px-12">
           {/* Top accent */}
-          <div className="w-12 h-1 bg-[#406b4a] mb-10" />
+          <div className="w-12 h-1 bg-[#6dbd7a] mb-10" />
 
           <div className="flex flex-col sm:flex-row items-start sm:items-end gap-6 pb-10 relative overflow-hidden">
             {/* Ghost letter background */}
@@ -46,9 +49,9 @@ export default function ProfilePage() {
             </span>
 
             {/* Avatar - square, no rounding */}
-            <div className="relative z-10 w-16 h-16 bg-[#406b4a] flex items-center justify-center text-3xl font-black text-white flex-shrink-0">
+            <div className="relative z-10 w-16 h-16 bg-[#6dbd7a] flex items-center justify-center text-3xl font-black text-black flex-shrink-0">
               {user.name?.[0]?.toUpperCase() || '?'}
-              <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-[#6dbd7a]" />
+              <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-white" />
             </div>
 
             {/* Info */}
@@ -65,7 +68,7 @@ export default function ProfilePage() {
               onClick={handleLogout}
               className="relative z-10 flex items-center gap-2 text-white/30 hover:text-white text-xs font-bold uppercase tracking-widest border-b border-transparent hover:border-white/30 transition-all pb-0.5"
             >
-              <LogOut size={13} /> DÉCONNECTER
+              <LogOut size={13} /> DECONNECTER
             </button>
           </div>
 
@@ -74,7 +77,7 @@ export default function ProfilePage() {
             {[
               { val: user.favoriteSports?.length || 0, label: 'Sports' },
               { val: user.clubs?.length || 0, label: 'Clubs' },
-              { val: user.events?.length || 0, label: 'Événements' },
+              { val: user.events?.length || 0, label: 'Evenements' },
             ].map((s, i) => (
               <React.Fragment key={i}>
                 {i > 0 && <div className="w-px h-12 bg-white/5 mx-8" />}
@@ -117,7 +120,7 @@ export default function ProfilePage() {
 
         {/* Événements */}
         <SportSection
-          label="MES ÉVÉNEMENTS"
+          label="MES EVENEMENTS"
           items={user.events}
           inputValue={eventInput}
           onInputChange={setEventInput}
@@ -130,11 +133,13 @@ export default function ProfilePage() {
         {/* CTA */}
         <div className="border-t border-white/5 pt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
-            <p className="text-[#6dbd7a] text-[10px] font-bold uppercase tracking-[0.3em] mb-2">ENVIE DE DÉCOUVRIR ?</p>
+            <p className="text-[#6dbd7a] text-[10px] font-bold uppercase tracking-[0.3em] mb-2">ENVIE DE DECOUVRIR ?</p>
             <h3 className="text-3xl font-black text-white uppercase">Explore tous les sports</h3>
           </div>
-          <Link to="/guide-des-sports"
-            className="flex items-center gap-3 px-8 py-4 bg-[#406b4a] hover:bg-[#34583d] text-white font-bold uppercase tracking-wider transition-colors text-sm flex-shrink-0">
+          <Link
+            to="/guide-des-sports"
+            className="flex items-center gap-3 px-8 py-4 bg-[#6dbd7a] hover:bg-[#5aaa67] text-black font-black uppercase tracking-wider transition-colors text-sm flex-shrink-0"
+          >
             VOIR LE GUIDE <ArrowRight size={14} />
           </Link>
         </div>
@@ -148,7 +153,7 @@ function SportSection({ label, items, inputValue, onInputChange, placeholder, on
     <section>
       {/* Section header with left bar */}
       <div className="flex items-center gap-4 mb-8">
-        <div className="w-1 h-7 bg-[#406b4a] flex-shrink-0" />
+        <div className="w-1 h-7 bg-[#6dbd7a] flex-shrink-0" />
         <h2 className="text-lg font-black uppercase tracking-[0.15em] text-white">{label}</h2>
         {items?.length > 0 && (
           <span className="ml-auto text-white/15 font-black text-sm">{items.length}</span>
@@ -160,7 +165,7 @@ function SportSection({ label, items, inputValue, onInputChange, placeholder, on
         {items?.length > 0 ? items.map((item, i) => (
           <span key={i} className={`px-4 py-1.5 text-xs font-bold uppercase tracking-wider border-l-2 ${
             tagStyle === 'green'
-              ? 'border-[#406b4a] bg-[#406b4a]/10 text-[#6dbd7a]'
+              ? 'border-[#6dbd7a] bg-[#6dbd7a]/10 text-[#6dbd7a]'
               : 'border-white/20 bg-white/5 text-white/60'
           }`}>
             {item}
@@ -171,7 +176,7 @@ function SportSection({ label, items, inputValue, onInputChange, placeholder, on
       </div>
 
       {/* Underline input */}
-      <div className="flex items-center gap-4 border-b border-white/10 pb-3 group focus-within:border-[#406b4a] transition-colors">
+      <div className="flex items-center gap-4 border-b border-white/10 pb-3 group focus-within:border-[#6dbd7a] transition-colors">
         <input
           type="text"
           value={inputValue}

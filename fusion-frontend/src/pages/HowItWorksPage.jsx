@@ -38,18 +38,18 @@ const steps = [
 
 export default function HowItWorksPage() {
   return (
-    <div className="min-h-screen bg-[#080e0a] text-white">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
 
       {/* ── HERO ── */}
       <section className="pt-28 pb-0 border-b border-white/5">
         <div className="max-w-[1000px] mx-auto px-4 md:px-12">
-          <div className="w-12 h-1 bg-[#406b4a] mb-10" />
+          <div className="w-12 h-1 bg-[#6dbd7a] mb-10" />
           <div className="pb-12">
             <p className="text-[#6dbd7a] text-[10px] font-bold uppercase tracking-[0.3em] mb-4">SIMPLE &amp; RAPIDE</p>
             <h1 className="text-7xl md:text-[10rem] font-black leading-none uppercase">
-              DE ZÉRO<br/>
-              À <span style={{ WebkitTextStroke: '2px #406b4a', color: 'transparent' }}>SPORTIF.</span>
+              DE ZERO<br/>
+              A <span style={{ WebkitTextStroke: '2px #6dbd7a', color: 'transparent' }}>SPORTIF.</span>
             </h1>
             <p className="text-white/30 text-lg mt-8 max-w-xl">
               Fusion vous accompagne pour choisir votre sport, trouver un club, vous équiper et participer à des événements.
@@ -68,7 +68,7 @@ export default function HowItWorksPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="grid grid-cols-12 gap-6 border-b border-white/5 py-12 group hover:border-[#406b4a]/30 transition-colors"
+              className="grid grid-cols-12 gap-6 border-b border-white/5 py-12 group hover:border-[#6dbd7a]/30 transition-colors"
             >
               {/* Big step number */}
               <div className="col-span-12 md:col-span-2">
@@ -83,7 +83,7 @@ export default function HowItWorksPage() {
                   <div className="w-8 h-8 flex items-center justify-center text-[#6dbd7a] flex-shrink-0">
                     {step.icon}
                   </div>
-                  <div className="w-6 h-0.5 bg-[#406b4a] group-hover:w-10 transition-all duration-300" />
+                  <div className="w-6 h-0.5 bg-[#6dbd7a] group-hover:w-10 transition-all duration-300" />
                 </div>
                 <h3 className="text-xl font-black text-white uppercase leading-tight tracking-tight">
                   {step.title}
@@ -96,7 +96,7 @@ export default function HowItWorksPage() {
                 <ul className="space-y-1.5">
                   {step.perks.map((perk, pIdx) => (
                     <li key={pIdx} className="flex items-center gap-2 text-xs text-white/50 font-semibold">
-                      <span className="w-1 h-1 bg-[#406b4a] rounded-full flex-shrink-0" />
+                      <span className="w-1 h-1 bg-[#6dbd7a] rounded-full flex-shrink-0" />
                       {perk}
                     </li>
                   ))}
@@ -109,21 +109,25 @@ export default function HowItWorksPage() {
 
       {/* ── CTA ── */}
       <section className="max-w-[1000px] mx-auto px-4 md:px-12 pb-32">
-        <div className="border-t-2 border-[#406b4a] pt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+        <div className="border-t-2 border-[#6dbd7a] pt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
           <div>
             <p className="text-[#6dbd7a] text-[10px] font-bold uppercase tracking-[0.3em] mb-3">REJOINS-NOUS</p>
             <h2 className="text-4xl md:text-6xl font-black text-white uppercase leading-none">
-              PRÊT À<br/>COMMENCER ?
+              PRET A<br/>COMMENCER ?
             </h2>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
-            <Link to="/guide-des-sports"
-              className="flex items-center gap-3 px-8 py-4 bg-[#406b4a] hover:bg-[#34583d] text-white font-bold uppercase tracking-wider transition-colors text-sm">
+            <Link
+              to="/guide-des-sports"
+              className="flex items-center gap-3 px-8 py-4 bg-[#6dbd7a] hover:bg-[#5aaa67] text-black font-black uppercase tracking-wider transition-colors text-sm"
+            >
               EXPLORER <ArrowRight size={14} />
             </Link>
-            <Link to="/auth"
-              className="flex items-center gap-3 px-8 py-4 border border-white/15 hover:border-white/40 text-white font-bold uppercase tracking-wider transition-colors text-sm">
-              CRÉER UN COMPTE
+            <Link
+              to="/auth"
+              className="flex items-center gap-3 px-8 py-4 border border-white/15 hover:border-white/40 text-white font-bold uppercase tracking-wider transition-colors text-sm"
+            >
+              CREER UN COMPTE
             </Link>
           </div>
         </div>

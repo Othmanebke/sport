@@ -4,18 +4,36 @@ import Navbar from '../components/Navbar';
 
 export default function NotFoundPage() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans flex flex-col">
+    <div className="min-h-screen bg-black text-white font-sans flex flex-col">
       <Navbar />
-      <div className="flex-1 flex flex-col items-center justify-center text-center px-4">
-        <p className="text-8xl font-black text-[#406b4a] mb-4">404</p>
-        <h1 className="text-3xl font-bold text-gray-900 mb-3">Page introuvable</h1>
-        <p className="text-gray-500 mb-8 max-w-sm">La page que vous cherchez n'existe pas ou a été déplacée.</p>
-        <Link
-          to="/"
-          className="px-8 py-3 bg-[#406b4a] text-white font-bold rounded-full hover:bg-[#34583d] transition-colors"
+
+      <div className="flex-1 relative flex flex-col items-center justify-center overflow-hidden px-6">
+        {/* Giant ghost 404 — pure background text element */}
+        <span
+          className="absolute inset-0 flex items-center justify-center text-[20rem] font-black text-white/[0.03] leading-none select-none pointer-events-none"
+          aria-hidden="true"
         >
-          Retour à l'accueil
-        </Link>
+          404
+        </span>
+
+        {/* Overlaid content */}
+        <div className="relative z-10 text-center max-w-xl">
+          <p className="text-[#6dbd7a] text-[10px] font-black uppercase tracking-[0.35em] mb-6">
+            ERREUR 404
+          </p>
+          <h1 className="text-5xl md:text-7xl font-black uppercase leading-none text-white mb-6">
+            PAGE<br />INTROUVABLE.
+          </h1>
+          <p className="text-white/30 text-base font-medium mb-12 leading-relaxed">
+            La page que vous cherchez n&apos;existe pas ou a été déplacée.
+          </p>
+          <Link
+            to="/"
+            className="inline-block px-10 py-4 bg-[#6dbd7a] text-black font-black uppercase tracking-widest text-sm hover:bg-[#5aaa67] transition-colors"
+          >
+            RETOUR A L&apos;ACCUEIL
+          </Link>
+        </div>
       </div>
     </div>
   );

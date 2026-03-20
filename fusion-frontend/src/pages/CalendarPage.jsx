@@ -22,38 +22,38 @@ export default function CalendarPage() {
   const totalEvents = calendarEvents.length;
 
   return (
-    <div className="min-h-screen bg-[#080e0a] text-white">
+    <div className="min-h-screen bg-black text-white">
       <Navbar />
 
       {/* ── HERO ── */}
       <section className="pt-28 pb-0 border-b border-white/5">
         <div className="max-w-[1200px] mx-auto px-4 md:px-12">
-          <div className="w-12 h-1 bg-[#406b4a] mb-10" />
+          <div className="w-12 h-1 bg-[#6dbd7a] mb-10" />
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10">
             <div>
               <p className="text-[#6dbd7a] text-[10px] font-bold uppercase tracking-[0.3em] mb-3">
                 <span className="inline-block w-1.5 h-1.5 bg-[#6dbd7a] rounded-full mr-2 animate-pulse align-middle" />
-                {totalEvents} ÉVÉNEMENTS CETTE SEMAINE
+                {totalEvents} EVENEMENTS CETTE SEMAINE
               </p>
               <h1 className="text-7xl md:text-[9rem] font-black leading-none uppercase text-white">
                 MON<br/>
-                <span style={{ WebkitTextStroke: '2px #406b4a', color: 'transparent' }}>AGENDA.</span>
+                <span style={{ WebkitTextStroke: '2px #6dbd7a', color: 'transparent' }}>AGENDA.</span>
               </h1>
             </div>
             <button
               onClick={() => setIsModalOpen(true)}
-              className="flex items-center gap-3 px-8 py-4 bg-[#406b4a] hover:bg-[#34583d] text-white font-bold uppercase tracking-wider transition-colors text-sm self-start md:self-end flex-shrink-0"
+              className="flex items-center gap-3 px-8 py-4 bg-[#6dbd7a] hover:bg-[#5aaa67] text-black font-black uppercase tracking-wider transition-colors text-sm self-start md:self-end flex-shrink-0"
             >
-              <Plus size={16} /> GÉRER LES ÉVÉNEMENTS
+              <Plus size={16} /> GERER LES EVENEMENTS
             </button>
           </div>
 
           {/* Stats strip */}
           <div className="flex items-center gap-0 border-t border-white/5">
             {[
-              { val: totalEvents, label: 'Événements' },
+              { val: totalEvents, label: 'Evenements' },
               { val: 7, label: 'Sports actifs' },
-              { val: '∞', label: 'Possibilités' },
+              { val: '∞', label: 'Possibilites' },
             ].map((s, i) => (
               <React.Fragment key={i}>
                 {i > 0 && <div className="w-px h-12 bg-white/5 mx-8" />}
@@ -73,7 +73,7 @@ export default function CalendarPage() {
 
           {/* Calendar */}
           <div className="lg:col-span-2">
-            <div className="border-l-2 border-[#406b4a] pl-6">
+            <div className="border-l-2 border-[#6dbd7a] pl-6">
               <SportCalendar onDateSelect={setSelectedDate} dark />
             </div>
           </div>
@@ -82,11 +82,11 @@ export default function CalendarPage() {
           <div>
             {/* Section header */}
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-1 h-6 bg-[#406b4a]" />
+              <div className="w-1 h-6 bg-[#6dbd7a]" />
               <h2 className="text-sm font-black uppercase tracking-[0.15em]">
                 {selectedDate
                   ? selectedDate.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })
-                  : 'SÉLECTIONNE UNE DATE'}
+                  : 'SELECTIONNE UNE DATE'}
               </h2>
             </div>
 
@@ -99,7 +99,7 @@ export default function CalendarPage() {
                       initial={{ opacity: 0, x: 10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.08 }}
-                      className="border-b border-white/5 py-5 group hover:border-[#406b4a]/40 transition-colors"
+                      className="border-b border-white/5 py-5 group hover:border-[#6dbd7a]/40 transition-colors"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex-1">
@@ -128,11 +128,11 @@ export default function CalendarPage() {
                   ))}
                 </div>
               ) : (
-                <p className="text-white/20 text-sm uppercase tracking-wider font-bold pt-4">AUCUN ÉVÉNEMENT CE JOUR.</p>
+                <p className="text-white/20 text-sm uppercase tracking-wider font-bold pt-4">AUCUN EVENEMENT CE JOUR.</p>
               )
             ) : (
               <p className="text-white/15 text-xs uppercase tracking-widest font-bold pt-4">
-                Clique sur une date<br/>pour voir les événements
+                Clique sur une date<br/>pour voir les evenements
               </p>
             )}
           </div>

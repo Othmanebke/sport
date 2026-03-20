@@ -23,109 +23,178 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left panel - image */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-[#1a2f22]">
+    <div className="min-h-screen flex bg-black">
+
+      {/* ── LEFT PANEL — full sport image ── */}
+      <div className="hidden lg:block lg:w-1/2 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=1200&q=80"
+          src="https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=1400&q=90"
           alt="Sport"
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="relative z-10 flex flex-col justify-between p-12 h-full">
-          <button onClick={() => navigate('/')} className="flex items-center gap-2 text-white/80 hover:text-white transition-colors w-fit">
-            <ArrowLeft size={18} /> Retour
+        {/* 60% dark overlay */}
+        <div className="absolute inset-0 bg-black/60" />
+
+        <div className="relative z-10 flex flex-col justify-between p-14 h-full">
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest w-fit"
+          >
+            <ArrowLeft size={16} /> Retour
           </button>
+
           <div>
-            <span className="text-[#6db87a] text-3xl font-bold">⚡</span>
-            <h2 className="text-4xl font-black text-white mt-4 mb-4 leading-tight">
-              Trouvez votre sport.<br/>Vivez votre passion.
+            <p className="text-[#6dbd7a] text-[10px] font-black uppercase tracking-[0.35em] mb-6">
+              FUSION SPORTS
+            </p>
+            <h2 className="text-5xl md:text-6xl font-black text-white uppercase leading-tight mb-6">
+              REJOINS LA<br />COMMUNAUTE.
             </h2>
-            <p className="text-white/60 text-lg max-w-sm">
-              Rejoignez 50 000+ sportifs qui ont trouvé leur discipline idéale grâce à Fusion.
+            <p className="text-white/40 text-base max-w-sm leading-relaxed font-medium">
+              Des milliers de sportifs ont déjà trouvé leur passion avec Fusion.
             </p>
           </div>
-          <div className="flex gap-8 text-white/50 text-sm font-medium">
-            <span><strong className="text-white text-2xl block">12+</strong>Sports</span>
-            <span><strong className="text-white text-2xl block">50k+</strong>Clubs</span>
-            <span><strong className="text-white text-2xl block">100k+</strong>Membres</span>
+
+          {/* Bottom stats */}
+          <div className="flex gap-10">
+            <div>
+              <span className="block text-4xl font-black text-white">12+</span>
+              <span className="block text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Sports</span>
+            </div>
+            <div>
+              <span className="block text-4xl font-black text-white">50k+</span>
+              <span className="block text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Membres</span>
+            </div>
+            <div>
+              <span className="block text-4xl font-black text-white">100+</span>
+              <span className="block text-white/40 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Clubs</span>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Right panel - form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 bg-white">
+      {/* ── RIGHT PANEL — form ── */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-8 py-16 bg-black">
         <div className="w-full max-w-md">
-          <div className="lg:hidden mb-8">
-            <button onClick={() => navigate('/')} className="flex items-center gap-2 text-gray-500 hover:text-gray-900 transition-colors text-sm">
-              <ArrowLeft size={16} /> Retour à l'accueil
+
+          {/* Mobile back button */}
+          <div className="lg:hidden mb-10">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest"
+            >
+              <ArrowLeft size={14} /> Retour
             </button>
           </div>
 
-          <div className="mb-10">
-            <span className="text-[#406b4a] text-2xl font-bold">⚡ fusion</span>
-            <h1 className="text-3xl font-black text-gray-900 mt-6 mb-2">
-              {mode === 'login' ? 'Bon retour 👋' : 'Créer un compte'}
-            </h1>
-            <p className="text-gray-500">
-              {mode === 'login' ? "Connectez-vous à votre espace sportif." : "Rejoignez la communauté Fusion."}
-            </p>
+          {/* Logo */}
+          <div className="mb-12">
+            <span className="text-white text-xl font-black uppercase tracking-widest">
+              ⚡ FUSION
+            </span>
           </div>
 
-          {/* Mode toggle */}
-          <div className="flex bg-gray-100 rounded-2xl p-1 mb-8">
+          {/* Title */}
+          <h1 className="text-5xl md:text-6xl font-black text-white uppercase leading-none mb-10">
+            {mode === 'login' ? 'BON RETOUR.' : 'CREE TON COMPTE.'}
+          </h1>
+
+          {/* Mode toggle — underline style */}
+          <div className="flex gap-8 mb-12">
             <button
               onClick={() => { setMode('login'); setError(''); }}
-              className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all ${mode === 'login' ? 'bg-white shadow text-gray-900' : 'text-gray-500'}`}
-            >Connexion</button>
+              className={`text-sm font-black uppercase tracking-widest pb-1 transition-all ${
+                mode === 'login'
+                  ? 'text-white border-b-2 border-[#6dbd7a]'
+                  : 'text-white/30 hover:text-white/60 border-b-2 border-transparent'
+              }`}
+            >
+              Connexion
+            </button>
             <button
               onClick={() => { setMode('signup'); setError(''); }}
-              className={`flex-1 py-2.5 rounded-xl text-sm font-bold transition-all ${mode === 'signup' ? 'bg-white shadow text-gray-900' : 'text-gray-500'}`}
-            >Inscription</button>
+              className={`text-sm font-black uppercase tracking-widest pb-1 transition-all ${
+                mode === 'signup'
+                  ? 'text-white border-b-2 border-[#6dbd7a]'
+                  : 'text-white/30 hover:text-white/60 border-b-2 border-transparent'
+              }`}
+            >
+              Inscription
+            </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-8">
             {mode === 'signup' && (
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1.5">Nom complet</label>
+                <label className="block text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-3">
+                  Nom complet
+                </label>
                 <input
-                  type="text" name="name" value={form.name} onChange={handleChange}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-[#406b4a] focus:ring-1 focus:ring-[#406b4a] transition-colors"
+                  type="text"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b border-white/20 text-white placeholder-white/25 py-3 focus:outline-none focus:border-[#6dbd7a] transition-colors text-base"
                   placeholder="Votre nom"
                 />
               </div>
             )}
+
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">Email</label>
+              <label className="block text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-3">
+                Email
+              </label>
               <input
-                type="email" name="email" value={form.email} onChange={handleChange}
-                className="w-full border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-[#406b4a] focus:ring-1 focus:ring-[#406b4a] transition-colors"
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full bg-transparent border-b border-white/20 text-white placeholder-white/25 py-3 focus:outline-none focus:border-[#6dbd7a] transition-colors text-base"
                 placeholder="vous@exemple.fr"
               />
             </div>
+
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">Mot de passe</label>
+              <label className="block text-[10px] font-black uppercase tracking-[0.25em] text-white/40 mb-3">
+                Mot de passe
+              </label>
               <div className="relative">
                 <input
-                  type={showPassword ? 'text' : 'password'} name="password" value={form.password} onChange={handleChange}
-                  className="w-full border border-gray-200 rounded-xl px-4 py-3 pr-12 focus:outline-none focus:border-[#406b4a] focus:ring-1 focus:ring-[#406b4a] transition-colors"
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b border-white/20 text-white placeholder-white/25 py-3 pr-10 focus:outline-none focus:border-[#6dbd7a] transition-colors text-base"
                   placeholder="••••••••"
                 />
-                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-colors"
+                >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
             </div>
 
-            {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
+            {error && (
+              <p className="text-red-400 text-xs font-bold uppercase tracking-widest">{error}</p>
+            )}
 
-            <button type="submit" className="w-full py-4 bg-[#406b4a] text-white font-bold rounded-xl hover:bg-[#34583d] transition-colors shadow-md shadow-green-900/20 mt-2">
-              {mode === 'login' ? 'Se connecter' : 'Créer mon compte'}
+            <button
+              type="submit"
+              className="w-full py-4 bg-[#6dbd7a] text-black font-black uppercase tracking-widest text-sm hover:bg-[#5aaa67] transition-colors mt-2"
+            >
+              {mode === 'login' ? 'SE CONNECTER' : 'CREER MON COMPTE'}
             </button>
           </form>
 
-          <p className="text-center text-gray-400 text-xs mt-8">
+          <p className="text-white/20 text-xs mt-10 leading-relaxed">
             En continuant, vous acceptez nos{' '}
-            <span className="underline cursor-pointer hover:text-gray-600">conditions d'utilisation</span>.
+            <span className="underline cursor-pointer hover:text-white/50 transition-colors">
+              conditions d&apos;utilisation
+            </span>
+            .
           </p>
         </div>
       </div>
