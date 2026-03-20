@@ -1,12 +1,10 @@
-import { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import SignupModal from './SignupModal';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 
 const Navbar = () => {
-  const [isSignupOpen, setIsSignupOpen] = useState(false);
+  const navigate = useNavigate();
   const { user } = useUser();
 
   return (
@@ -55,7 +53,7 @@ const Navbar = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setIsSignupOpen(true)}
+              onClick={() => navigate('/auth')}
               className="px-6 py-2.5 rounded-full bg-gray-900 text-white font-medium text-sm transition-all shadow-md hover:bg-gray-800"
             >
               Rejoindre
@@ -64,7 +62,6 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      <SignupModal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)} />
     </>
   );
 };

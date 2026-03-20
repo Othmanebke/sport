@@ -28,7 +28,7 @@ export default function AuthPage() {
       {/* ── LEFT PANEL — full sport image ── */}
       <div className="hidden lg:block lg:w-1/2 relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=1400&q=90"
+          src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1400&auto=format&fit=crop&q=80"
           alt="Sport"
           className="absolute inset-0 w-full h-full object-cover"
         />

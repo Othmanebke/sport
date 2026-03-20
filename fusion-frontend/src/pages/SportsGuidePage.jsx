@@ -38,8 +38,14 @@ export default function SportsGuidePage() {
       <Navbar />
 
       {/* ── HERO ── */}
-      <section className="pt-32 pb-12 px-4 md:px-12 border-b border-white/5">
-        <div className="max-w-[1200px] mx-auto">
+      <section className="relative pt-32 pb-12 px-4 md:px-12 border-b border-white/5 overflow-hidden">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1685366454253-cb705836c5a8?w=1400&auto=format&fit=crop&q=80"
+          alt="Sport"
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black" />
+        <div className="relative max-w-[1200px] mx-auto">
           <div className="w-12 h-1 bg-[#6dbd7a] mb-10" />
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div>

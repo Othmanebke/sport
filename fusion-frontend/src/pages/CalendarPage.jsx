@@ -26,8 +26,14 @@ export default function CalendarPage() {
       <Navbar />
 
       {/* ── HERO ── */}
-      <section className="pt-28 pb-0 border-b border-white/5">
-        <div className="max-w-[1200px] mx-auto px-4 md:px-12">
+      <section className="relative pt-28 pb-0 border-b border-white/5 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1474546652694-a33dd8161d66?w=1400&auto=format&fit=crop&q=80"
+          alt="Calendrier"
+          className="absolute inset-0 w-full h-full object-cover opacity-15"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black" />
+        <div className="relative max-w-[1200px] mx-auto px-4 md:px-12">
           <div className="w-12 h-1 bg-[#6dbd7a] mb-10" />
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-10">
             <div>

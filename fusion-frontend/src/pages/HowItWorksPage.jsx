@@ -42,8 +42,14 @@ export default function HowItWorksPage() {
       <Navbar />
 
       {/* ── HERO ── */}
-      <section className="pt-28 pb-0 border-b border-white/5">
-        <div className="max-w-[1000px] mx-auto px-4 md:px-12">
+      <section className="relative pt-28 pb-0 border-b border-white/5 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1400&auto=format&fit=crop&q=80"
+          alt="Comment ça marche"
+          className="absolute inset-0 w-full h-full object-cover opacity-15"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black" />
+        <div className="relative max-w-[1000px] mx-auto px-4 md:px-12">
           <div className="w-12 h-1 bg-[#6dbd7a] mb-10" />
           <div className="pb-12">
             <p className="text-[#6dbd7a] text-[10px] font-bold uppercase tracking-[0.3em] mb-4">SIMPLE &amp; RAPIDE</p>
