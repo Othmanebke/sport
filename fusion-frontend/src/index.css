@@ -4,9 +4,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
 @layer base {
   body {
-    @apply bg-slate-400 text-gray-900 font-body overflow-x-hidden;
+    @apply bg-white text-gray-900 font-body overflow-x-hidden;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading uppercase tracking-wider;

@@ -389,180 +389,187 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. CHOOSE YOUR SPORT (Adapted "What we do") */}
-      <section className="py-24 px-4 md:px-12 max-w-[1400px] mx-auto bg-white">
-        <div className="mb-12">
-          <p className="text-xs uppercase tracking-wider text-gray-500 mb-2">Explorez et choisissez</p>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <h2 className="text-4xl md:text-5xl text-gray-900 leading-tight max-w-2xl">
-              Filtrez, comparez et <br/> <span className="font-bold">trouvez</span> votre passion.
-            </h2>
-            <button onClick={() => navigate('/guide-des-sports')} className="px-6 py-2 bg-[#406b4a] text-white rounded-full hover:bg-[#34583d] transition-colors w-fit font-medium">
-              Voir tous les sports
+      {/* ── MARQUEE TICKER ── */}
+      <div className="bg-[#080e0a] border-y border-white/5 py-4 overflow-hidden">
+        <div className="flex gap-12 animate-marquee whitespace-nowrap">
+          {['FOOTBALL','BASKETBALL','TENNIS','BOXE','NATATION','MMA','GOLF','RANDONNÉE','KARATÉ','JUDO','DANSE','ACCROBRANCHE',
+            'FOOTBALL','BASKETBALL','TENNIS','BOXE','NATATION','MMA','GOLF','RANDONNÉE','KARATÉ','JUDO','DANSE','ACCROBRANCHE'].map((s, i) => (
+            <span key={i} className={`text-sm font-black tracking-widest uppercase ${i % 3 === 0 ? 'text-[#6dbd7a]' : 'text-white/20'}`}>
+              {s} <span className="text-white/10">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* ── SPORTS GRID — DARK ── */}
+      <section className="bg-[#080e0a] py-24 px-4 md:px-12 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '60px 60px' }} />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#406b4a] opacity-10 blur-[120px] rounded-full" />
+
+        <div className="relative max-w-[1400px] mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#406b4a]/40 bg-[#406b4a]/10 text-[#6dbd7a] text-xs font-bold uppercase tracking-widest mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#6dbd7a]" /> Explore & Choisis
+              </span>
+              <h2 className="text-4xl md:text-6xl font-black text-white leading-tight">
+                Trouve ta<br/>
+                <span style={{ WebkitTextStroke: '2px #406b4a', color: 'transparent' }}>DISCIPLINE.</span>
+              </h2>
+            </div>
+            <button onClick={() => navigate('/guide-des-sports')}
+              className="shrink-0 px-6 py-3 border border-white/10 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl transition-all text-sm">
+              Voir les {allSports.length} sports →
             </button>
           </div>
-        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {allSports.slice(0, 8).map((sport, index) => {
-            const theme = sportTheme[sport.id] || sportTheme.football;
-            return (
-              <motion.div
-                key={sport.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: (index % 4) * 0.1, duration: 0.5 }}
-                onClick={() => navigate(`/sport/${sport.id}`)}
-                className={`group relative h-[360px] rounded-2xl overflow-hidden cursor-pointer shadow-xl transition-all border bg-slate-900 ${theme.font}`}
-                style={{ borderColor: theme.color || undefined }}
-              >
-              <img 
-                src={sport.image} 
-                alt={sport.name} 
-                className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-transform duration-700 group-hover:scale-105"
-              />
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-all duration-500 group-hover:from-black/80" />
-              
-              <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                {/* Badge couleur sport */}
-                <div className="absolute top-4 left-4">
-                  <div className="w-3 h-3 rounded-full shadow-lg" style={{ background: theme.color }} />
-                </div>
-                <div className="transform transition-transform duration-500 translate-y-12 group-hover:translate-y-0">
-                  <h3 className={`text-2xl font-bold mb-1 uppercase tracking-wider text-white drop-shadow-lg ${theme.font}`}>{sport.name}</h3>
-                  <p className="font-medium text-xs uppercase tracking-widest mb-4 border-b border-white/20 pb-3 text-white/70">{sport.tagline}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {allSports.slice(0, 8).map((sport, index) => {
+              const theme = sportTheme[sport.id] || sportTheme.football;
+              return (
+                <motion.div
+                  key={sport.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: (index % 4) * 0.08, duration: 0.4 }}
+                  onClick={() => navigate(`/sport/${sport.id}`)}
+                  className="group relative h-[340px] rounded-3xl overflow-hidden cursor-pointer"
+                >
+                  <img src={sport.image} alt={sport.name}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-25 transition-opacity duration-500" style={{ background: theme.color }} />
 
-                  <div className="space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                    {sport.services.slice(0, 2).map((service, sIdx) => (
-                      <div key={sIdx} className="flex items-center gap-2 text-sm text-white/80">
-                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: theme.color }} />
-                        <span>{service}</span>
-                      </div>
-                    ))}
-
-                    <div className="pt-3 flex items-center justify-between w-full">
-                      <span className="font-bold uppercase text-xs text-white">Explorer</span>
-                      <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" style={{ color: theme.color }}>
-                        <ChevronRight className="w-4 h-4" />
+                  <div className="absolute top-4 left-4">
+                    <div className="w-2.5 h-2.5 rounded-full" style={{ background: theme.color }} />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <div className="transform transition-all duration-400 translate-y-1 group-hover:translate-y-0">
+                      <h3 className="text-xl font-black text-white tracking-tight mb-0.5">{sport.name}</h3>
+                      <p className="text-white/40 text-[10px] uppercase tracking-widest mb-3">{sport.tagline}</p>
+                      <div className="flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="text-xs font-bold text-white/60">Explorer</span>
+                        <div className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: theme.color }}>
+                          <ChevronRight className="w-3.5 h-3.5 text-white" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              </motion.div>
-            );
-          })}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* 3. ABOUT US REMOVED */}
-
-      {/* 4. OUR VALUES */}
-      <section className="py-24 px-4 md:px-12 max-w-[1300px] mx-auto">
-        <div className="flex flex-col md:flex-row gap-16 items-center">
-          <div className="w-full md:w-1/2">
-            <p className="text-xs uppercase tracking-wider text-[#406b4a] mb-4 font-bold">Nos valeurs</p>
-            <h2 className="text-4xl md:text-5xl text-gray-900 mb-12 leading-tight">
-              Une communauté animée par la <span className="font-bold">passion, la performance et le progrès.</span>
+      {/* ── VALUES — SPLIT DARK/WHITE ── */}
+      <section className="bg-white py-24 px-4 md:px-12">
+        <div className="max-w-[1300px] mx-auto flex flex-col md:flex-row gap-0 rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
+          {/* Image side */}
+          <div className="w-full md:w-1/2 min-h-[500px] relative">
+            <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&q=80"
+              alt="Athlete" className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/0 md:to-white/0" />
+          </div>
+          {/* Content side */}
+          <div className="w-full md:w-1/2 bg-[#080e0a] p-10 md:p-16 flex flex-col justify-center">
+            <span className="inline-block px-3 py-1 rounded-full bg-[#406b4a]/20 border border-[#406b4a]/30 text-[#6dbd7a] text-xs font-black uppercase tracking-widest mb-6">
+              Nos valeurs
+            </span>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-10 leading-tight">
+              Passion.<br/>Performance.<br/>Progrès.
             </h2>
-            
-            <div className="space-y-8">
+            <div className="space-y-0 divide-y divide-white/5">
               {[
-                { icon: "🏆", title: "Excellence" },
-                { icon: "🤝", title: "Esprit d'équipe" },
-                { icon: "⚡", title: "Motivation" },
-                { icon: "💚", title: "Bien-être & Équilibre" }
-              ].map((val, idx) => (
-                <div key={idx} className="flex items-center gap-4 border-b border-gray-100 pb-6 last:border-0">
-                  <span className="text-2xl">{val.icon}</span>
-                  <h4 className="text-xl font-bold text-gray-900">{val.title}</h4>
+                { icon: '🏆', title: 'Excellence', desc: 'Toujours viser le meilleur de soi-même.' },
+                { icon: '🤝', title: "Esprit d'équipe", desc: 'Ensemble on va plus loin.' },
+                { icon: '⚡', title: 'Motivation', desc: 'Le feu qui ne s\'éteint jamais.' },
+                { icon: '💚', title: 'Bien-être', desc: 'Corps et esprit en harmonie.' },
+              ].map((v, i) => (
+                <div key={i} className="flex items-center gap-4 py-5">
+                  <span className="text-2xl w-10 flex-shrink-0">{v.icon}</span>
+                  <div>
+                    <p className="font-black text-white text-sm">{v.title}</p>
+                    <p className="text-white/35 text-xs mt-0.5">{v.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="w-full md:w-1/2 h-[600px]">
-            <img 
-              src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&q=80" 
-              alt="Athlete getting ready" 
-              className="w-full h-full object-cover rounded-3xl"
-            />
-          </div>
         </div>
       </section>
 
-      {/* 5. TESTIMONIALS REMOVED */}
-
-      {/* 6. UPCOMING EVENTS */}
-      <section className="py-12 px-4 md:px-12 max-w-[1400px] mx-auto my-12">
-        <div className="relative rounded-3xl overflow-hidden h-[400px] flex items-center justify-center text-center">
-          <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=1600&q=80" alt="Events" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/60"></div>
-          <div className="relative z-10 p-8 max-w-2xl">
-            <p className="text-white/80 text-sm uppercase tracking-wider mb-2">Événements</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Événements à venir</h2>
-            <p className="text-white/80 mb-8 max-w-lg mx-auto">
-              Nous réunissons les passionnés de tous les sports à travers des événements, des tournois et des journées découvertes pour vous motiver et trouver votre vocation.
-            </p>
-            <button onClick={() => setIsEventsModalOpen(true)} className="px-8 py-3 bg-[#406b4a] text-white rounded-full font-semibold hover:bg-[#34583d] transition-colors">
-              Tous les événements
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. MEMBERSHIP REMOVED */}
-
-      {/* 8. LIMITED TIME OFFER BANNER */}
-        <section className="px-4 md:px-12 max-w-[1200px] mx-auto mb-24">
-          <div className="bg-[#ebf2ed] border border-[#d2e3d8] rounded-[2.5rem] p-10 md:p-16 text-center relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-              <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/60 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-[#406b4a]/10 rounded-full blur-3xl"></div>
-            </div>
-            <div className="relative z-10 max-w-2xl mx-auto">
-              <span className="inline-block py-1.5 px-4 rounded-full bg-white text-[#406b4a] text-sm font-bold tracking-widest uppercase mb-6 shadow-sm border border-[#d2e3d8]">
-                Offre de bienvenue
+      {/* ── EVENTS CTA ── */}
+      <section className="bg-[#080e0a] py-12 px-4 md:px-12">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="relative rounded-3xl overflow-hidden h-[420px] flex items-center justify-center text-center">
+            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=1600&q=80" alt="Events"
+              className="absolute inset-0 w-full h-full object-cover opacity-40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#080e0a] via-black/50 to-transparent" />
+            <div className="relative z-10 p-8 max-w-2xl">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#406b4a]/40 bg-[#406b4a]/10 text-[#6dbd7a] text-xs font-bold uppercase tracking-widest mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#6dbd7a] animate-pulse" /> Agenda en direct
               </span>
-              <h3 className="text-3xl md:text-5xl font-extrabold text-[#1a2f22] mb-6 tracking-tight">
-                L'aventure commence ici.
-              </h3>
-              <p className="text-lg text-[#34583d]/90 mb-10 leading-relaxed">
-                Rejoignez la communauté <strong>Fusion</strong>. Recevez des recommandations de clubs, des alertes d'événements et des offres exclusives sur l'équipement de votre sport favori.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button onClick={() => navigate('/auth')} className="w-full sm:w-auto px-8 py-4 bg-[#406b4a] text-white rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-[#2c4c34] transition-all hover:-translate-y-0.5">
-                  Créer mon profil sportif
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-4 leading-tight">
+                Événements<br/>à venir.
+              </h2>
+              <p className="text-white/50 mb-8 max-w-md mx-auto">Tournois, initiations, rencontres — rejoins les passionnés près de chez toi.</p>
+              <button onClick={() => setIsEventsModalOpen(true)}
+                className="px-8 py-4 bg-[#406b4a] hover:bg-[#34583d] text-white font-bold rounded-2xl transition-colors">
+                Voir l'agenda →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA FINAL ── */}
+      <section className="bg-[#080e0a] py-16 px-4 md:px-12 pb-24">
+        <div className="max-w-[1100px] mx-auto">
+          <div className="relative bg-[#406b4a] rounded-3xl p-10 md:p-16 overflow-hidden">
+            <div className="absolute inset-0 opacity-10"
+              style={{ backgroundImage: 'linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)', backgroundSize: '40px 40px' }} />
+            <div className="absolute -top-20 -right-20 w-60 h-60 bg-white/10 rounded-full blur-3xl" />
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+              <div>
+                <p className="text-white/60 text-sm font-bold uppercase tracking-widest mb-3">Prêt à commencer ?</p>
+                <h3 className="text-3xl md:text-5xl font-black text-white leading-tight">
+                  L'aventure<br/>commence ici.
+                </h3>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                <button onClick={() => navigate('/auth')}
+                  className="px-8 py-4 bg-white text-[#406b4a] font-black rounded-2xl hover:bg-gray-100 transition-colors">
+                  Créer mon profil
                 </button>
-                <button onClick={() => navigate('/comment-ca-marche')} className="w-full sm:w-auto px-8 py-4 bg-white text-[#406b4a] rounded-full font-bold shadow-sm border border-[#d2e3d8] hover:bg-gray-50 transition-all">
+                <button onClick={() => navigate('/comment-ca-marche')}
+                  className="px-8 py-4 bg-white/10 border border-white/20 text-white font-bold rounded-2xl hover:bg-white/20 transition-colors">
                   En savoir plus
                 </button>
-                </div>
               </div>
             </div>
-          </section>
+          </div>
+        </div>
+      </section>
 
-        {/* 9. FOOTER */}
-        <footer className="px-4 md:px-12 py-16 bg-white border-t border-gray-100">
+      {/* ── FOOTER DARK ── */}
+      <footer className="bg-[#040908] border-t border-white/5 px-4 md:px-12 py-12">
         <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex flex-col items-center md:items-start">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2 tracking-tight">
-              <span className="text-[#406b4a]">⚡</span> fusion
+          <div>
+            <h2 className="text-xl font-black text-white mb-1 flex items-center gap-2">
+              <span className="text-[#6dbd7a]">⚡</span> fusion
             </h2>
-            <p className="text-sm text-gray-500">Trouvez votre sport. Partagez votre passion.</p>
+            <p className="text-white/30 text-sm">Trouvez votre sport. Vivez votre passion.</p>
           </div>
-
-          <div className="flex items-center gap-8 text-sm font-medium text-gray-600">
-            <a href="#" className="hover:text-[#406b4a] transition-colors">Accueil</a>
-            <a href="#" className="hover:text-[#406b4a] transition-colors">Comment ça marche</a>
-            <a href="#" className="hover:text-[#406b4a] transition-colors">Guide des sports</a>
-            <a href="mailto:contact@fusion.com" className="hover:text-[#406b4a] transition-colors">Contact</a>
+          <div className="flex items-center gap-6 text-sm font-semibold text-white/30">
+            <a href="/" className="hover:text-white transition-colors">Accueil</a>
+            <a href="/comment-ca-marche" className="hover:text-white transition-colors">Comment ça marche</a>
+            <a href="/guide-des-sports" className="hover:text-white transition-colors">Guide des sports</a>
+            <a href="mailto:contact@fusion.com" className="hover:text-white transition-colors">Contact</a>
           </div>
-
-          <div className="text-sm text-gray-400">
-            <p>© 2026 Fusion. Tous droits réservés.</p>
-          </div>
+          <p className="text-white/20 text-xs">© 2026 Fusion.</p>
         </div>
       </footer>
       <EventsModal isOpen={isEventsModalOpen} onClose={() => setIsEventsModalOpen(false)} />
