@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { EventsContext } from './EventsContextOnly';
 import { initialWeekEvents } from '../utils/eventsManager';
 
 // Conversion weekEvents en liste d'événements pour le calendrier
@@ -10,8 +11,6 @@ function weekToCalendarEvents(weekEvents) {
     }))
   );
 }
-
-import { EventsContext } from './EventsContextOnly';
 
 export function EventsProvider({ children }) {
   const [weekEvents, setWeekEvents] = useState(initialWeekEvents);

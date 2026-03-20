@@ -1,12 +1,12 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
+import { UserProvider } from './context/UserContext';
 import { EventsProvider } from './context/EventsContext';
-import CalendarPage from './pages/CalendarPage';
-import AuthPage from './pages/AuthPage';
+import HomePage from './pages/HomePage';
 import SportPage from './pages/SportPage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import SportsGuidePage from './pages/SportsGuidePage';
+import CalendarPage from './pages/CalendarPage';
+import AuthPage from './pages/AuthPage';
 
 function App() {
   return (

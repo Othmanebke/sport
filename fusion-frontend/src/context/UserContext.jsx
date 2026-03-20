@@ -1,12 +1,11 @@
-import React, { createContext, useContext, useState } from 'react';
-
+import { createContext, useContext, useState } from 'react';
 const UserContext = createContext();
 
 export function useUser() {
   return useContext(UserContext);
 }
 
-export function UserProvider({ children }) {
+export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null); // null = non connecté
 
   // Ajout des données personnalisées
@@ -46,4 +45,4 @@ export function UserProvider({ children }) {
       {children}
     </UserContext.Provider>
   );
-}
+};
