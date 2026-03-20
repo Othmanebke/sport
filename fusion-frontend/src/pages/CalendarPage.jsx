@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import SportCalendar from '../components/SportCalendar';
-import { useEvents } from '../context/EventsHooks';
+
+export default function CalendarPage() {
 
   const [selectedDate, setSelectedDate] = useState(null);
   const { calendarEvents } = useEvents();
